@@ -58,6 +58,10 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+<<<<<<< HEAD
 libs/
 bin/
 obj/
+=======
+/FluxxFieldsCards/obj
+>>>>>>> cc0f9a61a2de724f24379ef5f8926010b0cf4100
