@@ -5,6 +5,16 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxxFieldsCards", "FluxxFieldsCards\FluxxFieldsCards.csproj", "{8DB6F2D7-CC01-4740-95BD-205A02DE72D0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{2304D21D-80DF-44FD-B5EA-497E115564DE}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\Program Files (x86)\BepInEx-BepInExPack_ROUNDS-5.4.1100\BepInExPack_ROUNDS\BepInEx\core\0Harmony.dll = ..\..\..\..\..\Program Files (x86)\BepInEx-BepInExPack_ROUNDS-5.4.1100\BepInExPack_ROUNDS\BepInEx\core\0Harmony.dll
+		..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\Assembly-CSharp-firstpass.dll = ..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\Assembly-CSharp-firstpass.dll
+		..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\Assembly-CSharp.dll = ..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\Assembly-CSharp.dll
+		..\..\..\..\..\Program Files (x86)\willis81808-UnboundLib-2.7.1\plugins\UnboundLib.dll = ..\..\..\..\..\Program Files (x86)\willis81808-UnboundLib-2.7.1\plugins\UnboundLib.dll
+		..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\UnityEngine.CoreModule.dll = ..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\UnityEngine.CoreModule.dll
+		..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\UnityEngine.dll = ..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\UnityEngine.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -2,7 +2,7 @@
 
 namespace FluxxFieldsCards
 {
-    public class Class1
+    public class FluxxFieldsCards
     {
     }
 }
