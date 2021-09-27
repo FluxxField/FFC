@@ -58,7 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-bin/
+libs/
 FFC/obj
 FFC/bin
 FFC/Properties
