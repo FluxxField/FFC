@@ -1,6 +1,0 @@
-C:\Users\keena\source\repos\FFC\FFC\bin\Debug\FFC.dll
-C:\Users\keena\source\repos\FFC\FFC\bin\Debug\FFC.pdb
-C:\Users\keena\source\repos\FFC\FFC\obj\Debug\FFC.csproj.AssemblyReference.cache
-C:\Users\keena\source\repos\FFC\FFC\obj\Debug\FFC.csproj.CoreCompileInputs.cache
-C:\Users\keena\source\repos\FFC\FFC\obj\Debug\FFC.dll
-C:\Users\keena\source\repos\FFC\FFC\obj\Debug\FFC.pdb
