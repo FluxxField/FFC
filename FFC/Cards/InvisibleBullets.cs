@@ -8,47 +8,74 @@ namespace FFC.Cards
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers)
         {
-            throw new NotImplementedException();
+
         }
 
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            throw new NotImplementedException();
+            gun.bulletDamageMultiplier = 0.5f;
+            gun.projectileColor = Color.clear;
+
+            if (gun.destroyBulletAfter == 0f)
+            {
+                gun.destroyBulletAfter = 5f;
+            }
         }
 
         public override void OnRemoveCard()
         {
-            throw new NotImplementedException();
+
         }
 
         protected override string GetTitle()
         {
-            throw new NotImplementedException();
+            return "Invisible Bullets";
         }
-
-        protected override GameObject GetCardArt()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         protected override string GetDescription()
         {
-            throw new NotImplementedException();
-        }
-
-        protected override CardInfo.Rarity GetRarity()
-        {
-            throw new NotImplementedException();
+            return "Am I actually shooting anything!? I can't tell...";
         }
 
         protected override CardInfoStat[] GetStats()
         {
-            throw new NotImplementedException();
+            return new CardInfoStat[]
+            {
+                new CardInfoStat
+                {
+                    positive = true,
+                    stat = "Bullets",
+                    amount = "Invisible",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
+                },
+                new CardInfoStat
+                {
+                    positive = false,
+                    stat = "Damage",
+                    amount = "-25%",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
+                },
+            };
+        }
+
+        protected override CardInfo.Rarity GetRarity()
+        {
+            return CardInfo.Rarity.Rare;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            throw new NotImplementedException();
+            return CardThemeColor.CardThemeColorType.TechWhite;
+        }
+
+        protected override GameObject GetCardArt()
+        {
+            return null;
+        }
+
+        public override string GetModName()
+        {
+            return FFC.ModNameAbr;
         }
     }
 }

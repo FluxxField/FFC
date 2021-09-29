@@ -34,11 +34,6 @@ namespace FFC.Cards
             return "Swap out your mag for an extended version!";
         }
 
-        protected override CardInfo.Rarity GetRarity()
-        {
-            return CardInfo.Rarity.Common;
-        }
-
         protected override CardInfoStat[] GetStats()
         {
             return new CardInfoStat[]
@@ -67,6 +62,11 @@ namespace FFC.Cards
             };
         }
 
+        protected override CardInfo.Rarity GetRarity()
+        {
+            return CardInfo.Rarity.Common;
+        }
+
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
             return CardThemeColor.CardThemeColorType.DefensiveBlue;
@@ -79,7 +79,7 @@ namespace FFC.Cards
 
         public override string GetModName()
         {
-            return "FFC";
+            return FFC.ModNameAbr;
         }
     }
 }

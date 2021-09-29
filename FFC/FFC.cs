@@ -27,6 +27,7 @@ namespace FFC
 
     public class FFC : BaseUnityPlugin
     {
+        public const string ModNameAbr = "FFC";
         private const string ModId = "fluxxfield.rounds.plugins.fluxxfieldscards";
         private const string ModName = "FluxxField's Cards (FFC)";
         private const string Version = "1.0.1";
