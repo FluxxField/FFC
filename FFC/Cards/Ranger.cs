@@ -1,15 +1,14 @@
-﻿using System;
-using UnboundLib.Cards;
+﻿using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
-    class ExtendedMag : CustomCard {
+    class Ranger : CustomCard {
         protected override string GetTitle() {
-            return "Extended Mag";
+            return "Ranger";
         }
 
         protected override string GetDescription() {
-            return "Swap out your mag for an extended version!";
+            return "You are a Ranger from the North";
         }
 
         public override void SetupCard(
@@ -31,10 +30,6 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.maxAmmo += (int) Math.Floor(gunAmmo.maxAmmo * (1f / 3f));
-
-            gun.reloadTime = 0.85f;
-            characterStats.movementSpeed = 0.9f;
         }
 
         public override void OnRemoveCard() {
@@ -44,22 +39,10 @@ namespace FFC.Cards {
             return new[] {
                 new CardInfoStat() {
                     positive = true,
-                    stat = "Ammo",
-                    amount = "+33%",
+                    stat = "Damage",
+                    amount = "5%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
-                },
-                new CardInfoStat() {
-                    positive = false,
-                    stat = "Reload Speed",
-                    amount = "+15%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
-                },
-                new CardInfoStat() {
-                    positive = false,
-                    stat = "Movement Speed",
-                    amount = "-10%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
-                },
+                }
             };
         }
 

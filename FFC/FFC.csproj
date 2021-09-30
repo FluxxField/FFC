@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Cards\InvisibleBullets.cs" />
     <Compile Include="Cards\ExtendedMag.cs" />
+    <Compile Include="Cards\Ranger.cs" />
     <Compile Include="FFC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
