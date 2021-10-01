@@ -1,29 +1,19 @@
-﻿using BepInEx; // requires BepInEx.dll and BepInEx.Harmony.dll
-using UnboundLib; // requires UnboundLib.dll
-using UnboundLib.Cards; // " "
-using UnityEngine; // requires UnityEngine.dll, UnityEngine.CoreModule.dll, and UnityEngine.AssetBundleModule.dll
-using HarmonyLib; // requires 0Harmony.dll
-using System.Collections;
-using Photon.Pun;
-using Jotunn.Utils;
-using UnboundLib.GameModes;
-using System.Reflection;
-using System.Linq;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using UnboundLib.Networking;
-using UnboundLib.Utils;
+﻿using BepInEx;
+using CardChoiceSpawnUniqueCardPatch.CustomCategories;
+using UnboundLib;
+using UnboundLib.Cards;
+using HarmonyLib;
 using FFC.Cards;
 
-// requires Assembly-CSharp.dll
-// requires MMHOOK-Assembly-CSharp.dll
-
 namespace FFC {
-    [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency("com.willis.rounds.unbound")]
+    [BepInDependency("pykess.rounds.plugins.moddingutils")]
+    [BepInDependency("pykess.rounds.plugins.cardchoicespawnuniquecardpatch")]
     [BepInPlugin(ModId, ModName, Version)]
     [BepInProcess("Rounds.exe")]
     public class FFC : BaseUnityPlugin {
         public const string AbbrModName = "FFC";
+        public const string SniperClassCategory = "Class - Sniper";
         private const string ModId = "fluxxfield.rounds.plugins.fluxxfieldscards";
         private const string ModName = "FluxxField's Cards (FFC)";
         private const string Version = "1.0.1";
@@ -43,7 +33,10 @@ namespace FFC {
             UnityEngine.Debug.Log($"[{AbbrModName}] Building cards");
             CustomCard.BuildCard<ExtendedMag>();
             CustomCard.BuildCard<InvisibleBullets>();
+            CustomCard.BuildCard<Sniper>();
             UnityEngine.Debug.Log($"[{AbbrModName}] Done building cards");
+
+            CustomCardCategories.instance.CardCategory(SniperClassCategory);
         }
     }
 }

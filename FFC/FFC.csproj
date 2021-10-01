@@ -43,8 +43,17 @@
     <Reference Include="BepInEx.Harmony">
       <HintPath>..\libs\BepInEx.Harmony.dll</HintPath>
     </Reference>
+    <Reference Include="CardChoiceSpawnUniqueCardPatch, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\libs\CardChoiceSpawnUniqueCardPatch.dll</HintPath>
+    </Reference>
     <Reference Include="MMHOOK_Assembly-CSharp">
       <HintPath>..\libs\MMHOOK_Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ModdingUtils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\libs\ModdingUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonUnityNetworking, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\libs\PhotonUnityNetworking.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -70,8 +79,9 @@
   <ItemGroup>
     <Compile Include="Cards\InvisibleBullets.cs" />
     <Compile Include="Cards\ExtendedMag.cs" />
-    <Compile Include="Cards\Ranger.cs" />
+    <Compile Include="Cards\Sniper.cs" />
     <Compile Include="FFC.cs" />
+    <Compile Include="MonoBehaviours\InstantKillDamageEffect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
