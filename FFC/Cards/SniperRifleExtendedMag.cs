@@ -1,15 +1,17 @@
-﻿using System;
+﻿using CardChoiceSpawnUniqueCardPatch.CustomCategories;
+using FFC.MonoBehaviours;
+using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
-    class ExtendedMag : CustomCard {
+    class SniperRifleExtendedMag : CustomCard {
         protected override string GetTitle() {
-            return "Extended Mag";
+            return "Sniper Rifle Extended Mag";
         }
 
         protected override string GetDescription() {
-            return "Swap out your mag for an extended version!";
+            return "Get 2 more shots for your sniper!";
         }
 
         public override void SetupCard(
@@ -19,6 +21,12 @@ namespace FFC.Cards {
             CharacterStatModifiers statModifiers
         ) {
             UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
+            
+            cardInfo.allowMultiple = false;
+            cardInfo.categories = new []
+            {
+                CustomCardCategories.instance.CardCategory(FFC.SniperClassCategory)
+            };
         }
 
         public override void OnAddCard(
@@ -31,10 +39,7 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.maxAmmo += (int) Math.Floor(gunAmmo.maxAmmo * (1f / 3f));
-
-            gun.reloadTime = 0.85f;
-            characterStats.movementSpeed = 0.9f;
+            gunAmmo.maxAmmo = 3;
         }
 
         public override void OnRemoveCard() {
@@ -44,31 +49,19 @@ namespace FFC.Cards {
             return new[] {
                 new CardInfoStat() {
                     positive = true,
-                    stat = "Ammo",
-                    amount = "+33%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
-                },
-                new CardInfoStat() {
-                    positive = false,
-                    stat = "Reload Speed",
-                    amount = "+15%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
-                },
-                new CardInfoStat() {
-                    positive = false,
-                    stat = "Movement Speed",
-                    amount = "-10%",
+                    stat = "Max Ammo",
+                    amount = "+2",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
                 },
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Uncommon;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.DefensiveBlue;
+            return CardThemeColor.CardThemeColorType.FirepowerYellow;
         }
 
         protected override GameObject GetCardArt() {

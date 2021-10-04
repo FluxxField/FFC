@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using BepInEx;
-using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using UnboundLib;
 using UnboundLib.Cards;
 using HarmonyLib;
 using FFC.Cards;
 using UnboundLib.GameModes;
 using UnboundLib.Utils;
-using UnityEngine;
 
 namespace FFC {
     [BepInDependency("com.willis.rounds.unbound")]
@@ -40,37 +35,42 @@ namespace FFC {
                 new[] {"https://github.com/FluxxField/FFC"});
 
             UnityEngine.Debug.Log($"[{AbbrModName}] Building cards");
-            CustomCard.BuildCard<ExtendedMag>();
-            CustomCard.BuildCard<InvisibleBullets>();
             CustomCard.BuildCard<Sniper>();
+            CustomCard.BuildCard<SniperRifleExtendedMag>();
             UnityEngine.Debug.Log($"[{AbbrModName}] Done building cards");
 
-            GameModeManager.AddHook(GameModeHooks.HookBattleStart, gm => UpdateSniperAmmo());
-            GameModeManager.AddHook(GameModeHooks.HookBattleStart, gm => UpdateBulletColor());
+            GameModeManager.AddHook(GameModeHooks.HookBattleStart, gm => HandleSniperAmmo());
         }
 
-        private IEnumerator UpdateSniperAmmo() {
+        private IEnumerator HandleSniperAmmo() {
+            UnityEngine.Debug.Log($"[{AbbrModName}] Updating Sniper Ammo");
+
             foreach (Player currentPlayer in PlayerManager.instance.players.ToArray()) {
-                foreach (CardInfo currentPlayersCard in currentPlayer.data.currentCards) {
-                    if (currentPlayersCard.cardName.ToUpper() == "SNIPER!") {
-                        GunAmmo gunAmmo = currentPlayer.GetComponent<Holding>().holdable.GetComponent<Gun>()
-                            .GetComponentInChildren<GunAmmo>();
-                        gunAmmo.maxAmmo = 1;
+                List<CardInfo> currentCards = currentPlayer.data.currentCards;
+                GunAmmo gunAmmo = currentPlayer.GetComponent<Holding>().holdable.GetComponent<Gun>()
+                    .GetComponentInChildren<GunAmmo>();
+
+                bool hasSniper = false;
+                bool hasExtendedSniperMag = false;
+
+                foreach (CardInfo currentCard in currentCards) {
+                    string cardName = currentCard.cardName.ToUpper();
+
+                    if (cardName == "SNIPER") {
+                        hasSniper = true;
+                    }
+
+                    if (cardName == "SNIPER RIFLE EXTENDED MAG") {
+                        hasExtendedSniperMag = true;
                     }
                 }
-            }
 
-            yield break;
-        }
+                if (hasSniper) {
+                    gunAmmo.maxAmmo = 1;
+                }
 
-        private IEnumerator UpdateBulletColor() {
-            foreach (Player currentPlayer in PlayerManager.instance.players.ToArray()) {
-                foreach (CardInfo currentPlayersCard in currentPlayer.data.currentCards) {
-                    Gun gun = currentPlayer.GetComponent<Holding>().holdable.GetComponent<Gun>();
-                    if (currentPlayersCard.cardName.ToUpper() == "INVISIBLE BULLETS") {
-                        gun.projectileColor = Color.clear;
-                    }
-                    break;
+                if (hasSniper && hasExtendedSniperMag) {
+                    gunAmmo.maxAmmo = 3;
                 }
             }
 

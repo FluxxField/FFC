@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CardChoiceSpawnUniqueCardPatch.CustomCategories;
-using FFC.MonoBehaviours;
+﻿using FFC.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
+using UnboundLib.Utils;
 using UnityEngine;
 
 namespace FFC.Cards {
@@ -24,12 +21,8 @@ namespace FFC.Cards {
             CharacterStatModifiers statModifiers
         ) {
             UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
-            
+
             cardInfo.allowMultiple = false;
-            cardInfo.categories = new []
-            {
-                CustomCardCategories.instance.CardCategory(FFC.SniperClassCategory)
-            };
         }
 
         public override void OnAddCard(
@@ -42,12 +35,14 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
+            gun.damage *= 1.5f;
             gun.unblockable = true;
             gun.gravity = 0f;
             gun.projectileSpeed *= 2f;
             gunAmmo.reloadTime = 3f;
             gunAmmo.maxAmmo = 1;
-            player.gameObject.GetOrAddComponent<InstantKillHitEffect>();
+            // player.gameObject.GetOrAddComponent<InstantKillHitEffect>();
+            CardManager.EnableCategory(FFC.SniperClassCategory);
         }
 
         public override void OnRemoveCard() {

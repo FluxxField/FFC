@@ -77,9 +77,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cards\InvisibleBullets.cs" />
-    <Compile Include="Cards\ExtendedMag.cs" />
     <Compile Include="Cards\Sniper.cs" />
+    <Compile Include="Cards\SniperRifleExtendedMag.cs" />
     <Compile Include="FFC.cs" />
     <Compile Include="MonoBehaviours\InstantKillDamageEffect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
