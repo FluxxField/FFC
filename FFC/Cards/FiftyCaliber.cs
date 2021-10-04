@@ -1,15 +1,17 @@
-﻿using CardChoiceSpawnUniqueCardPatch.CustomCategories;
-using UnboundLib.Cards;
+﻿using UnboundLib.Cards;
+using CardChoiceSpawnUniqueCardPatch.CustomCategories;
+using FFC.MonoBehaviours;
+using UnboundLib;
 using UnityEngine;
 
 namespace FFC.Cards {
-    class Sniper : CustomCard {
+    public class FiftyCaliber : CustomCard {
         protected override string GetTitle() {
-            return "Sniper!";
+            return ".50 Cal";
         }
 
         protected override string GetDescription() {
-            return "Get down!!";
+            return "Girl Friend: 'Now that's BIG ;)'";
         }
 
         public override void SetupCard(
@@ -22,7 +24,7 @@ namespace FFC.Cards {
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                CustomCardCategories.instance.CardCategory(FFC.SniperClassCategory)
+                CustomCardCategories.instance.CardCategory(FFC.SniperClassUpgradesCategory)
             };
         }
 
@@ -36,12 +38,8 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gun.damage *= 1.5f;
-            gun.projectileSpeed *= 2f;
-            gun.gravity = 0f;
-
-            gun.attackSpeed *= 1.5f;
-            gunAmmo.reloadTime = 2f;
+            gunAmmo.maxAmmo = 1;
+            player.gameObject.GetOrAddComponent<InstantKillHitEffect>();
         }
 
         public override void OnRemoveCard() {
@@ -51,33 +49,20 @@ namespace FFC.Cards {
             return new[] {
                 new CardInfoStat() {
                     positive = true,
-                    stat = "Bullet Damage",
-                    amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
-                },
-                new CardInfoStat() {
-                    positive = true,
-                    stat = "Bullet Speed",
-                    amount = "+100%",
+                    amount = "Insta Kill",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
                 },
                 new CardInfoStat() {
                     positive = false,
-                    stat = "Attack Speed",
-                    amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
-                },
-                new CardInfoStat() {
-                    positive = false,
-                    stat = "Reload Speed",
-                    amount = "2s",
+                    stat = "Max Ammo",
+                    amount = "1",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
                 },
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Rare;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {

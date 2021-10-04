@@ -1,8 +1,6 @@
-﻿using CardChoiceSpawnUniqueCardPatch.CustomCategories;
-using FFC.MonoBehaviours;
-using UnboundLib;
+﻿using UnityEngine;
 using UnboundLib.Cards;
-using UnityEngine;
+using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 
 namespace FFC.Cards {
     class SniperRifleExtendedMag : CustomCard {
@@ -11,7 +9,7 @@ namespace FFC.Cards {
         }
 
         protected override string GetDescription() {
-            return "Get 2 more shots for your sniper!";
+            return "Get 1 more shots for your sniper!";
         }
 
         public override void SetupCard(
@@ -22,10 +20,10 @@ namespace FFC.Cards {
         ) {
             UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
             
-            cardInfo.allowMultiple = false;
+            cardInfo.allowMultiple = true;
             cardInfo.categories = new []
             {
-                CustomCardCategories.instance.CardCategory(FFC.SniperClassCategory)
+                CustomCardCategories.instance.CardCategory(FFC.SniperClassUpgradesCategory)
             };
         }
 
@@ -39,7 +37,7 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.maxAmmo = 3;
+            gunAmmo.maxAmmo += 1;
         }
 
         public override void OnRemoveCard() {
@@ -50,7 +48,7 @@ namespace FFC.Cards {
                 new CardInfoStat() {
                     positive = true,
                     stat = "Max Ammo",
-                    amount = "+2",
+                    amount = "1",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
                 },
             };

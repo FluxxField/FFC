@@ -3,13 +3,13 @@ using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
-    class Sniper : CustomCard {
+    public class ArmorPiercingRounds : CustomCard {
         protected override string GetTitle() {
-            return "Sniper!";
+            return "Armor-Piercing Rounds";
         }
 
         protected override string GetDescription() {
-            return "Get down!!";
+            return "Block this!'";
         }
 
         public override void SetupCard(
@@ -22,7 +22,7 @@ namespace FFC.Cards {
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                CustomCardCategories.instance.CardCategory(FFC.SniperClassCategory)
+                CustomCardCategories.instance.CardCategory(FFC.SniperClassUpgradesCategory)
             };
         }
 
@@ -36,12 +36,7 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gun.damage *= 1.5f;
-            gun.projectileSpeed *= 2f;
-            gun.gravity = 0f;
-
-            gun.attackSpeed *= 1.5f;
-            gunAmmo.reloadTime = 2f;
+            gun.unblockable = true;
         }
 
         public override void OnRemoveCard() {
@@ -51,33 +46,14 @@ namespace FFC.Cards {
             return new[] {
                 new CardInfoStat() {
                     positive = true,
-                    stat = "Bullet Damage",
-                    amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
-                },
-                new CardInfoStat() {
-                    positive = true,
-                    stat = "Bullet Speed",
-                    amount = "+100%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
-                },
-                new CardInfoStat() {
-                    positive = false,
-                    stat = "Attack Speed",
-                    amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
-                },
-                new CardInfoStat() {
-                    positive = false,
-                    stat = "Reload Speed",
-                    amount = "2s",
+                    amount = "Unblockable",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
                 },
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Uncommon;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
