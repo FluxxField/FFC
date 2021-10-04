@@ -19,10 +19,6 @@ namespace FFC.Cards {
             CharacterStatModifiers statModifiers
         ) {
             UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
-
-            cardInfo.categories = new[] {
-                CustomCardCategories.instance.CardCategory(FFC.SniperClassUpgradesCategory)
-            };
         }
 
         public override void OnAddCard(
