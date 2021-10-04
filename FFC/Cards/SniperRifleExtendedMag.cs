@@ -45,13 +45,13 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = true,
                     stat = "Max Ammo",
                     amount = "1",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = false,
                     stat = "Movement Speed",
                     amount = "-5%",

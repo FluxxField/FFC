@@ -39,7 +39,7 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = true,
                     stat = "Reload Speed",
                     amount = "-15%",

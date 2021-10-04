@@ -5,9 +5,9 @@ using UnboundLib;
 using UnityEngine;
 
 namespace FFC.Cards {
-    public class FiftyCaliber : CustomCard {
+    public class Barret50Cal : CustomCard {
         protected override string GetTitle() {
-            return ".50 Cal";
+            return "Barret .50 Cal";
         }
 
         protected override string GetDescription() {
@@ -48,18 +48,18 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = true,
                     amount = "Insta Kill",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = false,
                     stat = "Max Ammo",
                     amount = "1",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = false,
                     stat = "Reload Speed",
                     amount = "+50%",

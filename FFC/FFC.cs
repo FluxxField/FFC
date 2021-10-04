@@ -35,7 +35,7 @@ namespace FFC {
             UnityEngine.Debug.Log($"[{AbbrModName}] Building cards");
             CustomCard.BuildCard<Sniper>();
             CustomCard.BuildCard<SniperRifleExtendedMag>();
-            CustomCard.BuildCard<FiftyCaliber>();
+            CustomCard.BuildCard<Barret50Cal>();
             CustomCard.BuildCard<ArmorPiercingRounds>();
             CustomCard.BuildCard<FastMags>();
             UnityEngine.Debug.Log($"[{AbbrModName}] Done building cards");

@@ -54,25 +54,25 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = true,
                     stat = "Bullet Drop",
                     amount = "0",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = true,
                     stat = "Bullet Damage",
                     amount = "+50%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = true,
                     stat = "Bullet Speed",
                     amount = "+100%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = false,
                     stat = "Attack Speed",
                     amount = "+50%",

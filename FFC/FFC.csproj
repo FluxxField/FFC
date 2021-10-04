@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cards\ArmorPiercingRounds.cs" />
-    <Compile Include="Cards\FiftyCaliber.cs" />
+    <Compile Include="Cards\Barret50Cal.cs" />
     <Compile Include="Cards\FastMags.cs" />
     <Compile Include="Cards\Sniper.cs" />
     <Compile Include="Cards\SniperRifleExtendedMag.cs" />
