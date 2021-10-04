@@ -46,6 +46,7 @@ namespace FFC.Cards {
             gun.attackSpeed = 1f;
 
             List<CardCategory> blacklistedCategories = characterStats.GetAdditionalData().blacklistedCategories;
+            blacklistedCategories.Remove(CustomCardCategories.instance.CardCategory(FFC.SniperClassUpgradesCategory));
             blacklistedCategories.Add(_mainClassesCategory);
         }
 

@@ -1,10 +1,15 @@
-﻿using BepInEx;
+﻿using System.Collections;
+using System.Linq;
+using System.Net.WebSockets;
+using BepInEx;
 using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using UnboundLib;
 using UnboundLib.Cards;
 using HarmonyLib;
 using FFC.Cards;
 using ModdingUtils.Extensions;
+using UnboundLib.GameModes;
+using UnboundLib.Utils;
 
 namespace FFC {
     [BepInDependency("com.willis.rounds.unbound")]
@@ -40,18 +45,20 @@ namespace FFC {
             CustomCard.BuildCard<FastMags>();
             UnityEngine.Debug.Log($"[{AbbrModName}] Done building cards");
             
-            this.ExecuteAfterSeconds(0.4f, HandleCardCategoriesSetup);
+            GameModeManager.AddHook(GameModeHooks.HookGameStart, gm => HandleCardCategoriesSetup());
         }
         
-        private void HandleCardCategoriesSetup() {
-            UnityEngine.Debug.Log($"[{AbbrModName}] Setting up Categories");
+        private IEnumerator HandleCardCategoriesSetup() {
+            UnityEngine.Debug.Log($"[{AbbrModName}] Setting up player categories");
             Player[] players = PlayerManager.instance.players.ToArray();
 
             foreach (Player player in players) {
-                player.GetComponent<CharacterStatModifiers>().GetAdditionalData().blacklistedCategories.Add(
+                CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(
                     CustomCardCategories.instance.CardCategory(SniperClassUpgradesCategory)
                 );
             }
+            UnityEngine.Debug.Log($"[{AbbrModName}] Dont setting up player categories");
+            yield break;
         }
     }
 }
