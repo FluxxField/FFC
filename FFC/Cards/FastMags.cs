@@ -1,15 +1,15 @@
-﻿using UnityEngine;
+﻿using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using UnboundLib.Cards;
-using CardChoiceSpawnUniqueCardPatch.CustomCategories;
+using UnityEngine;
 
 namespace FFC.Cards {
-    class SniperRifleExtendedMag : CustomCard {
+    public class FastMags : CustomCard {
         protected override string GetTitle() {
-            return "Sniper Rifle Extended Mag";
+            return "Fast Mags";
         }
 
         protected override string GetDescription() {
-            return "Get 1 more shots for your sniper!";
+            return "After many missed shots and constantly having to reloading.. You bought fast mags. But, it didn't fix your aim";
         }
 
         public override void SetupCard(
@@ -19,9 +19,8 @@ namespace FFC.Cards {
             CharacterStatModifiers statModifiers
         ) {
             UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
-            
-            cardInfo.categories = new []
-            {
+
+            cardInfo.categories = new[] {
                 CustomCardCategories.instance.CardCategory(FFC.SniperClassUpgradesCategory)
             };
         }
@@ -36,8 +35,7 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.maxAmmo += 2;
-            characterStats.movementSpeed -= 0.05f;
+            gunAmmo.reloadTimeMultiplier -= 0.15f;
         }
 
         public override void OnRemoveCard() {
@@ -47,21 +45,15 @@ namespace FFC.Cards {
             return new[] {
                 new CardInfoStat() {
                     positive = true,
-                    stat = "Max Ammo",
-                    amount = "1",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat() {
-                    positive = false,
-                    stat = "Movement Speed",
-                    amount = "-5%",
+                    stat = "Reload Speed",
+                    amount = "-15%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Common;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {

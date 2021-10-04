@@ -39,6 +39,7 @@ namespace FFC.Cards {
             CharacterStatModifiers characterStats
         ) {
             gunAmmo.maxAmmo = 1;
+            gunAmmo.reloadTimeMultiplier += 0.5f;
             player.gameObject.GetOrAddComponent<InstantKillHitEffect>();
         }
 
@@ -50,14 +51,20 @@ namespace FFC.Cards {
                 new CardInfoStat() {
                     positive = true,
                     amount = "Insta Kill",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat() {
                     positive = false,
                     stat = "Max Ammo",
                     amount = "1",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
+                new CardInfoStat() {
+                    positive = false,
+                    stat = "Reload Speed",
+                    amount = "+50%",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                }
             };
         }
 

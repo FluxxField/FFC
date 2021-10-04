@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using BepInEx;
+﻿using BepInEx;
+using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using UnboundLib;
 using UnboundLib.Cards;
 using HarmonyLib;
 using FFC.Cards;
-using UnboundLib.GameModes;
+using ModdingUtils.Extensions;
 
 namespace FFC {
     [BepInDependency("com.willis.rounds.unbound")]
@@ -15,8 +14,7 @@ namespace FFC {
     [BepInProcess("Rounds.exe")]
     public class FFC : BaseUnityPlugin {
         public const string AbbrModName = "FFC";
-
-        public const string SniperClassCategory = "Sniper";
+        public const string MainClassesCategory = "MainClasses";
         public const string SniperClassUpgradesCategory = "SniperUpgrades";
 
         private const string ModId = "fluxxfield.rounds.plugins.fluxxfieldscards";
@@ -39,7 +37,21 @@ namespace FFC {
             CustomCard.BuildCard<SniperRifleExtendedMag>();
             CustomCard.BuildCard<FiftyCaliber>();
             CustomCard.BuildCard<ArmorPiercingRounds>();
+            CustomCard.BuildCard<FastMags>();
             UnityEngine.Debug.Log($"[{AbbrModName}] Done building cards");
+            
+            this.ExecuteAfterSeconds(0.4f, HandleCardCategoriesSetup);
+        }
+        
+        private void HandleCardCategoriesSetup() {
+            UnityEngine.Debug.Log($"[{AbbrModName}] Setting up Categories");
+            Player[] players = PlayerManager.instance.players.ToArray();
+
+            foreach (Player player in players) {
+                player.GetComponent<CharacterStatModifiers>().GetAdditionalData().blacklistedCategories.Add(
+                    CustomCardCategories.instance.CardCategory(SniperClassUpgradesCategory)
+                );
+            }
         }
     }
 }

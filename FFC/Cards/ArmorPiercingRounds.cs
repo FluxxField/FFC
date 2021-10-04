@@ -37,6 +37,7 @@ namespace FFC.Cards {
             CharacterStatModifiers characterStats
         ) {
             gun.unblockable = true;
+            gun.reloadTime += 0.5f;
         }
 
         public override void OnRemoveCard() {
@@ -47,13 +48,19 @@ namespace FFC.Cards {
                 new CardInfoStat() {
                     positive = true,
                     amount = "Unblockable",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
+                new CardInfoStat() {
+                    positive = false,
+                    stat = "Reload Speed",
+                    amount = "+50%",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                }
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Rare;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {

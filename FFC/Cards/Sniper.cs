@@ -1,9 +1,14 @@
-﻿using CardChoiceSpawnUniqueCardPatch.CustomCategories;
+﻿using System.Collections.Generic;
+using CardChoiceSpawnUniqueCardPatch.CustomCategories;
+using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
     class Sniper : CustomCard {
+        private readonly CardCategory _mainClassesCategory =
+            CustomCardCategories.instance.CardCategory(FFC.MainClassesCategory);
+
         protected override string GetTitle() {
             return "Sniper!";
         }
@@ -21,9 +26,7 @@ namespace FFC.Cards {
             UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
 
             cardInfo.allowMultiple = false;
-            cardInfo.categories = new[] {
-                CustomCardCategories.instance.CardCategory(FFC.SniperClassCategory)
-            };
+            cardInfo.categories = new[] {_mainClassesCategory};
         }
 
         public override void OnAddCard(
@@ -36,12 +39,14 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gun.damage *= 1.5f;
+            gun.bulletDamageMultiplier += 0.5f;
             gun.projectileSpeed *= 2f;
             gun.gravity = 0f;
 
-            gun.attackSpeed *= 1.5f;
-            gunAmmo.reloadTime = 2f;
+            gun.attackSpeed = 1f;
+
+            List<CardCategory> blacklistedCategories = characterStats.GetAdditionalData().blacklistedCategories;
+            blacklistedCategories.Add(_mainClassesCategory);
         }
 
         public override void OnRemoveCard() {
@@ -51,28 +56,28 @@ namespace FFC.Cards {
             return new[] {
                 new CardInfoStat() {
                     positive = true,
+                    stat = "Bullet Drop",
+                    amount = "0",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat() {
+                    positive = true,
                     stat = "Bullet Damage",
                     amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat() {
                     positive = true,
                     stat = "Bullet Speed",
                     amount = "+100%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat() {
                     positive = false,
                     stat = "Attack Speed",
                     amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
-                },
-                new CardInfoStat() {
-                    positive = false,
-                    stat = "Reload Speed",
-                    amount = "2s",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned,
-                },
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                }
             };
         }
 
