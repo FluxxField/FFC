@@ -1,5 +1,4 @@
-﻿using CardChoiceSpawnUniqueCardPatch.CustomCategories;
-using UnboundLib.Cards;
+﻿using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
@@ -9,7 +8,7 @@ namespace FFC.Cards {
         }
 
         protected override string GetDescription() {
-            return "Block this!'";
+            return "Tired of your friends blocking your shots? This might help";
         }
 
         public override void SetupCard(
@@ -22,7 +21,7 @@ namespace FFC.Cards {
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                CustomCardCategories.instance.CardCategory(FFC.SniperClassUpgradesCategory)
+                FFC.SniperClassUpgradesCategory
             };
         }
 
@@ -64,7 +63,7 @@ namespace FFC.Cards {
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.FirepowerYellow;
+            return CardThemeColor.CardThemeColorType.EvilPurple;
         }
 
         protected override GameObject GetCardArt() {

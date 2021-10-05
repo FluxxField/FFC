@@ -1,5 +1,4 @@
 ﻿using UnboundLib.Cards;
-using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using FFC.MonoBehaviours;
 using UnboundLib;
 using UnityEngine;
@@ -24,7 +23,7 @@ namespace FFC.Cards {
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                CustomCardCategories.instance.CardCategory(FFC.SniperClassUpgradesCategory)
+                FFC.SniperClassUpgradesCategory
             };
         }
 
@@ -73,7 +72,7 @@ namespace FFC.Cards {
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.FirepowerYellow;
+            return CardThemeColor.CardThemeColorType.EvilPurple;
         }
 
         protected override GameObject GetCardArt() {

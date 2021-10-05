@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnboundLib.Cards;
-using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 
 namespace FFC.Cards {
     class SniperRifleExtendedMag : CustomCard {
@@ -19,10 +18,9 @@ namespace FFC.Cards {
             CharacterStatModifiers statModifiers
         ) {
             UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
-            
-            cardInfo.categories = new []
-            {
-                CustomCardCategories.instance.CardCategory(FFC.SniperClassUpgradesCategory)
+
+            cardInfo.categories = new[] {
+                FFC.SniperClassUpgradesCategory
             };
         }
 
@@ -36,7 +34,7 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.maxAmmo += 2;
+            gunAmmo.maxAmmo += 1;
             characterStats.movementSpeed -= 0.05f;
         }
 
@@ -65,7 +63,7 @@ namespace FFC.Cards {
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.FirepowerYellow;
+            return CardThemeColor.CardThemeColorType.DefensiveBlue;
         }
 
         protected override GameObject GetCardArt() {

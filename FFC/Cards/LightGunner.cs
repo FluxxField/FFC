@@ -4,13 +4,13 @@ using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
-    class Sniper : CustomCard {
+    public class LightGunner : CustomCard {
         protected override string GetTitle() {
-            return "Sniper";
+            return "Light Gunner";
         }
 
         protected override string GetDescription() {
-            return "Precision is key";
+            return "As a Light Gunner your prioritize movement over Defence and Health";
         }
 
         public override void SetupCard(
@@ -35,14 +35,16 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            data.maxHealth = 50f;
-            gun.damage = 1.60f; // 88 damage
-            gun.projectileSpeed *= 2f;
-            gun.gravity = 0f;
-            gun.attackSpeed = 1f;
+            data.maxHealth = 80f;
+            characterStats.movementSpeed *= 1.20f;
+            gun.damage = 0.4f; // 22 damage
+            gun.attackSpeed = 0.33f;
+            block.cooldown = 5f; // 5s cooldown
+            gunAmmo.maxAmmo = 6;
+            gun.dontAllowAutoFire = true;
 
             List<CardCategory> blacklistedCategories = characterStats.GetAdditionalData().blacklistedCategories;
-            blacklistedCategories.Remove(FFC.SniperClassUpgradesCategory);
+            blacklistedCategories.Remove(FFC.LightGunnerClassUpgradesCategory);
             blacklistedCategories.Add(FFC.MainClassesCategory);
         }
 
@@ -53,30 +55,30 @@ namespace FFC.Cards {
             return new[] {
                 new CardInfoStat {
                     positive = true,
-                    stat = "50 Health",
+                    stat = "80 Health",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat {
                     positive = true,
-                    stat = "90 Bullet Damage",
+                    stat = "22 Damage",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat {
+                    positive = true,
+                    stat = "0.33s Attack Speed",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat {
                     positive = false,
-                    stat = "1s Attack Speed",
+                    stat = "5s Block Cooldown",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat {
                     positive = true,
-                    stat = "No Bullet Drop",
+                    stat = "Movement Speed",
+                    amount = "+20%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat {
-                    positive = true,
-                    stat = "Bullet Speed",
-                    amount = "+100%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                }
             };
         }
 
@@ -85,7 +87,7 @@ namespace FFC.Cards {
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.DestructiveRed;
+            return CardThemeColor.CardThemeColorType.PoisonGreen;
         }
 
         protected override GameObject GetCardArt() {

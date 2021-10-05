@@ -1,5 +1,4 @@
-﻿using CardChoiceSpawnUniqueCardPatch.CustomCategories;
-using UnboundLib.Cards;
+﻿using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
@@ -53,7 +52,7 @@ namespace FFC.Cards {
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.FirepowerYellow;
+            return CardThemeColor.CardThemeColorType.TechWhite;
         }
 
         protected override GameObject GetCardArt() {
