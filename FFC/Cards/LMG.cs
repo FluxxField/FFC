@@ -3,18 +3,20 @@ using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
-    public class DMR : CustomCard {
-        private const float DamageMultiplier = 1.35f;
-        private const float ProjectileSpeedMultiplier = 1.50f;
-        private const float AttackSpeedMultiplier = 1.50f;
-        private const float ReloadSpeedMultiplier = 1.30f;
-        
+    public class LMG : CustomCard {
+        private const float DamageMultiplier = 0.60f;
+        private const float ProjectileSpeedMultiplier = 1.30f;
+        private const float AttackSpeedMultiplier = 1.15f;
+        private const float ReloadSpeedMultiplier = 2.50f;
+        private const float MovementSpeedMultiplier = 0.70f;
+        private const float RecoilMultiplier = 0.25f;
+
         protected override string GetTitle() {
-            return "DMR";
+            return "LMG";
         }
 
         protected override string GetDescription() {
-            return "More Damage, but less ammo and attack speed";
+            return "Lot more Damage and Ammo, but at a cost";
         }
 
         public override void SetupCard(
@@ -28,7 +30,7 @@ namespace FFC.Cards {
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
                 FFC.LightGunnerClassUpgradesCategory,
-                FFC.DMRUpgradeCategory
+                FFC.LMGUpgradeCategory
             };
         }
 
@@ -42,16 +44,18 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gun.dontAllowAutoFire = true;
+            gun.dontAllowAutoFire = false;
             gun.damage *= DamageMultiplier;
             gun.projectileSpeed *= ProjectileSpeedMultiplier;
             gun.attackSpeed *= AttackSpeedMultiplier;
+            gun.recoil *= RecoilMultiplier;
             gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
-            gunAmmo.maxAmmo = 3;
-            
+            characterStats.movementSpeed *= MovementSpeedMultiplier;
+            gunAmmo.maxAmmo += 5;
+
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
                 FFC.AssaultRifleUpgradeCategory,
-                FFC.LMGUpgradeCategory
+                FFC.DMRUpgradeCategory
             });
         }
 
@@ -62,19 +66,21 @@ namespace FFC.Cards {
             return new[] {
                 Utilities.GetCardInfoStat("Damage", DamageMultiplier, true),
                 Utilities.GetCardInfoStat("Bullet Speed", ProjectileSpeedMultiplier, true),
-                Utilities.GetCardInfoStat("Attack Speed", AttackSpeedMultiplier, false),
-                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, false),
                 new CardInfoStat {
-                    positive = false,
+                    positive = true,
                     stat = "Max Ammo",
-                    amount = "3",
+                    amount = "+5",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
+                Utilities.GetCardInfoStat("Attack Speed", AttackSpeedMultiplier, false),
+                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, false),
+                Utilities.GetCardInfoStat("Movement Speed", MovementSpeedMultiplier, false),
+                Utilities.GetCardInfoStat("Recoil", ReloadSpeedMultiplier, false)
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Rare;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {

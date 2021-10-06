@@ -8,7 +8,7 @@ namespace FFC.Cards {
         private const float MaxHealthMultiplier = 0.80f;
         private const float DamageMultiplier = 0.60f;
         private const float AttackSpeedMultiplier = 0.66f;
-        private const float MovementSpeedMultiplier = 1.20f;
+        private const float MovementSpeedMultiplier = 1.10f;
         private const float BlockCooldownMultiplier = 1.25f;
         
         protected override string GetTitle() {
@@ -46,7 +46,7 @@ namespace FFC.Cards {
             gun.damage *= DamageMultiplier;
             gun.attackSpeed *= AttackSpeedMultiplier;
             block.cooldown *= BlockCooldownMultiplier;
-            gunAmmo.maxAmmo += 3;
+            gunAmmo.maxAmmo += 2;
             gun.dontAllowAutoFire = true;
 
             List<CardCategory> blacklistedCategories = characterStats.GetAdditionalData().blacklistedCategories;

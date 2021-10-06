@@ -5,7 +5,7 @@ using UnityEngine;
 namespace FFC.Cards {
     public class AssaultRifle : CustomCard {
         private const float DamageMultiplier = 0.80f;
-        private const float AttackSpeedMultiplier = 1.15f;
+        private const float AttackSpeedMultiplier = 1.40f;
         private const float ReloadSpeedMultiplier = 1.15f;
         private const float ProjectileSpeedMultiplier = 0.90f;
         
@@ -26,7 +26,10 @@ namespace FFC.Cards {
             UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
 
             cardInfo.allowMultiple = false;
-            cardInfo.categories = new[] {FFC.LightGunnerClassUpgradesCategory};
+            cardInfo.categories = new[] {
+                FFC.LightGunnerClassUpgradesCategory,
+                FFC.AssaultRifleUpgradeCategory
+            };
         }
 
         public override void OnAddCard(
@@ -43,10 +46,13 @@ namespace FFC.Cards {
             gun.damage *= DamageMultiplier;
             gun.projectileSpeed *= ProjectileSpeedMultiplier;
             gun.attackSpeed *= AttackSpeedMultiplier;
-            gunAmmo.reloadTimeMultiplier *=ReloadSpeedMultiplier;
-            gunAmmo.maxAmmo += 3;
+            gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
+            gunAmmo.maxAmmo += 2;
             
-            characterStats.GetAdditionalData().blacklistedCategories.Add(FFC.DMRUpgradeCategory);
+            characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
+                FFC.DMRUpgradeCategory,
+                FFC.LMGUpgradeCategory
+            });
         }
 
         public override void OnRemoveCard() {

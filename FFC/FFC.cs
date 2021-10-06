@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.PerformanceData;
 using System.Linq;
 using BepInEx;
 using CardChoiceSpawnUniqueCardPatch.CustomCategories;
@@ -28,6 +27,7 @@ namespace FFC {
         public static CardCategory LightGunnerClassUpgradesCategory;
         public static CardCategory AssaultRifleUpgradeCategory;
         public static CardCategory DMRUpgradeCategory;
+        public static CardCategory LMGUpgradeCategory;
 
         private const string ModId = "fluxxfield.rounds.plugins.fluxxfieldscards";
         private const string ModName = "FluxxField's Cards (FFC)";
@@ -52,6 +52,7 @@ namespace FFC {
                 LightGunnerClassUpgradesCategory = CustomCardCategories.instance.CardCategory("LightGunnerUpgrades");
                 AssaultRifleUpgradeCategory = CustomCardCategories.instance.CardCategory("AssaultRifle");
                 DMRUpgradeCategory = CustomCardCategories.instance.CardCategory("DMR");
+                LMGUpgradeCategory = CustomCardCategories.instance.CardCategory("LMG");
             }
 
             UnityEngine.Debug.Log($"[{AbbrModName}] Building cards");
@@ -64,8 +65,11 @@ namespace FFC {
             CustomCard.BuildCard<LightGunnerClass>();
             CustomCard.BuildCard<AssaultRifle>();
             CustomCard.BuildCard<DMR>();
+            CustomCard.BuildCard<LMG>();
             // Default
             CustomCard.BuildCard<FastMags>();
+            CustomCard.BuildCard<Conditioning>();
+            CustomCard.BuildCard<BattleExperience>();
             UnityEngine.Debug.Log($"[{AbbrModName}] Done building cards");
 
             this.ExecuteAfterSeconds(0.4f, HandleBuildDefaultCategory);

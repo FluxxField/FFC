@@ -116,9 +116,12 @@
     <Compile Include="Cards\ArmorPiercingRounds.cs" />
     <Compile Include="Cards\AssaultRifle.cs" />
     <Compile Include="Cards\Barret50Cal.cs" />
+    <Compile Include="Cards\BattleExperience.cs" />
+    <Compile Include="Cards\Conditioning.cs" />
     <Compile Include="Cards\DMR.cs" />
     <Compile Include="Cards\FastMags.cs" />
     <Compile Include="Cards\LightGunnerClass.cs" />
+    <Compile Include="Cards\LMG.cs" />
     <Compile Include="Cards\MarksmanClass.cs" />
     <Compile Include="Cards\SniperRifleExtendedMag.cs" />
     <Compile Include="FFC.cs" />
