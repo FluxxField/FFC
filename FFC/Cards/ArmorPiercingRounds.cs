@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace FFC.Cards {
     public class ArmorPiercingRounds : CustomCard {
+        private const float ReloadSpeedMultiplier = 0.50f;
+        
         protected override string GetTitle() {
             return "Armor-Piercing Rounds";
         }
@@ -21,7 +23,7 @@ namespace FFC.Cards {
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                FFC.SniperClassUpgradesCategory
+                FFC.MarksmanClassUpgradesCategory
             };
         }
 
@@ -36,7 +38,7 @@ namespace FFC.Cards {
             CharacterStatModifiers characterStats
         ) {
             gun.unblockable = true;
-            gun.reloadTime += 0.5f;
+            gun.reloadTime *= ReloadSpeedMultiplier;
         }
 
         public override void OnRemoveCard() {
@@ -49,12 +51,7 @@ namespace FFC.Cards {
                     amount = "Unblockable",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat {
-                    positive = false,
-                    stat = "Reload Speed",
-                    amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                }
+                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, false)
             };
         }
 

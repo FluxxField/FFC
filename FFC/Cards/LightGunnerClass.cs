@@ -4,9 +4,15 @@ using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
-    public class LightGunner : CustomCard {
+    public class LightGunnerClass : CustomCard {
+        private const float MaxHealthMultiplier = 0.80f;
+        private const float DamageMultiplier = 0.60f;
+        private const float AttackSpeedMultiplier = 0.66f;
+        private const float MovementSpeedMultiplier = 1.20f;
+        private const float BlockCooldownMultiplier = 1.25f;
+        
         protected override string GetTitle() {
-            return "Light Gunner";
+            return "CLASS: Light Gunner";
         }
 
         protected override string GetDescription() {
@@ -35,17 +41,21 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            data.maxHealth = 80f;
-            characterStats.movementSpeed *= 1.20f;
-            gun.damage = 0.4f; // 22 damage
-            gun.attackSpeed = 0.33f;
-            block.cooldown = 5f; // 5s cooldown
-            gunAmmo.maxAmmo = 6;
+            data.maxHealth *= MaxHealthMultiplier;
+            characterStats.movementSpeed *= MovementSpeedMultiplier;
+            gun.damage *= DamageMultiplier;
+            gun.attackSpeed *= AttackSpeedMultiplier;
+            block.cooldown *= BlockCooldownMultiplier;
+            gunAmmo.maxAmmo += 3;
             gun.dontAllowAutoFire = true;
 
             List<CardCategory> blacklistedCategories = characterStats.GetAdditionalData().blacklistedCategories;
+            blacklistedCategories.Remove(FFC.DefaultCategory);
             blacklistedCategories.Remove(FFC.LightGunnerClassUpgradesCategory);
-            blacklistedCategories.Add(FFC.MainClassesCategory);
+            blacklistedCategories.AddRange(new [] {
+                FFC.MainClassesCategory,
+                FFC.MarksmanClassUpgradesCategory,
+            });
         }
 
         public override void OnRemoveCard() {
@@ -53,32 +63,17 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
+                Utilities.GetCardInfoStat("Health", MaxHealthMultiplier, true),
+                Utilities.GetCardInfoStat("Damage", DamageMultiplier, true),
+                Utilities.GetCardInfoStat("Attack Speed", AttackSpeedMultiplier, true),
+                Utilities.GetCardInfoStat("Movement Speed", MovementSpeedMultiplier, true),
                 new CardInfoStat {
                     positive = true,
-                    stat = "80 Health",
+                    stat = "Max Ammo",
+                    amount = "+3",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat {
-                    positive = true,
-                    stat = "22 Damage",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat {
-                    positive = true,
-                    stat = "0.33s Attack Speed",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat {
-                    positive = false,
-                    stat = "5s Block Cooldown",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat {
-                    positive = true,
-                    stat = "Movement Speed",
-                    amount = "+20%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
+                Utilities.GetCardInfoStat("Block Cooldown", BlockCooldownMultiplier, false),
             };
         }
 

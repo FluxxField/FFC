@@ -1,17 +1,19 @@
-﻿using UnityEngine;
+﻿using ModdingUtils.Extensions;
 using UnboundLib.Cards;
+using UnityEngine;
 
 namespace FFC.Cards {
-    class SniperRifleExtendedMag : CustomCard {
-        private const float ReloadSpeedMultiplier = 1.10f;
-        private const float MovementSpeedMultiplier = 0.95f;
-        
+    public class DMR : CustomCard {
+        private const float DamageMultiplier = 1.35f;
+        private const float ProjectileSpeedMultiplier = 1.50f;
+        private const float AttackSpeedMultiplier = 1.35f;
+        private const float ReloadSpeedMultiplier = 1.50f;
         protected override string GetTitle() {
-            return "Sniper Rifle Extended Mag";
+            return "DMR";
         }
 
         protected override string GetDescription() {
-            return "Get 1 more shots for your sniper!";
+            return "More Damage, but less ammo and attack speed";
         }
 
         public override void SetupCard(
@@ -22,9 +24,8 @@ namespace FFC.Cards {
         ) {
             UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
 
-            cardInfo.categories = new[] {
-                FFC.MarksmanClassUpgradesCategory
-            };
+            cardInfo.allowMultiple = false;
+            cardInfo.categories = new[] {FFC.LightGunnerClassUpgradesCategory};
         }
 
         public override void OnAddCard(
@@ -37,9 +38,14 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.maxAmmo += 1;
+            gun.dontAllowAutoFire = true;
+            gun.damage *= DamageMultiplier;
+            gun.projectileSpeed *= ProjectileSpeedMultiplier;
+            gun.attackSpeed *= AttackSpeedMultiplier;
             gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
-            characterStats.movementSpeed *= MovementSpeedMultiplier;
+            gunAmmo.maxAmmo = 3;
+            
+            characterStats.GetAdditionalData().blacklistedCategories.Add(FFC.AssaultRifleUpgradeCategory);
         }
 
         public override void OnRemoveCard() {
@@ -47,14 +53,16 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
+                Utilities.GetCardInfoStat("Damage", DamageMultiplier, true),
+                Utilities.GetCardInfoStat("Bullet Speed", ProjectileSpeedMultiplier, true),
+                Utilities.GetCardInfoStat("Attack Speed", AttackSpeedMultiplier, false),
+                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, false),
                 new CardInfoStat {
-                    positive = true,
+                    positive = false,
                     stat = "Max Ammo",
-                    amount = "1",
+                    amount = "3",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, false),
-                Utilities.GetCardInfoStat("Movement Cooldown", MovementSpeedMultiplier, false)
             };
         }
 
@@ -63,7 +71,7 @@ namespace FFC.Cards {
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.DefensiveBlue;
+            return CardThemeColor.CardThemeColorType.NatureBrown;
         }
 
         protected override GameObject GetCardArt() {

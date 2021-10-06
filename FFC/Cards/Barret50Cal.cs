@@ -5,12 +5,14 @@ using UnityEngine;
 
 namespace FFC.Cards {
     public class Barret50Cal : CustomCard {
+        private const float ReloadSpeedMultiplier = 0.50f;
+        
         protected override string GetTitle() {
             return "Barret .50 Cal";
         }
 
         protected override string GetDescription() {
-            return "Girl Friend: 'Now that's BIG ;)'";
+            return "Girl Friend: 'Now that's BIG ;)' *Ammo can only be added by Sniper Rifle Extended Mag*";
         }
 
         public override void SetupCard(
@@ -23,7 +25,7 @@ namespace FFC.Cards {
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                FFC.SniperClassUpgradesCategory
+                FFC.MarksmanClassUpgradesCategory
             };
         }
 
@@ -38,7 +40,7 @@ namespace FFC.Cards {
             CharacterStatModifiers characterStats
         ) {
             gunAmmo.maxAmmo = 1;
-            gunAmmo.reloadTimeMultiplier += 0.5f;
+            gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
             player.gameObject.GetOrAddComponent<InstantKillHitEffect>();
         }
 
@@ -58,12 +60,7 @@ namespace FFC.Cards {
                     amount = "1",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat {
-                    positive = false,
-                    stat = "Reload Speed",
-                    amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                }
+                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, false)
             };
         }
 

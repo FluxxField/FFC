@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace FFC.Cards {
     public class FastMags : CustomCard {
+        private const float ReloadSpeedMultiplier = 0.75f;
+        
         protected override string GetTitle() {
             return "Fast Mags";
         }
@@ -30,7 +32,7 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.reloadTimeMultiplier -= 0.15f;
+            gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
         }
 
         public override void OnRemoveCard() {
@@ -38,12 +40,7 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                new CardInfoStat {
-                    positive = true,
-                    stat = "Reload Speed",
-                    amount = "-15%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                }
+                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, true)
             };
         }
 

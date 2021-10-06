@@ -1,16 +1,20 @@
-﻿using System.Collections.Generic;
-using ModdingUtils.Extensions;
+﻿using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
-    class Sniper : CustomCard {
+    public class AssaultRifle : CustomCard {
+        private const float DamageMultiplier = 0.80f;
+        private const float AttackSpeedMultiplier = 1.15f;
+        private const float ReloadSpeedMultiplier = 1.15f;
+        private const float ProjectileSpeedMultiplier = 0.90f;
+        
         protected override string GetTitle() {
-            return "Sniper";
+            return "Assault Rifle";
         }
 
         protected override string GetDescription() {
-            return "Precision is key";
+            return "Less damage but a higher rate of fire with a larger mag";
         }
 
         public override void SetupCard(
@@ -22,7 +26,7 @@ namespace FFC.Cards {
             UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
 
             cardInfo.allowMultiple = false;
-            cardInfo.categories = new[] {FFC.MainClassesCategory};
+            cardInfo.categories = new[] {FFC.LightGunnerClassUpgradesCategory};
         }
 
         public override void OnAddCard(
@@ -35,15 +39,14 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            data.maxHealth = 50f;
-            gun.damage = 1.60f; // 88 damage
-            gun.projectileSpeed *= 2f;
-            gun.gravity = 0f;
-            gun.attackSpeed = 1f;
-
-            List<CardCategory> blacklistedCategories = characterStats.GetAdditionalData().blacklistedCategories;
-            blacklistedCategories.Remove(FFC.SniperClassUpgradesCategory);
-            blacklistedCategories.Add(FFC.MainClassesCategory);
+            gun.dontAllowAutoFire = false;
+            gun.damage *= DamageMultiplier;
+            gun.projectileSpeed *= ProjectileSpeedMultiplier;
+            gun.attackSpeed *= AttackSpeedMultiplier;
+            gunAmmo.reloadTimeMultiplier *=ReloadSpeedMultiplier;
+            gunAmmo.maxAmmo += 3;
+            
+            characterStats.GetAdditionalData().blacklistedCategories.Add(FFC.DMRUpgradeCategory);
         }
 
         public override void OnRemoveCard() {
@@ -53,39 +56,28 @@ namespace FFC.Cards {
             return new[] {
                 new CardInfoStat {
                     positive = true,
-                    stat = "50 Health",
+                    stat = "Full Auto",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
+                Utilities.GetCardInfoStat("Attack Speed", AttackSpeedMultiplier, true),
+                Utilities.GetCardInfoStat("Bullet Speed", ProjectileSpeedMultiplier, true),
                 new CardInfoStat {
                     positive = true,
-                    stat = "90 Bullet Damage",
+                    stat = "Max Ammo",
+                    amount = "+3",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat {
-                    positive = false,
-                    stat = "1s Attack Speed",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat {
-                    positive = true,
-                    stat = "No Bullet Drop",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat {
-                    positive = true,
-                    stat = "Bullet Speed",
-                    amount = "+100%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                }
+                Utilities.GetCardInfoStat("Damage", DamageMultiplier, false),
+                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, false)
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Uncommon;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.DestructiveRed;
+            return CardThemeColor.CardThemeColorType.NatureBrown;
         }
 
         protected override GameObject GetCardArt() {

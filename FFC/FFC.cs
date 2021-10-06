@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.PerformanceData;
 using System.Linq;
 using BepInEx;
 using CardChoiceSpawnUniqueCardPatch.CustomCategories;
@@ -23,8 +24,10 @@ namespace FFC {
 
         public static CardCategory DefaultCategory;
         public static CardCategory MainClassesCategory;
-        public static CardCategory SniperClassUpgradesCategory;
+        public static CardCategory MarksmanClassUpgradesCategory;
         public static CardCategory LightGunnerClassUpgradesCategory;
+        public static CardCategory AssaultRifleUpgradeCategory;
+        public static CardCategory DMRUpgradeCategory;
 
         private const string ModId = "fluxxfield.rounds.plugins.fluxxfieldscards";
         private const string ModName = "FluxxField's Cards (FFC)";
@@ -45,25 +48,34 @@ namespace FFC {
             if (CustomCardCategories.instance != null) {
                 DefaultCategory = CustomCardCategories.instance.CardCategory("Default");
                 MainClassesCategory = CustomCardCategories.instance.CardCategory("MainClasses");
-                SniperClassUpgradesCategory = CustomCardCategories.instance.CardCategory("SniperUpgrades");
+                MarksmanClassUpgradesCategory = CustomCardCategories.instance.CardCategory("MarksmanUpgrades");
                 LightGunnerClassUpgradesCategory = CustomCardCategories.instance.CardCategory("LightGunnerUpgrades");
+                AssaultRifleUpgradeCategory = CustomCardCategories.instance.CardCategory("AssaultRifle");
+                DMRUpgradeCategory = CustomCardCategories.instance.CardCategory("DMR");
             }
 
             UnityEngine.Debug.Log($"[{AbbrModName}] Building cards");
-            CustomCard.BuildCard<Sniper>();
+            // Marksman Class
+            CustomCard.BuildCard<MarksmanClass>();
             CustomCard.BuildCard<SniperRifleExtendedMag>();
             CustomCard.BuildCard<Barret50Cal>();
             CustomCard.BuildCard<ArmorPiercingRounds>();
-            CustomCard.BuildCard<LightGunner>();
+            // Light Gunner Class
+            CustomCard.BuildCard<LightGunnerClass>();
+            CustomCard.BuildCard<AssaultRifle>();
+            CustomCard.BuildCard<DMR>();
+            // Default
             CustomCard.BuildCard<FastMags>();
             UnityEngine.Debug.Log($"[{AbbrModName}] Done building cards");
 
             this.ExecuteAfterSeconds(0.4f, HandleBuildDefaultCategory);
 
             GameModeManager.AddHook(GameModeHooks.HookGameStart, gm => HandlePlayersBlacklistedCategories());
+            GameModeManager.AddHook(GameModeHooks.HookRoundStart, gm => HandleBarret50CalAmmo());
         }
 
         private void HandleBuildDefaultCategory() {
+            UnityEngine.Debug.Log($"[{AbbrModName}] Building Default categories");
             foreach (Card card in CardManager.cards.Values.ToList()) {
                 List<CardCategory> categories = card.cardInfo.categories.ToList();
 
@@ -75,20 +87,53 @@ namespace FFC {
         }
 
         private IEnumerator HandlePlayersBlacklistedCategories() {
-            UnityEngine.Debug.Log($"[{AbbrModName}] Setting up player categories");
+            UnityEngine.Debug.Log($"[{AbbrModName}] Setting up players blacklisted categories");
             Player[] players = PlayerManager.instance.players.ToArray();
 
             foreach (Player player in players) {
                 CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.AddRange(
                     new[] {
                         DefaultCategory,
-                        SniperClassUpgradesCategory,
+                        MarksmanClassUpgradesCategory,
                         LightGunnerClassUpgradesCategory
                     }
                 );
             }
 
-            UnityEngine.Debug.Log($"[{AbbrModName}] Dont setting up player categories");
+            yield break;
+        }
+
+        private IEnumerator HandleBarret50CalAmmo() {
+            UnityEngine.Debug.Log($"[{AbbrModName}] Setting up player categories");
+            Player[] players = PlayerManager.instance.players.ToArray();
+
+            foreach (Player player in players) {
+                List<CardInfo> cards = player.data.currentCards;
+                int ammoCount = 0;
+                bool has50Cal = false;
+
+                foreach (CardInfo card in cards) {
+                    switch (card.cardName.ToUpper()) {
+                        case "BARRET .50 CAL": {
+                            has50Cal = true;
+                            goto case "SNIPER RIFLE EXTENDED MAG";
+                        }
+                        case "SNIPER RIFLE EXTENDED MAG": {
+                            ammoCount += 1;
+                            break;
+                        }
+                    }
+                }
+
+                if (has50Cal) {
+                    player
+                        .GetComponent<Holding>()
+                        .holdable.GetComponent<Gun>()
+                        .GetComponentInChildren<GunAmmo>()
+                        .maxAmmo = ammoCount;
+                }
+            }
+
             yield break;
         }
     }
