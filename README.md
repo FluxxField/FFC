@@ -76,6 +76,6 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Attack Speed: -10%
 - Health:       -10%
 
-#### Conditioning (Common)
+#### Conditioning (Uncommon)
 - Health:         +50%
 - Movement Speed: +15%
