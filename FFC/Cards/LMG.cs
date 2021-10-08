@@ -51,7 +51,7 @@ namespace FFC.Cards {
             gun.recoil *= RecoilMultiplier;
             gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
             characterStats.movementSpeed *= MovementSpeedMultiplier;
-            gunAmmo.maxAmmo += 5;
+            gunAmmo.maxAmmo += 6;
 
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
                 FFC.AssaultRifleUpgradeCategory,
@@ -64,12 +64,12 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                Utilities.GetCardInfoStat("Damage", DamageMultiplier, true),
+                Utilities.GetCardInfoStat("Damage", DamageMultiplier, false),
                 Utilities.GetCardInfoStat("Bullet Speed", ProjectileSpeedMultiplier, true),
                 new CardInfoStat {
                     positive = true,
                     stat = "Max Ammo",
-                    amount = "+5",
+                    amount = "+6",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 Utilities.GetCardInfoStat("Attack Speed", AttackSpeedMultiplier, false),

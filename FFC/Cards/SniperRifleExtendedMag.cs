@@ -50,7 +50,7 @@ namespace FFC.Cards {
                 new CardInfoStat {
                     positive = true,
                     stat = "Max Ammo",
-                    amount = "1",
+                    amount = "+1",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, false),

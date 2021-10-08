@@ -62,7 +62,7 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                Utilities.GetCardInfoStat("Health", MaxHealthMultiplier, true),
+                Utilities.GetCardInfoStat("Health", MaxHealthMultiplier, false),
                 Utilities.GetCardInfoStat("Damage", DamageMultiplier, true),
                 new CardInfoStat {
                     positive = true,

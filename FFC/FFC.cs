@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BepInEx;
+using BepInEx.Configuration;
 using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using UnboundLib;
 using UnboundLib.Cards;
@@ -20,6 +21,10 @@ namespace FFC {
     [BepInProcess("Rounds.exe")]
     public class FFC : BaseUnityPlugin {
         public const string AbbrModName = "FFC";
+        
+        private const string ModId = "fluxxfield.rounds.plugins.fluxxfieldscards";
+        private const string ModName = "FluxxField's Cards (FFC)";
+        private const string Version = "1.0.1";
 
         public static CardCategory DefaultCategory;
         public static CardCategory MainClassesCategory;
@@ -29,9 +34,8 @@ namespace FFC {
         public static CardCategory DMRUpgradeCategory;
         public static CardCategory LMGUpgradeCategory;
 
-        private const string ModId = "fluxxfield.rounds.plugins.fluxxfieldscards";
-        private const string ModName = "FluxxField's Cards (FFC)";
-        private const string Version = "1.0.1";
+        private static ConfigEntry<bool> ClassStartConfig;
+        internal static bool ClassStart;
 
         private void Awake() {
             new Harmony(ModId).PatchAll();

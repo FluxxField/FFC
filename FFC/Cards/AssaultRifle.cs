@@ -60,11 +60,6 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                new CardInfoStat {
-                    positive = true,
-                    stat = "Full Auto",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
                 Utilities.GetCardInfoStat("Attack Speed", AttackSpeedMultiplier, true),
                 Utilities.GetCardInfoStat("Bullet Speed", ProjectileSpeedMultiplier, true),
                 new CardInfoStat {

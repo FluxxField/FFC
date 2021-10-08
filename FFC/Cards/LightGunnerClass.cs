@@ -46,7 +46,7 @@ namespace FFC.Cards {
             gun.damage *= DamageMultiplier;
             gun.attackSpeed *= AttackSpeedMultiplier;
             block.cooldown *= BlockCooldownMultiplier;
-            gunAmmo.maxAmmo += 2;
+            gunAmmo.maxAmmo += 3;
             gun.dontAllowAutoFire = true;
 
             List<CardCategory> blacklistedCategories = characterStats.GetAdditionalData().blacklistedCategories;
@@ -63,8 +63,8 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                Utilities.GetCardInfoStat("Health", MaxHealthMultiplier, true),
-                Utilities.GetCardInfoStat("Damage", DamageMultiplier, true),
+                Utilities.GetCardInfoStat("Health", MaxHealthMultiplier, false),
+                Utilities.GetCardInfoStat("Damage", DamageMultiplier, false),
                 Utilities.GetCardInfoStat("Attack Speed", AttackSpeedMultiplier, true),
                 Utilities.GetCardInfoStat("Movement Speed", MovementSpeedMultiplier, true),
                 new CardInfoStat {
