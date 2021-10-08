@@ -60,11 +60,11 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Allows Auto fire
 - Damage:           -40%  ❌
 - Projectile Speed: +30%  ✔️
-- Attack Speed:     +15%  ❌
+- Attack Speed:     +15%  ✔️
 - Reload Speed:     +150% ❌
 - Movement Speed:   -30%  ❌
 - Recoil:           +25%  ❌
-- Max Ammo:         +6    ❌
+- Max Ammo:         +6    ✔️
 
 ### Defaults
 #### Fast Mags (Common)
