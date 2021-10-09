@@ -6,9 +6,18 @@ The idea with this card pack it to introduce the idea of classes to Rounds. Thes
 So how is it done? If enabled, in the mods settings. The class cards will be the first cards to appear on the first round. You then get to choose your class and play normally. With your classes specific cards appearing in later picks. Be careful though! Once you pick a class. You will be stuck with it for the rest of that game.
 
 ## Cards
+Current Card Paths:
+- Marksman
+  - Armor-Piercing Rounds
+  - Barret .50 Cal
+  - Sniper Rifle Extended Mag
+- Light Gunner
+  - Assault Rifle
+  - DMR
+  - LMG
 
 ### Class - Marksman
-#### Marksman (Common)
+#### Marksman (Common) (One use)
 - Health:           -50%  ❌
 - Damage:           +60%  ✔️
 - Bullet Gravity:   None  ✔️
@@ -16,11 +25,11 @@ So how is it done? If enabled, in the mods settings. The class cards will be the
 - Attack Speed:     -200% ❌
 - Max Ammo:         -1    ❌
 
-#### Armor-Piercing Rounds (Rare)
+#### Armor-Piercing Rounds (Rare) (One use)
 - Unblockable        ✔️
 - Reload Speed: +50% ❌
 
-#### Barret .50 Cal (Rare)
+#### Barret .50 Cal (Rare) (One use)
 Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Instakill          ✔️
 - Reload Speed: +50% ❌
@@ -32,7 +41,7 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Max ammo:       +1   ✔️
 
 ### Class - Light Gunner
-#### Light Gunner (Common)
+#### Light Gunner (Common) (One use)
 - Health:         -20% ❌
 - Damage:         -40% ❌
 - Movement Speed: +10% ✔️
@@ -40,7 +49,7 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Attack Speed:   -33% ✔️
 - Max Ammo:       +3   ✔️
 
-#### Assault Rifle (Uncommon)
+#### Assault Rifle (Uncommon) (One use)
 - Allows Auto fire
 - Damage:          -20% ❌
 - Pojectile Speed: -10% ✔️
@@ -48,7 +57,7 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Reload Speed:    +15% ❌
 - Max Ammo:        +2   ✔️
 
-#### DMR (Uncommon)
+#### DMR (Uncommon) (One use)
 - Does not allow auto fire
 - Damage:           +35% ✔️
 - Projectile Speed: +50% ✔️
@@ -56,7 +65,7 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Reload Speed:     +30% ❌
 - Max Ammo:         3    ❌
 
-#### LMG (Rare)
+#### LMG (Rare) (One use)
 - Allows Auto fire
 - Damage:           -40%  ❌
 - Projectile Speed: +30%  ✔️
