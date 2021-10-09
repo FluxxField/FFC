@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BepInEx;
 using BepInEx.Configuration;
+using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using UnboundLib;
 using UnboundLib.Cards;
 using HarmonyLib;
@@ -51,6 +52,8 @@ namespace FFC {
             CustomCard.BuildCard<AssaultRifle>();
             CustomCard.BuildCard<DMR>();
             CustomCard.BuildCard<LMG>();
+            // Juggernaut Class
+            CustomCard.BuildCard<JuggernautClass>();
             // Default
             CustomCard.BuildCard<FastMags>();
             CustomCard.BuildCard<Conditioning>();
