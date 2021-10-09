@@ -41,6 +41,8 @@ namespace FFC {
         private void Start() {
             _useClassesFirstRound = _useClassFirstRoundConfig.Value;
 
+            ManageCardCategories.Setup();
+
             UnityEngine.Debug.Log($"[{AbbrModName}] Building cards");
             // Marksman Class
             CustomCard.BuildCard<MarksmanClass>();

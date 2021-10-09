@@ -1,5 +1,5 @@
 ﻿namespace FFC.Utilities {
-    public class ManageCardInfoStats {
+    public static class ManageCardInfoStats {
         public static CardInfoStat BuildCardInfoStat(
             string statName,
             bool positive,

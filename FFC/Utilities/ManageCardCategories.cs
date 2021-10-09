@@ -4,7 +4,7 @@ using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using UnboundLib.Utils;
 
 namespace FFC.Utilities {
-    public class ManageCardCategories {
+    public static class ManageCardCategories {
         public static CardCategory DefaultCategory;
         public static CardCategory MainClassesCategory;
         public static CardCategory MarksmanClassUpgradesCategory;
@@ -14,13 +14,14 @@ namespace FFC.Utilities {
         public static CardCategory DMRUpgradeCategory;
         public static CardCategory LMGUpgradeCategory;
 
-        private ManageCardCategories() {
+        public static void Setup() {
             // Gotta give CustomCardCategories a sec to setup
             if (CustomCardCategories.instance != null) {
                 DefaultCategory = CustomCardCategories.instance.CardCategory("Default");
                 MainClassesCategory = CustomCardCategories.instance.CardCategory("MainClasses");
                 MarksmanClassUpgradesCategory = CustomCardCategories.instance.CardCategory("MarksmanUpgrades");
                 LightGunnerClassUpgradesCategory = CustomCardCategories.instance.CardCategory("LightGunnerUpgrades");
+                JuggernautClassUpgradesCategory = CustomCardCategories.instance.CardCategory("JuggernautUpgrades");
                 AssaultRifleUpgradeCategory = CustomCardCategories.instance.CardCategory("AssaultRifle");
                 DMRUpgradeCategory = CustomCardCategories.instance.CardCategory("DMR");
                 LMGUpgradeCategory = CustomCardCategories.instance.CardCategory("LMG");
