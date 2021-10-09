@@ -1,17 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using BepInEx;
 using BepInEx.Configuration;
-using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using UnboundLib;
 using UnboundLib.Cards;
 using HarmonyLib;
 using FFC.Cards;
+using FFC.Utilities;
 using ModdingUtils.Extensions;
 using Photon.Pun;
 using UnboundLib.GameModes;
-using UnboundLib.Utils;
 using UnboundLib.Utils.UI;
 using UnityEngine;
 using TMPro;
@@ -30,36 +28,17 @@ namespace FFC {
         private const string ModName = "FluxxField's Cards (FFC)";
         private const string Version = "1.0.1";
 
-        public static CardCategory DefaultCategory;
-        public static CardCategory MainClassesCategory;
-        public static CardCategory MarksmanClassUpgradesCategory;
-        public static CardCategory LightGunnerClassUpgradesCategory;
-        public static CardCategory AssaultRifleUpgradeCategory;
-        public static CardCategory DMRUpgradeCategory;
-        public static CardCategory LMGUpgradeCategory;
-
-        private static ConfigEntry<bool> UseClassFirstRoundtConfig;
-        internal static bool UseClassesFirstRound;
+        private static ConfigEntry<bool> _useClassFirstRoundConfig;
+        private static bool _useClassesFirstRound;
 
         private void Awake() {
-            UseClassFirstRoundtConfig = Config.Bind("FFC", "Enabled", false, "Enable classes only first round");
+            _useClassFirstRoundConfig = Config.Bind("FFC", "Enabled", false, "Enable classes only first round");
             new Harmony(ModId).PatchAll();
         }
 
 
         private void Start() {
-            UseClassesFirstRound = UseClassFirstRoundtConfig.Value;
-
-            // Gotta give CustomCardCategories a sec to setup
-            if (CustomCardCategories.instance != null) {
-                DefaultCategory = CustomCardCategories.instance.CardCategory("Default");
-                MainClassesCategory = CustomCardCategories.instance.CardCategory("MainClasses");
-                MarksmanClassUpgradesCategory = CustomCardCategories.instance.CardCategory("MarksmanUpgrades");
-                LightGunnerClassUpgradesCategory = CustomCardCategories.instance.CardCategory("LightGunnerUpgrades");
-                AssaultRifleUpgradeCategory = CustomCardCategories.instance.CardCategory("AssaultRifle");
-                DMRUpgradeCategory = CustomCardCategories.instance.CardCategory("DMR");
-                LMGUpgradeCategory = CustomCardCategories.instance.CardCategory("LMG");
-            }
+            _useClassesFirstRound = _useClassFirstRoundConfig.Value;
 
             UnityEngine.Debug.Log($"[{AbbrModName}] Building cards");
             // Marksman Class
@@ -78,7 +57,7 @@ namespace FFC {
             CustomCard.BuildCard<BattleExperience>();
             UnityEngine.Debug.Log($"[{AbbrModName}] Done building cards");
 
-            this.ExecuteAfterSeconds(0.4f, HandleBuildDefaultCategory);
+            this.ExecuteAfterSeconds(0.4f, ManageCardCategories.HandleBuildDefaultCategory);
             
             Unbound.RegisterMenu(ModName, () => { }, NewGUI, null, false);
             
@@ -89,7 +68,7 @@ namespace FFC {
                 new[] {"github"},
                 new[] {"https://github.com/FluxxField/FFC"});
 
-            GameModeManager.AddHook(GameModeHooks.HookGameStart, gm => HandlePlayersBlacklistedCategories());
+            GameModeManager.AddHook(GameModeHooks.HookGameStart, gm => ForceClassesFirstRound());
             GameModeManager.AddHook(GameModeHooks.HookRoundStart, gm => HandleBarret50CalAmmo());
         }
 
@@ -97,45 +76,22 @@ namespace FFC {
             MenuHandler.CreateText($"{ModName} Options", menu, out TextMeshProUGUI _);
             MenuHandler.CreateText(" ", menu, out TextMeshProUGUI _, 30);
             MenuHandler.CreateToggle(false, "Enable Force classes first round", menu, useClassesFirstRound => {
-                UseClassesFirstRound = useClassesFirstRound;
+                _useClassesFirstRound = useClassesFirstRound;
                 OnHandShakeCompleted();
             });
         }
 
-        private void OnHandShakeCompleted() {
-            if (PhotonNetwork.IsMasterClient) {
-                NetworkingManager.RPC_Others(typeof(FFC), nameof(SyncSettings), new object[] { UseClassesFirstRound });
-            }
-        }
-
-        [UnboundRPC]
-        private static void SyncSettings(bool hostUseClassesStart) {
-            UseClassesFirstRound = hostUseClassesStart;
-        }
-
-        private void HandleBuildDefaultCategory() {
-            UnityEngine.Debug.Log($"[{AbbrModName}] Building Default categories");
-            foreach (Card card in CardManager.cards.Values.ToList()) {
-                List<CardCategory> categories = card.cardInfo.categories.ToList();
-
-                if (categories.Count == 0 || card.category != "FFC") {
-                    categories.Add(DefaultCategory);
-                    card.cardInfo.categories = categories.ToArray();
-                }
-            }
-        }
-
-        private IEnumerator HandlePlayersBlacklistedCategories() {
-            if (UseClassesFirstRound) {
+        private IEnumerator ForceClassesFirstRound() {
+            if (_useClassesFirstRound) {
                 UnityEngine.Debug.Log($"[{AbbrModName}] Setting up players blacklisted categories");
                 Player[] players = PlayerManager.instance.players.ToArray();
         
                 foreach (Player player in players) {
                     CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.AddRange(
                         new[] {
-                            DefaultCategory,
-                            MarksmanClassUpgradesCategory,
-                            LightGunnerClassUpgradesCategory
+                            ManageCardCategories.DefaultCategory,
+                            ManageCardCategories.MarksmanClassUpgradesCategory,
+                            ManageCardCategories.LightGunnerClassUpgradesCategory
                         }
                     );
                 }
@@ -176,6 +132,17 @@ namespace FFC {
             }
 
             yield break;
+        }
+        
+        private void OnHandShakeCompleted() {
+            if (PhotonNetwork.IsMasterClient) {
+                NetworkingManager.RPC_Others(typeof(FFC), nameof(SyncSettings), new object[] { _useClassesFirstRound });
+            }
+        }
+
+        [UnboundRPC]
+        private static void SyncSettings(bool hostUseClassesStart) {
+            _useClassesFirstRound = hostUseClassesStart;
         }
     }
 }

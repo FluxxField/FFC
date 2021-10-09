@@ -1,5 +1,6 @@
 ﻿using UnboundLib.Cards;
 using UnityEngine;
+using FFC.Utilities;
 
 namespace FFC.Cards {
     public class Conditioning : CustomCard {
@@ -42,8 +43,8 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                Utilities.GetCardInfoStat("Health", HealthMultiplier, true),
-                Utilities.GetCardInfoStat("Movement Speed", MovementSpeedMultiplier, true),
+                ManageCardInfoStats.BuildCardInfoStat("Health", true, HealthMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeedMultiplier),
             };
         }
 

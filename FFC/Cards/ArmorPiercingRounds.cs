@@ -1,4 +1,5 @@
-﻿using UnboundLib.Cards;
+﻿using FFC.Utilities;
+using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
@@ -23,7 +24,7 @@ namespace FFC.Cards {
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                FFC.MarksmanClassUpgradesCategory
+                ManageCardCategories.MarksmanClassUpgradesCategory
             };
         }
 
@@ -46,12 +47,8 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                new CardInfoStat {
-                    positive = true,
-                    amount = "Unblockable",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, false)
+                ManageCardInfoStats.BuildCardInfoStat("Unblockable", true),
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier)
             };
         }
 

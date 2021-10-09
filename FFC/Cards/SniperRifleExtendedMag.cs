@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnboundLib.Cards;
+using FFC.Utilities;
 
 namespace FFC.Cards {
     class SniperRifleExtendedMag : CustomCard {
@@ -23,7 +24,7 @@ namespace FFC.Cards {
             UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
 
             cardInfo.categories = new[] {
-                FFC.MarksmanClassUpgradesCategory
+                ManageCardCategories.MarksmanClassUpgradesCategory
             };
         }
 
@@ -47,14 +48,9 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                new CardInfoStat {
-                    positive = true,
-                    stat = "Max Ammo",
-                    amount = "+1",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, false),
-                Utilities.GetCardInfoStat("Movement Cooldown", MovementSpeedMultiplier, false)
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", true, null, "+1"),
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Movement Cooldown", false, MovementSpeedMultiplier)
             };
         }
 

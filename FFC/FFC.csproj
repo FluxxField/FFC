@@ -123,6 +123,7 @@
     <Compile Include="Cards\Conditioning.cs" />
     <Compile Include="Cards\DMR.cs" />
     <Compile Include="Cards\FastMags.cs" />
+    <Compile Include="Cards\JuggernautClass.cs" />
     <Compile Include="Cards\LightGunnerClass.cs" />
     <Compile Include="Cards\LMG.cs" />
     <Compile Include="Cards\MarksmanClass.cs" />
@@ -130,7 +131,8 @@
     <Compile Include="FFC.cs" />
     <Compile Include="MonoBehaviours\InstantKillHitEffect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities.cs" />
+    <Compile Include="Utilities\ManageCardCategories.cs" />
+    <Compile Include="Utilities\ManageCardInfoStats.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

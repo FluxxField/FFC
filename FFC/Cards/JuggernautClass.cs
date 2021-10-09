@@ -6,19 +6,19 @@ using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
-    public class LightGunnerClass : CustomCard {
-        private const float MaxHealthMultiplier = 0.80f;
-        private const float DamageMultiplier = 0.60f;
-        private const float AttackSpeedMultiplier = 0.66f;
-        private const float MovementSpeedMultiplier = 1.10f;
-        private const float BlockCooldownMultiplier = 1.25f;
+    public class JuggernautClass : CustomCard {
+        private const float MaxHealthMultiplier = 3.00f;
+        private const float BlockCooldownMultiplier = 0.75f;
+        private const float DamageMultiplier = 1.20f;
+        private const float AttackSpeedMultiplier = 0.75f;
+        private const float MovementSpeedMultiplier = 0.50f;
         
         protected override string GetTitle() {
-            return "CLASS: Light Gunner";
+            return "CLASS: Juggernaut";
         }
 
         protected override string GetDescription() {
-            return "As a Light Gunner your prioritize movement over Defence and Health";
+            return "Years of steroids has turned you into a slow moving, but deadly and unstoppable force";
         }
 
         public override void SetupCard(
@@ -32,7 +32,7 @@ namespace FFC.Cards {
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {ManageCardCategories.MainClassesCategory};
         }
-
+        
         public override void OnAddCard(
             Player player,
             Gun gun,
@@ -43,47 +43,43 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            data.maxHealth *= MaxHealthMultiplier;
-            characterStats.movementSpeed *= MovementSpeedMultiplier;
             gun.damage *= DamageMultiplier;
-            gun.attackSpeed *= AttackSpeedMultiplier;
+            data.maxHealth *= MaxHealthMultiplier;
             block.cooldown *= BlockCooldownMultiplier;
-            gunAmmo.maxAmmo += 3;
-            gun.dontAllowAutoFire = true;
+            characterStats.movementSpeed *= MovementSpeedMultiplier;
 
             List<CardCategory> blacklistedCategories = characterStats.GetAdditionalData().blacklistedCategories;
             blacklistedCategories.RemoveAll(category => new[] {
                 ManageCardCategories.DefaultCategory,
-                ManageCardCategories.LightGunnerClassUpgradesCategory
+                ManageCardCategories.JuggernautClassUpgradesCategory
             }.Contains(category));
             blacklistedCategories.AddRange(new [] {
                 ManageCardCategories.MainClassesCategory,
                 ManageCardCategories.MarksmanClassUpgradesCategory,
-                ManageCardCategories.JuggernautClassUpgradesCategory
+                ManageCardCategories.LightGunnerClassUpgradesCategory
             });
-            characterStats.GetAdditionalData().blacklistedCategories = blacklistedCategories;
-        }
 
+        }
+        
         public override void OnRemoveCard() {
         }
-
+        
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealthMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Damage", false, DamageMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Damage", true, DamageMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Attack Speed", true, AttackSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true,null, "+3"),
-                ManageCardInfoStats.BuildCardInfoStat("Block Cooldown", false, BlockCooldownMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealthMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Block Cooldown", true, BlockCooldownMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeedMultiplier)
             };
         }
-
+        
         protected override CardInfo.Rarity GetRarity() {
             return CardInfo.Rarity.Common;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.PoisonGreen;
+            return CardThemeColor.CardThemeColorType.FirepowerYellow;
         }
 
         protected override GameObject GetCardArt() {

@@ -1,5 +1,6 @@
 ﻿using UnboundLib.Cards;
 using UnityEngine;
+using FFC.Utilities;
 
 namespace FFC.Cards {
     public class FastMags : CustomCard {
@@ -40,7 +41,7 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, true)
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", true, ReloadSpeedMultiplier)
             };
         }
 

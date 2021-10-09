@@ -2,6 +2,7 @@
 using FFC.MonoBehaviours;
 using UnboundLib;
 using UnityEngine;
+using FFC.Utilities;
 
 namespace FFC.Cards {
     public class Barret50Cal : CustomCard {
@@ -25,7 +26,7 @@ namespace FFC.Cards {
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                FFC.MarksmanClassUpgradesCategory
+                ManageCardCategories.MarksmanClassUpgradesCategory
             };
         }
 
@@ -49,18 +50,9 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                new CardInfoStat {
-                    positive = true,
-                    amount = "Insta Kill",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat {
-                    positive = false,
-                    stat = "Max Ammo",
-                    amount = "1",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, false)
+                ManageCardInfoStats.BuildCardInfoStat("Insta Kill", true),
+                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, "1"),
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier)
             };
         }
 

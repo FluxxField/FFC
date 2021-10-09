@@ -1,6 +1,7 @@
 ﻿using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
+using FFC.Utilities;
 
 namespace FFC.Cards {
     public class DMR : CustomCard {
@@ -27,8 +28,8 @@ namespace FFC.Cards {
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                FFC.LightGunnerClassUpgradesCategory,
-                FFC.DMRUpgradeCategory
+                ManageCardCategories.LightGunnerClassUpgradesCategory,
+                ManageCardCategories.DMRUpgradeCategory
             };
         }
 
@@ -50,8 +51,8 @@ namespace FFC.Cards {
             gunAmmo.maxAmmo = 3;
             
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
-                FFC.AssaultRifleUpgradeCategory,
-                FFC.LMGUpgradeCategory
+                ManageCardCategories.AssaultRifleUpgradeCategory,
+                ManageCardCategories.LMGUpgradeCategory
             });
         }
 
@@ -60,16 +61,11 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                Utilities.GetCardInfoStat("Damage", DamageMultiplier, true),
-                Utilities.GetCardInfoStat("Bullet Speed", ProjectileSpeedMultiplier, true),
-                Utilities.GetCardInfoStat("Attack Speed", AttackSpeedMultiplier, false),
-                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, false),
-                new CardInfoStat {
-                    positive = false,
-                    stat = "Max Ammo",
-                    amount = "3",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
+                ManageCardInfoStats.BuildCardInfoStat("Damage", true, DamageMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, "3")
             };
         }
 

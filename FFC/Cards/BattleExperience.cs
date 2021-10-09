@@ -1,5 +1,6 @@
 ﻿using UnboundLib.Cards;
 using UnityEngine;
+using FFC.Utilities;
 
 namespace FFC.Cards {
     public class BattleExperience : CustomCard {
@@ -46,10 +47,10 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                Utilities.GetCardInfoStat("Damage", DamageMultiplier, true),
-                Utilities.GetCardInfoStat("Reload Speed", ReloadSpeedMultiplier, true),
-                Utilities.GetCardInfoStat("Attack Speed", AttackSpeedMultiplier, true),
-                Utilities.GetCardInfoStat("Health", HealthMultiplier, false),
+                ManageCardInfoStats.BuildCardInfoStat("Damage", true, DamageMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", true, ReloadSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", true, AttackSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Health", false, HealthMultiplier),
             };
         }
 
