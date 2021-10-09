@@ -9,9 +9,13 @@ using UnboundLib.Cards;
 using HarmonyLib;
 using FFC.Cards;
 using ModdingUtils.Extensions;
+using Photon.Pun;
 using UnboundLib.GameModes;
 using UnboundLib.Utils;
+using UnboundLib.Utils.UI;
 using UnityEngine;
+using TMPro;
+using UnboundLib.Networking;
 
 namespace FFC {
     [BepInDependency("com.willis.rounds.unbound")]
@@ -34,19 +38,17 @@ namespace FFC {
         public static CardCategory DMRUpgradeCategory;
         public static CardCategory LMGUpgradeCategory;
 
-        private static ConfigEntry<bool> ClassStartConfig;
-        internal static bool ClassStart;
+        private static ConfigEntry<bool> UseClassFirstRoundtConfig;
+        internal static bool UseClassesFirstRound;
 
         private void Awake() {
+            UseClassFirstRoundtConfig = Config.Bind("FFC", "Enabled", false, "Enable classes only first round");
             new Harmony(ModId).PatchAll();
         }
 
 
         private void Start() {
-            Unbound.RegisterCredits(ModName,
-                new[] {"FluxxField"},
-                new[] {"github"},
-                new[] {"https://github.com/FluxxField/FFC"});
+            UseClassesFirstRound = UseClassFirstRoundtConfig.Value;
 
             // Gotta give CustomCardCategories a sec to setup
             if (CustomCardCategories.instance != null) {
@@ -77,9 +79,38 @@ namespace FFC {
             UnityEngine.Debug.Log($"[{AbbrModName}] Done building cards");
 
             this.ExecuteAfterSeconds(0.4f, HandleBuildDefaultCategory);
+            
+            Unbound.RegisterMenu(ModName, () => { }, NewGUI, null, false);
+            
+            Unbound.RegisterHandshake(ModId, OnHandShakeCompleted);
+            
+            Unbound.RegisterCredits(ModName,
+                new[] {"FluxxField"},
+                new[] {"github"},
+                new[] {"https://github.com/FluxxField/FFC"});
 
             GameModeManager.AddHook(GameModeHooks.HookGameStart, gm => HandlePlayersBlacklistedCategories());
             GameModeManager.AddHook(GameModeHooks.HookRoundStart, gm => HandleBarret50CalAmmo());
+        }
+
+        private void NewGUI(GameObject menu) {
+            MenuHandler.CreateText($"{ModName} Options", menu, out TextMeshProUGUI _);
+            MenuHandler.CreateText(" ", menu, out TextMeshProUGUI _, 30);
+            MenuHandler.CreateToggle(false, "Enable Force classes first round", menu, useClassesFirstRound => {
+                UseClassesFirstRound = useClassesFirstRound;
+                OnHandShakeCompleted();
+            });
+        }
+
+        private void OnHandShakeCompleted() {
+            if (PhotonNetwork.IsMasterClient) {
+                NetworkingManager.RPC_Others(typeof(FFC), nameof(SyncSettings), new object[] { UseClassesFirstRound });
+            }
+        }
+
+        [UnboundRPC]
+        private static void SyncSettings(bool hostUseClassesStart) {
+            UseClassesFirstRound = hostUseClassesStart;
         }
 
         private void HandleBuildDefaultCategory() {
@@ -95,17 +126,19 @@ namespace FFC {
         }
 
         private IEnumerator HandlePlayersBlacklistedCategories() {
-            UnityEngine.Debug.Log($"[{AbbrModName}] Setting up players blacklisted categories");
-            Player[] players = PlayerManager.instance.players.ToArray();
-
-            foreach (Player player in players) {
-                CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.AddRange(
-                    new[] {
-                        DefaultCategory,
-                        MarksmanClassUpgradesCategory,
-                        LightGunnerClassUpgradesCategory
-                    }
-                );
+            if (UseClassesFirstRound) {
+                UnityEngine.Debug.Log($"[{AbbrModName}] Setting up players blacklisted categories");
+                Player[] players = PlayerManager.instance.players.ToArray();
+        
+                foreach (Player player in players) {
+                    CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.AddRange(
+                        new[] {
+                            DefaultCategory,
+                            MarksmanClassUpgradesCategory,
+                            LightGunnerClassUpgradesCategory
+                        }
+                    );
+                }
             }
 
             yield break;
@@ -143,21 +176,6 @@ namespace FFC {
             }
 
             yield break;
-        }
-    }
-
-    [HarmonyPatch]
-    class Patches {
-        [HarmonyPatch(typeof(CharacterStatModifiers), "DealtDamage")]
-        [HarmonyPostfix]
-        static void DealtDamage_Postfix(
-            Vector2 damage,
-            bool selfDamage,
-            Player damagedPlayer
-        ) {
-            UnityEngine.Debug.Log(
-                $"[{FFC.AbbrModName}] Player {damagedPlayer.playerID + 1} took {damage.magnitude} damage"
-            );
         }
     }
 }

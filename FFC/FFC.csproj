@@ -84,6 +84,9 @@
     <Reference Include="UnboundLib, Version=2.7.1.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\UnboundLib.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\libs\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\libs\UnityEngine.dll</HintPath>
     </Reference>
