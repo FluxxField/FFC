@@ -15,6 +15,8 @@ Current Card Paths:
   - Assault Rifle
   - DMR
   - LMG
+- Juggernaut
+  - N/A
 
 ### Class - Marksman
 #### Marksman (Common) (One use)
@@ -74,6 +76,14 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Movement Speed:   -30%  ❌
 - Recoil:           +25%  ❌
 - Max Ammo:         +6    ✔️
+
+### Class - Juggernaut
+#### Juggernaut
+- Damage:         +20%  ✔️
+- Attack Speed:   +25%  ✔️
+- Health:         +200% ✔️
+- Block Cooldown: -25%  ✔️
+- Movement Speed: -50%  ❌
 
 ### Defaults
 #### Fast Mags (Common)
