@@ -87,11 +87,16 @@ namespace FFC {
                 Player[] players = PlayerManager.instance.players.ToArray();
         
                 foreach (Player player in players) {
+                    // Blacklist Default Cards and all Upgrade Cards for all players
                     CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.AddRange(
                         new[] {
                             ManageCardCategories.DefaultCategory,
                             ManageCardCategories.MarksmanClassUpgradesCategory,
-                            ManageCardCategories.LightGunnerClassUpgradesCategory
+                            ManageCardCategories.LightGunnerClassUpgradesCategory,
+                            ManageCardCategories.JuggernautClassUpgradesCategory,
+                            ManageCardCategories.AssaultRifleUpgradeCategory,
+                            ManageCardCategories.DMRUpgradeCategory,
+                            ManageCardCategories.LMGUpgradeCategory,
                         }
                     );
                 }

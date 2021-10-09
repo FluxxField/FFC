@@ -13,7 +13,7 @@ namespace FFC.Utilities {
         public static CardCategory AssaultRifleUpgradeCategory;
         public static CardCategory DMRUpgradeCategory;
         public static CardCategory LMGUpgradeCategory;
-        
+
         private ManageCardCategories() {
             // Gotta give CustomCardCategories a sec to setup
             if (CustomCardCategories.instance != null) {

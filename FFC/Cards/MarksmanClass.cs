@@ -50,16 +50,20 @@ namespace FFC.Cards {
             gunAmmo.maxAmmo -= 1;
 
             List<CardCategory> blacklistedCategories = characterStats.GetAdditionalData().blacklistedCategories;
+            
+            // Allow for Default Cards if they were blacklisted because of the mod
+            // Allow the Upgrades for this class since it was picked
             blacklistedCategories.RemoveAll(category => new[] {
                 ManageCardCategories.DefaultCategory,
                 ManageCardCategories.MarksmanClassUpgradesCategory
             }.Contains(category));
+            
+            // Blacklist the other classes and their upgrades
             blacklistedCategories.AddRange(new[] {
                 ManageCardCategories.MainClassesCategory,
                 ManageCardCategories.LightGunnerClassUpgradesCategory,
                 ManageCardCategories.JuggernautClassUpgradesCategory
             });
-            characterStats.GetAdditionalData().blacklistedCategories = blacklistedCategories;
         }
 
         public override void OnRemoveCard() {
