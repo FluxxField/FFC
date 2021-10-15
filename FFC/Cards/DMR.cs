@@ -24,12 +24,12 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
-
             cardInfo.allowMultiple = false;
+            
+            // DMR is apart of the LightGunnerClass and DMR Categories
             cardInfo.categories = new[] {
-                ManageCardCategories.LightGunnerClassUpgradesCategory,
-                ManageCardCategories.DMRUpgradeCategory
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.DMR]
             };
         }
 
@@ -50,9 +50,10 @@ namespace FFC.Cards {
             gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
             gunAmmo.maxAmmo = 3;
             
+            // If the player picks DMR, blacklist all cards in the AssaultRifle and LMG categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
-                ManageCardCategories.AssaultRifleUpgradeCategory,
-                ManageCardCategories.LMGUpgradeCategory
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.AssaultRifle],
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.LMG]
             });
         }
 
@@ -63,7 +64,7 @@ namespace FFC.Cards {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Damage", true, DamageMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeedMultiplier, "", "-"),
                 ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, "3")
             };

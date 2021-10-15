@@ -26,12 +26,12 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
-
             cardInfo.allowMultiple = false;
+            
+            // LMG is apart of the LightGunnerClass and DMR Categories
             cardInfo.categories = new[] {
-                ManageCardCategories.LightGunnerClassUpgradesCategory,
-                ManageCardCategories.LMGUpgradeCategory
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.LMG]
             };
         }
 
@@ -53,10 +53,11 @@ namespace FFC.Cards {
             gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
             characterStats.movementSpeed *= MovementSpeedMultiplier;
             gunAmmo.maxAmmo += 6;
-
+            
+            // If the player picks LMG, blacklist all cards in the AssaultRifle and DMR categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
-                ManageCardCategories.AssaultRifleUpgradeCategory,
-                ManageCardCategories.DMRUpgradeCategory
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.AssaultRifle],
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.DMR]
             });
         }
 
@@ -68,7 +69,7 @@ namespace FFC.Cards {
                 ManageCardInfoStats.BuildCardInfoStat("Damage", false, DamageMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeedMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true,null, "+6"),
-                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeedMultiplier, "", "-"),
                 ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeedMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Recoil", false, ReloadSpeedMultiplier)

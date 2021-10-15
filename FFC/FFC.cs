@@ -1,20 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using BepInEx;
-using BepInEx.Configuration;
-using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using UnboundLib;
 using UnboundLib.Cards;
 using HarmonyLib;
 using FFC.Cards;
-using FFC.Utilities;
-using ModdingUtils.Extensions;
-using Photon.Pun;
 using UnboundLib.GameModes;
-using UnboundLib.Utils.UI;
-using UnityEngine;
-using TMPro;
-using UnboundLib.Networking;
 
 namespace FFC {
     [BepInDependency("com.willis.rounds.unbound")]
@@ -27,23 +18,21 @@ namespace FFC {
         
         private const string ModId = "fluxxfield.rounds.plugins.fluxxfieldscards";
         private const string ModName = "FluxxField's Cards (FFC)";
-        private const string Version = "1.0.1";
+        private const string Version = "1.1.1";
 
-        private static ConfigEntry<bool> _useClassFirstRoundConfig;
-        private static bool _useClassesFirstRound;
+        public const string MarksmanUpgrades = "marksmanUpgrades";
+        public const string LightGunnerUpgrades = "lightGunnerUpgrades";
+        public const string JuggernautUpgrades = "juggernautUpgrades";
+        public const string AssaultRifle = "assaultRifle";
+        public const string DMR = "DMR";
+        public const string LMG = "LMG";
 
         private void Awake() {
-            _useClassFirstRoundConfig = Config.Bind("FFC", "Enabled", false, "Enable classes only first round");
             new Harmony(ModId).PatchAll();
         }
 
 
         private void Start() {
-            _useClassesFirstRound = _useClassFirstRoundConfig.Value;
-
-            ManageCardCategories.Setup();
-
-            UnityEngine.Debug.Log($"[{AbbrModName}] Building cards");
             // Marksman Class
             CustomCard.BuildCard<MarksmanClass>();
             CustomCard.BuildCard<SniperRifleExtendedMag>();
@@ -60,58 +49,23 @@ namespace FFC {
             CustomCard.BuildCard<FastMags>();
             CustomCard.BuildCard<Conditioning>();
             CustomCard.BuildCard<BattleExperience>();
-            UnityEngine.Debug.Log($"[{AbbrModName}] Done building cards");
-
-            this.ExecuteAfterSeconds(0.4f, ManageCardCategories.HandleBuildDefaultCategory);
             
-            Unbound.RegisterMenu(ModName, () => { }, NewGUI, null, false);
-            
-            Unbound.RegisterHandshake(ModId, OnHandShakeCompleted);
+            ClassesManager.ClassesManager.AddClassUpgradeCategory(MarksmanUpgrades);
+            ClassesManager.ClassesManager.AddClassUpgradeCategory(LightGunnerUpgrades);
+            ClassesManager.ClassesManager.AddClassUpgradeCategory(JuggernautUpgrades);
+            ClassesManager.ClassesManager.AddClassUpgradeCategory(AssaultRifle);
+            ClassesManager.ClassesManager.AddClassUpgradeCategory(DMR);
+            ClassesManager.ClassesManager.AddClassUpgradeCategory(LMG);
             
             Unbound.RegisterCredits(ModName,
                 new[] {"FluxxField"},
                 new[] {"github"},
                 new[] {"https://github.com/FluxxField/FFC"});
 
-            GameModeManager.AddHook(GameModeHooks.HookGameStart, gm => ForceClassesFirstRound());
             GameModeManager.AddHook(GameModeHooks.HookRoundStart, gm => HandleBarret50CalAmmo());
         }
 
-        private void NewGUI(GameObject menu) {
-            MenuHandler.CreateText($"{ModName} Options", menu, out TextMeshProUGUI _);
-            MenuHandler.CreateText(" ", menu, out TextMeshProUGUI _, 30);
-            MenuHandler.CreateToggle(false, "Enable Force classes first round", menu, useClassesFirstRound => {
-                _useClassesFirstRound = useClassesFirstRound;
-                OnHandShakeCompleted();
-            });
-        }
-
-        private IEnumerator ForceClassesFirstRound() {
-            if (_useClassesFirstRound) {
-                UnityEngine.Debug.Log($"[{AbbrModName}] Setting up players blacklisted categories");
-                Player[] players = PlayerManager.instance.players.ToArray();
-        
-                foreach (Player player in players) {
-                    // Blacklist Default Cards and all Upgrade Cards for all players
-                    CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.AddRange(
-                        new[] {
-                            ManageCardCategories.DefaultCategory,
-                            ManageCardCategories.MarksmanClassUpgradesCategory,
-                            ManageCardCategories.LightGunnerClassUpgradesCategory,
-                            ManageCardCategories.JuggernautClassUpgradesCategory,
-                            ManageCardCategories.AssaultRifleUpgradeCategory,
-                            ManageCardCategories.DMRUpgradeCategory,
-                            ManageCardCategories.LMGUpgradeCategory,
-                        }
-                    );
-                }
-            }
-
-            yield break;
-        }
-
         private IEnumerator HandleBarret50CalAmmo() {
-            UnityEngine.Debug.Log($"[{AbbrModName}] Setting up player categories");
             Player[] players = PlayerManager.instance.players.ToArray();
 
             foreach (Player player in players) {
@@ -142,17 +96,6 @@ namespace FFC {
             }
 
             yield break;
-        }
-        
-        private void OnHandShakeCompleted() {
-            if (PhotonNetwork.IsMasterClient) {
-                NetworkingManager.RPC_Others(typeof(FFC), nameof(SyncSettings), new object[] { _useClassesFirstRound });
-            }
-        }
-
-        [UnboundRPC]
-        private static void SyncSettings(bool hostUseClassesStart) {
-            _useClassesFirstRound = hostUseClassesStart;
         }
     }
 }

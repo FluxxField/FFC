@@ -27,10 +27,10 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
-
             cardInfo.allowMultiple = false;
-            cardInfo.categories = new[] {ManageCardCategories.MainClassesCategory};
+            cardInfo.categories = new[] {
+                ClassesManager.ClassesManager.ClassCategory
+            };
         }
 
         public override void OnAddCard(
@@ -53,19 +53,12 @@ namespace FFC.Cards {
 
             List<CardCategory> blacklistedCategories = characterStats.GetAdditionalData().blacklistedCategories;
             
-            // Allow for Default Cards if they were blacklisted because of the mod
-            // Allow the Upgrades for this class since it was picked
+            // Removes the defaultCategory and this classes upgrade category
+            // from the players blacklisted categories
             blacklistedCategories.RemoveAll(category => new[] {
-                ManageCardCategories.DefaultCategory,
-                ManageCardCategories.LightGunnerClassUpgradesCategory
+                ClassesManager.ClassesManager.DefaultCardCategory,
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.LightGunnerUpgrades]
             }.Contains(category));
-            
-            // Blacklist the other classes and their upgrades
-            blacklistedCategories.AddRange(new [] {
-                ManageCardCategories.MainClassesCategory,
-                ManageCardCategories.MarksmanClassUpgradesCategory,
-                ManageCardCategories.JuggernautClassUpgradesCategory
-            });
         }
 
         public override void OnRemoveCard() {

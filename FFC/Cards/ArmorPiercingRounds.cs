@@ -24,7 +24,7 @@ namespace FFC.Cards {
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ManageCardCategories.MarksmanClassUpgradesCategory
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.MarksmanUpgrades]
             };
         }
 

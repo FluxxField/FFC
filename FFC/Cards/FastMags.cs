@@ -20,7 +20,6 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
         }
 
         public override void OnAddCard(

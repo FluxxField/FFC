@@ -24,12 +24,12 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
-
             cardInfo.allowMultiple = false;
+            
+            // AssaultRifle is apart of the LightGunnerClass and AssaultRifle Categories
             cardInfo.categories = new[] {
-                ManageCardCategories.LightGunnerClassUpgradesCategory,
-                ManageCardCategories.AssaultRifleUpgradeCategory
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.AssaultRifle]
             };
         }
 
@@ -50,9 +50,10 @@ namespace FFC.Cards {
             gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
             gunAmmo.maxAmmo += 3;
             
+            // If the player picks AssaultRifle, blacklist all cards in the DMR and LMG categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
-                ManageCardCategories.DMRUpgradeCategory,
-                ManageCardCategories.LMGUpgradeCategory
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.DMR],
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.LMG]
             });
         }
 

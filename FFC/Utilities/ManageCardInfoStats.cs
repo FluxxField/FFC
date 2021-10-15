@@ -4,25 +4,30 @@
             string statName,
             bool positive,
             float? value = null,
-            string explicitValue = ""
+            string explicitValue = "",
+            string signOverride = null
         ) {
-            if (value != null) {
-                bool isValuePositive = value > 1;
-                string valueSign = isValuePositive ? "+" : "-";
-                float? percentage = (isValuePositive ? value - 1 : 1 - value) * 100;
-
-                return new CardInfoStat {
+            if (value == null) {
+                return new CardInfoStat() {
                     positive = positive,
                     stat = statName,
-                    amount = $"{valueSign}{percentage}%",
+                    amount = explicitValue,
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 };
             }
+            
+            bool isValuePositive = value > 1;
+            string valueSign = isValuePositive ? "+" : "-";
+            float? percentage = (isValuePositive ? value - 1 : 1 - value) * 100;
 
-            return new CardInfoStat() {
+            if (signOverride != null) {
+                valueSign = signOverride;
+            }
+
+            return new CardInfoStat {
                 positive = positive,
                 stat = statName,
-                amount = explicitValue,
+                amount = $"{valueSign}{percentage:F1}%",
                 simepleAmount = CardInfoStat.SimpleAmount.notAssigned
             };
         }

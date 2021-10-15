@@ -21,10 +21,8 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
-
             cardInfo.categories = new[] {
-                ManageCardCategories.MarksmanClassUpgradesCategory
+                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.MarksmanUpgrades]
             };
         }
 
