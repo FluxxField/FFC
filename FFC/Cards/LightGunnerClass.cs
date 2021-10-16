@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ClassesManager;
 using FFC.Utilities;
 using ModdingUtils.Extensions;
 using UnboundLib.Cards;
@@ -29,7 +30,7 @@ namespace FFC.Cards {
         ) {
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.ClassCategory
+                CategoriesHandler.Instance.ClassCategory
             };
         }
 
@@ -56,8 +57,8 @@ namespace FFC.Cards {
             // Removes the defaultCategory and this classes upgrade category
             // from the players blacklisted categories
             blacklistedCategories.RemoveAll(category => new[] {
-                ClassesManager.ClassesManager.DefaultCardCategory,
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.LightGunnerUpgrades]
+                CategoriesHandler.Instance.DefaultCardCategory,
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades]
             }.Contains(category));
         }
 

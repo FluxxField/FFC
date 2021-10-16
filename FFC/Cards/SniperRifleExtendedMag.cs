@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ClassesManager;
+using UnityEngine;
 using UnboundLib.Cards;
 using FFC.Utilities;
 
@@ -22,7 +23,7 @@ namespace FFC.Cards {
             CharacterStatModifiers statModifiers
         ) {
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.MarksmanUpgrades]
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]
             };
         }
 

@@ -1,4 +1,5 @@
-﻿using ModdingUtils.Extensions;
+﻿using ClassesManager;
+using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
 using FFC.Utilities;
@@ -28,8 +29,8 @@ namespace FFC.Cards {
             
             // AssaultRifle is apart of the LightGunnerClass and AssaultRifle Categories
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.AssaultRifle]
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.AssaultRifle]
             };
         }
 
@@ -52,8 +53,8 @@ namespace FFC.Cards {
             
             // If the player picks AssaultRifle, blacklist all cards in the DMR and LMG categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.DMR],
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.LMG]
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.DMR],
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.LMG]
             });
         }
 

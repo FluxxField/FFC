@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ClassesManager;
 using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
@@ -28,7 +29,7 @@ namespace FFC.Cards {
         ) {
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.DefaultCardCategory
+                CategoriesHandler.Instance.ClassCategory
             };
         }
 
@@ -54,8 +55,8 @@ namespace FFC.Cards {
             // Removes the defaultCategory and this classes upgrade category
             // from the players blacklisted categories
             blacklistedCategories.RemoveAll(category => new[] {
-                ClassesManager.ClassesManager.DefaultCardCategory,
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.MarksmanUpgrades]
+                CategoriesHandler.Instance.DefaultCardCategory,
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]
             }.Contains(category));
         }
 

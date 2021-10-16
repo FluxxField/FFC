@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using BepInEx;
+using CardChoiceSpawnUniqueCardPatch.CustomCategories;
+using ClassesManager;
 using UnboundLib;
 using UnboundLib.Cards;
 using HarmonyLib;
@@ -33,6 +35,13 @@ namespace FFC {
 
 
         private void Start() {
+            CategoriesHandler.Instance.AddClassUpgradeCategory(MarksmanUpgrades);
+            CategoriesHandler.Instance.AddClassUpgradeCategory(LightGunnerUpgrades);
+            CategoriesHandler.Instance.AddClassUpgradeCategory(JuggernautUpgrades);
+            CategoriesHandler.Instance.AddClassUpgradeCategory(AssaultRifle);
+            CategoriesHandler.Instance.AddClassUpgradeCategory(DMR);
+            CategoriesHandler.Instance.AddClassUpgradeCategory(LMG);
+            
             // Marksman Class
             CustomCard.BuildCard<MarksmanClass>();
             CustomCard.BuildCard<SniperRifleExtendedMag>();
@@ -49,14 +58,7 @@ namespace FFC {
             CustomCard.BuildCard<FastMags>();
             CustomCard.BuildCard<Conditioning>();
             CustomCard.BuildCard<BattleExperience>();
-            
-            ClassesManager.ClassesManager.AddClassUpgradeCategory(MarksmanUpgrades);
-            ClassesManager.ClassesManager.AddClassUpgradeCategory(LightGunnerUpgrades);
-            ClassesManager.ClassesManager.AddClassUpgradeCategory(JuggernautUpgrades);
-            ClassesManager.ClassesManager.AddClassUpgradeCategory(AssaultRifle);
-            ClassesManager.ClassesManager.AddClassUpgradeCategory(DMR);
-            ClassesManager.ClassesManager.AddClassUpgradeCategory(LMG);
-            
+
             Unbound.RegisterCredits(ModName,
                 new[] {"FluxxField"},
                 new[] {"github"},

@@ -1,4 +1,5 @@
-﻿using UnboundLib.Cards;
+﻿using ClassesManager;
+using UnboundLib.Cards;
 using FFC.MonoBehaviours;
 using UnboundLib;
 using UnityEngine;
@@ -24,7 +25,7 @@ namespace FFC.Cards {
         ) {
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.MarksmanUpgrades]
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]
             };
         }
 

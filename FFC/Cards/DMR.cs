@@ -2,6 +2,7 @@
 using UnboundLib.Cards;
 using UnityEngine;
 using FFC.Utilities;
+using ClassesManager;
 
 namespace FFC.Cards {
     public class DMR : CustomCard {
@@ -28,8 +29,8 @@ namespace FFC.Cards {
             
             // DMR is apart of the LightGunnerClass and DMR Categories
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.DMR]
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.DMR]
             };
         }
 
@@ -52,8 +53,8 @@ namespace FFC.Cards {
             
             // If the player picks DMR, blacklist all cards in the AssaultRifle and LMG categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.AssaultRifle],
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.LMG]
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.AssaultRifle],
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.LMG]
             });
         }
 

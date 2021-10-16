@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ClassesManager;
 using FFC.Utilities;
 using ModdingUtils.Extensions;
 using UnboundLib.Cards;
@@ -27,11 +28,9 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            UnityEngine.Debug.Log($"[{FFC.AbbrModName}] Setting up {GetTitle()}");
-
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.ClassCategory
+                CategoriesHandler.Instance.ClassCategory
             };
         }
         
@@ -55,8 +54,8 @@ namespace FFC.Cards {
             // Removes the defaultCategory and this classes upgrade category
             // from the players blacklisted categories
             blacklistedCategories.RemoveAll(category => new[] {
-                ClassesManager.ClassesManager.DefaultCardCategory,
-                ClassesManager.ClassesManager.ClassUpgradeCategories[FFC.JuggernautUpgrades]
+                CategoriesHandler.Instance.DefaultCardCategory,
+                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.JuggernautUpgrades]
             }.Contains(category));
         }
         
