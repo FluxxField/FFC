@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using BepInEx;
-using CardChoiceSpawnUniqueCardPatch.CustomCategories;
-using ClassesManager;
 using UnboundLib;
 using UnboundLib.Cards;
 using HarmonyLib;
@@ -35,13 +33,14 @@ namespace FFC {
 
 
         private void Start() {
-            CategoriesHandler.Instance.AddClassUpgradeCategory(MarksmanUpgrades);
-            CategoriesHandler.Instance.AddClassUpgradeCategory(LightGunnerUpgrades);
-            CategoriesHandler.Instance.AddClassUpgradeCategory(JuggernautUpgrades);
-            CategoriesHandler.Instance.AddClassUpgradeCategory(AssaultRifle);
-            CategoriesHandler.Instance.AddClassUpgradeCategory(DMR);
-            CategoriesHandler.Instance.AddClassUpgradeCategory(LMG);
+            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(MarksmanUpgrades);
+            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(LightGunnerUpgrades);
+            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(JuggernautUpgrades);
+            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(AssaultRifle);
+            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(DMR);
+            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(LMG);
             
+            UnityEngine.Debug.Log("[FFC] building cards");
             // Marksman Class
             CustomCard.BuildCard<MarksmanClass>();
             CustomCard.BuildCard<SniperRifleExtendedMag>();
@@ -58,6 +57,7 @@ namespace FFC {
             CustomCard.BuildCard<FastMags>();
             CustomCard.BuildCard<Conditioning>();
             CustomCard.BuildCard<BattleExperience>();
+            UnityEngine.Debug.Log("[FFC] done building cards");
 
             Unbound.RegisterCredits(ModName,
                 new[] {"FluxxField"},

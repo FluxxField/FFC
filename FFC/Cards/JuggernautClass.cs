@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using ClassesManager;
-using FFC.Utilities;
+﻿using FFC.Utilities;
 using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
@@ -30,7 +27,7 @@ namespace FFC.Cards {
         ) {
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                CategoriesHandler.Instance.ClassCategory
+                ClassesManager.ClassesManager.Instance.ClassCategory
             };
         }
         
@@ -49,14 +46,11 @@ namespace FFC.Cards {
             block.cooldown *= BlockCooldownMultiplier;
             characterStats.movementSpeed *= MovementSpeedMultiplier;
 
-            List<CardCategory> blacklistedCategories = characterStats.GetAdditionalData().blacklistedCategories;
-            
             // Removes the defaultCategory and this classes upgrade category
             // from the players blacklisted categories
-            blacklistedCategories.RemoveAll(category => new[] {
-                CategoriesHandler.Instance.DefaultCardCategory,
-                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.JuggernautUpgrades]
-            }.Contains(category));
+            ClassesManager.ClassesManager.Instance.RemoveDefaultCardCategoryFromPlayer(characterStats);
+            characterStats.GetAdditionalData().blacklistedCategories
+                .Remove(ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.JuggernautUpgrades]);
         }
         
         public override void OnRemoveCard() {

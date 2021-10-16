@@ -21,6 +21,9 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
+            cardInfo.categories = new[] {
+                ClassesManager.ClassesManager.Instance.DefaultCardCategory
+            };
         }
 
         public override void OnAddCard(

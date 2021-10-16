@@ -1,5 +1,4 @@
-﻿using ClassesManager;
-using ModdingUtils.Extensions;
+﻿using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
 using FFC.Utilities;
@@ -31,8 +30,8 @@ namespace FFC.Cards {
             
             // LMG is apart of the LightGunnerClass and DMR Categories
             cardInfo.categories = new[] {
-                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
-                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.LMG]
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LMG]
             };
         }
 
@@ -57,8 +56,8 @@ namespace FFC.Cards {
             
             // If the player picks LMG, blacklist all cards in the AssaultRifle and DMR categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
-                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.AssaultRifle],
-                CategoriesHandler.Instance.ClassUpgradeCategories[FFC.DMR]
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.AssaultRifle],
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.DMR]
             });
         }
 
