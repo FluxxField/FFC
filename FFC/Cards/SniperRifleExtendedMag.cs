@@ -24,6 +24,10 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]
             };
+
+            gun.ammo = 1;
+            gun.reloadTime = ReloadSpeedMultiplier;
+            statModifiers.movementSpeed = MovementSpeedMultiplier;
         }
 
         public override void OnAddCard(
@@ -36,9 +40,6 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.maxAmmo += 1;
-            gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
-            characterStats.movementSpeed *= MovementSpeedMultiplier;
         }
 
         public override void OnRemoveCard() {

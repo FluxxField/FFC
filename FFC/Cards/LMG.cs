@@ -33,6 +33,15 @@ namespace FFC.Cards {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LMG]
             };
+            
+            gun.dontAllowAutoFire = false;
+            gun.damage = DamageMultiplier;
+            gun.projectileSpeed = ProjectileSpeedMultiplier;
+            gun.attackSpeed = AttackSpeedMultiplier;
+            gun.recoil = RecoilMultiplier;
+            gun.ammo = 6;
+            gun.reloadTime = ReloadSpeedMultiplier;
+            statModifiers.movementSpeed = MovementSpeedMultiplier;
         }
 
         public override void OnAddCard(
@@ -45,15 +54,6 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gun.dontAllowAutoFire = false;
-            gun.damage *= DamageMultiplier;
-            gun.projectileSpeed *= ProjectileSpeedMultiplier;
-            gun.attackSpeed *= AttackSpeedMultiplier;
-            gun.recoil *= RecoilMultiplier;
-            gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
-            characterStats.movementSpeed *= MovementSpeedMultiplier;
-            gunAmmo.maxAmmo += 6;
-            
             // If the player picks LMG, blacklist all cards in the AssaultRifle and DMR categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.AssaultRifle],

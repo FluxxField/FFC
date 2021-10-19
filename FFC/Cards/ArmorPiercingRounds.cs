@@ -24,6 +24,9 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]
             };
+            
+            gun.unblockable = true;
+            gun.reloadTime = ReloadSpeedMultiplier;
         }
 
         public override void OnAddCard(
@@ -36,8 +39,6 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gun.unblockable = true;
-            gun.reloadTime *= ReloadSpeedMultiplier;
         }
 
         public override void OnRemoveCard() {

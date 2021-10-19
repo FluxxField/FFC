@@ -26,6 +26,11 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.DefaultCardCategory
             };
+            
+            gun.damage = DamageMultiplier;
+            gun.attackSpeed = AttackSpeedMultiplier;
+            gun.attackSpeed = AttackSpeedMultiplier;
+            gun.reloadTime = ReloadSpeedMultiplier;
         }
 
         public override void OnAddCard(
@@ -38,9 +43,6 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gun.damage *= DamageMultiplier;
-            gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
-            gun.attackSpeed *= AttackSpeedMultiplier;
             data.maxHealth *= HealthMultiplier;
         }
 

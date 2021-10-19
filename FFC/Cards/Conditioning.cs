@@ -24,6 +24,9 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.DefaultCardCategory
             };
+
+            statModifiers.health = HealthMultiplier;
+            statModifiers.movementSpeed = MovementSpeedMultiplier;
         }
 
         public override void OnAddCard(
@@ -36,8 +39,6 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            data.maxHealth *= HealthMultiplier;
-            characterStats.movementSpeed *= MovementSpeedMultiplier;
         }
 
         public override void OnRemoveCard() {

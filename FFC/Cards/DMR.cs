@@ -31,6 +31,12 @@ namespace FFC.Cards {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.DMR]
             };
+            
+            gun.dontAllowAutoFire = true;
+            gun.damage = DamageMultiplier;
+            gun.projectileSpeed = ProjectileSpeedMultiplier;
+            gun.attackSpeed = AttackSpeedMultiplier;
+            gun.reloadTime = ReloadSpeedMultiplier;
         }
 
         public override void OnAddCard(
@@ -43,11 +49,6 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gun.dontAllowAutoFire = true;
-            gun.damage *= DamageMultiplier;
-            gun.projectileSpeed *= ProjectileSpeedMultiplier;
-            gun.attackSpeed *= AttackSpeedMultiplier;
-            gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
             gunAmmo.maxAmmo = 3;
             
             // If the player picks DMR, blacklist all cards in the AssaultRifle and LMG categories

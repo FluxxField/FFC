@@ -26,6 +26,8 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]
             };
+
+            gun.reloadTime = ReloadSpeedMultiplier;
         }
 
         public override void OnAddCard(
@@ -39,7 +41,6 @@ namespace FFC.Cards {
             CharacterStatModifiers characterStats
         ) {
             gunAmmo.maxAmmo = 1;
-            gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
             player.gameObject.GetOrAddComponent<InstantKillHitEffect>();
         }
 

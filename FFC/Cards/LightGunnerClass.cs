@@ -29,6 +29,13 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassCategory
             };
+            
+            gun.damage = DamageMultiplier;
+            gun.attackSpeed = AttackSpeedMultiplier;
+            gun.dontAllowAutoFire = true;
+            gun.ammo = 3;
+            statModifiers.health = MaxHealthMultiplier;
+            statModifiers.movementSpeed = MovementSpeedMultiplier;
         }
 
         public override void OnAddCard(
@@ -41,13 +48,7 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            data.maxHealth *= MaxHealthMultiplier;
-            characterStats.movementSpeed *= MovementSpeedMultiplier;
-            gun.damage *= DamageMultiplier;
-            gun.attackSpeed *= AttackSpeedMultiplier;
             block.cooldown *= BlockCooldownMultiplier;
-            gunAmmo.maxAmmo += 3;
-            gun.dontAllowAutoFire = true;
 
             // Removes the defaultCategory and this classes upgrade category
             // from the players blacklisted categories

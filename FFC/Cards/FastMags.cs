@@ -23,6 +23,8 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.DefaultCardCategory
             };
+
+            gun.reloadTime = ReloadSpeedMultiplier;
         }
 
         public override void OnAddCard(
@@ -35,7 +37,6 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
         }
 
         public override void OnRemoveCard() {

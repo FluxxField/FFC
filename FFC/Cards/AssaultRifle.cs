@@ -31,6 +31,13 @@ namespace FFC.Cards {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.AssaultRifle]
             };
+
+            gun.dontAllowAutoFire = false;
+            gun.damage = DamageMultiplier;
+            gun.projectileSpeed = ProjectileSpeedMultiplier;
+            gun.attackSpeed = AttackSpeedMultiplier;
+            gun.reloadTime = ReloadSpeedMultiplier;
+            gun.ammo = 3;
         }
 
         public override void OnAddCard(
@@ -43,13 +50,6 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gun.dontAllowAutoFire = false;
-            gun.damage *= DamageMultiplier;
-            gun.projectileSpeed *= ProjectileSpeedMultiplier;
-            gun.attackSpeed *= AttackSpeedMultiplier;
-            gunAmmo.reloadTimeMultiplier *= ReloadSpeedMultiplier;
-            gunAmmo.maxAmmo += 3;
-            
             // If the player picks AssaultRifle, blacklist all cards in the DMR and LMG categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.DMR],
