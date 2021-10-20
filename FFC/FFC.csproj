@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cards\ArmorPiercingRounds.cs" />
+    <Compile Include="Cards\ArmorPlating.cs" />
     <Compile Include="Cards\AssaultRifle.cs" />
     <Compile Include="Cards\Barret50Cal.cs" />
     <Compile Include="Cards\BattleExperience.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Cards\MarksmanClass.cs" />
     <Compile Include="Cards\SniperRifleExtendedMag.cs" />
     <Compile Include="FFC.cs" />
+    <Compile Include="MonoBehaviours\ChanceToReflect.cs" />
     <Compile Include="MonoBehaviours\InstantKillHitEffect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ManageCardInfoStats.cs" />

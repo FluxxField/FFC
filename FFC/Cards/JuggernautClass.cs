@@ -8,6 +8,7 @@ namespace FFC.Cards {
         private const float MaxHealthMultiplier = 3.50f;
         private const float MovementSpeedMultiplier = 0.65f;
         private const float GravityMultiplier = 0.75f;
+        private const float SizeMultiplier = 1.30f;
         
         protected override string GetTitle() {
             return "Juggernaut Class";
@@ -26,6 +27,7 @@ namespace FFC.Cards {
             statModifiers.health = MaxHealthMultiplier;
             statModifiers.movementSpeed = MovementSpeedMultiplier;
             statModifiers.jump = GravityMultiplier;
+            statModifiers.sizeMultiplier = SizeMultiplier;
             
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
@@ -48,6 +50,9 @@ namespace FFC.Cards {
             ClassesManager.ClassesManager.Instance.RemoveDefaultCardCategoryFromPlayer(characterStats);
             characterStats.GetAdditionalData().blacklistedCategories
                 .Remove(ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.JuggernautUpgrades]);
+            
+            characterStats.GetAdditionalData().blacklistedCategories
+                .Add(ClassesManager.ClassesManager.Instance.ClassCategory);
         }
         
         public override void OnRemoveCard() {
@@ -57,7 +62,8 @@ namespace FFC.Cards {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealthMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Gravity", false, GravityMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Gravity", false, GravityMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Size", false, SizeMultiplier)
             };
         }
         

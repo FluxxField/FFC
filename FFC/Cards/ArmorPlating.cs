@@ -1,19 +1,17 @@
 ﻿using FFC.Utilities;
-using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
-    public class LightGunnerClass : CustomCard {
-        private const float MaxHealthMultiplier = 1.10f;
-        private const float MovementSpeedMultiplier = 1.10f;
+    public class ArmorPlating : CustomCard {
+        private const float MaxHealthMultiplier = 1.30f;
         
         protected override string GetTitle() {
-            return "Light Gunner Class";
+            return "Armor Plating";
         }
 
         protected override string GetDescription() {
-            return "As a Light Gunner your prioritize movement over Defence and Health";
+            return "Sometimes you just need some extra padding";
         }
 
         public override void SetupCard(
@@ -22,13 +20,11 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            gun.ammo = 3;
             statModifiers.health = MaxHealthMultiplier;
-            statModifiers.movementSpeed = MovementSpeedMultiplier;
-            
+
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassCategory
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.JuggernautUpgrades]
             };
         }
 
@@ -42,13 +38,6 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            // Removes the defaultCategory and this classes upgrade category
-            // from the players blacklisted categories
-            ClassesManager.ClassesManager.Instance.RemoveDefaultCardCategoryFromPlayer(characterStats);
-            characterStats.GetAdditionalData().blacklistedCategories
-                .Remove(ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades]);
-            characterStats.GetAdditionalData().blacklistedCategories
-                .Add(ClassesManager.ClassesManager.Instance.ClassCategory);
         }
 
         public override void OnRemoveCard() {
@@ -57,17 +46,15 @@ namespace FFC.Cards {
         protected override CardInfoStat[] GetStats() {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealthMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true,null, "+3")
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Uncommon;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.PoisonGreen;
+            return CardThemeColor.CardThemeColorType.DefensiveBlue;
         }
 
         protected override GameObject GetCardArt() {

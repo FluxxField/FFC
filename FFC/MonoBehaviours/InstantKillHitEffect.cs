@@ -10,8 +10,6 @@ namespace FFC.MonoBehaviours {
             bool selfDamage,
             Player damagedPlayer = null
         ) {
-            UnityEngine.Debug.Log($"[{FFC.AbbrModName}] InstantKillHitEffect");
-            
             if (damagedPlayer == null) {
                 return;
             }
@@ -27,4 +25,4 @@ namespace FFC.MonoBehaviours {
             });
         }
     }
-} 
+}

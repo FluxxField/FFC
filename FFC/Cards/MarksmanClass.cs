@@ -54,6 +54,8 @@ namespace FFC.Cards {
             ClassesManager.ClassesManager.Instance.RemoveDefaultCardCategoryFromPlayer(characterStats);
             characterStats.GetAdditionalData().blacklistedCategories
                 .Remove(ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]);
+            characterStats.GetAdditionalData().blacklistedCategories
+                .Add(ClassesManager.ClassesManager.Instance.ClassCategory);
         }
 
         public override void OnRemoveCard() {
