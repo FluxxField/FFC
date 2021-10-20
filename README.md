@@ -21,21 +21,23 @@ Current Card Paths:
 ### Class - Marksman
 #### Marksman (Common) (One use)
 - Health:           -50%  ❌
-- Damage:           +60%  ✔️
+- Damage:           +80%  ✔️
 - Bullet Gravity:   None  ✔️
 - Projectile Speed: +100% ✔️
 - Attack Speed:     -200% ❌
+- Reload Speed:     +20%  ❌
 - Max Ammo:         -1    ❌
 
 #### Armor-Piercing Rounds (Rare) (One use)
 - Unblockable        ✔️
-- Reload Speed: +50% ❌
+- Reload Speed: +25% ❌
 
 #### Barret .50 Cal (Rare) (One use)
 Ammo can only be increased by "Sniper Rifle Extended Mag"
-- Instakill          ✔️
-- Reload Speed: +50% ❌
-- Max ammo:     1    ❌
+- Instakill            ✔️
+- Reload Speed:   +50% ❌
+- Movement Speed: -10% ❌
+- Max ammo:     1      ❌
  
 #### Sniper Rifle Extended Mag (Uncommon)
 - Movement Speed: -5%; ❌
@@ -44,50 +46,43 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 
 ### Class - Light Gunner
 #### Light Gunner (Common) (One use)
-- Health:         -20% ❌
-- Damage:         -40% ❌
+- Health:         +10% ✔️
 - Movement Speed: +10% ✔️
-- Block Cooldown: +25% ❌
-- Attack Speed:   -33% ✔️
 - Max Ammo:       +3   ✔️
 
 #### Assault Rifle (Uncommon) (One use)
 - Allows Auto fire
-- Damage:          -20% ❌
-- Pojectile Speed: -10% ✔️
+- Damage:          +10% ✔️
+- Pojectile Speed: +10% ✔️
 - Attack Speed:    +40% ✔️
-- Reload Speed:    +15% ❌
-- Max Ammo:        +2   ✔️
+- Reload Speed:    +10% ❌
+- Max Ammo:        +3   ✔️
 
 #### DMR (Uncommon) (One use)
 - Does not allow auto fire
-- Damage:           +35% ✔️
-- Projectile Speed: +50% ✔️
-- Attack Speed:     +50% ❌
-- Reload Speed:     +30% ❌
-- Max Ammo:         3    ❌
+- Damage:           +50%  ✔️
+- Projectile Speed: +50%  ✔️
+- Attack Speed:     +100% ❌
+- Reload Speed:     +20%  ❌
 
 #### LMG (Rare) (One use)
 - Allows Auto fire
-- Damage:           -40%  ❌
+- Damage:           +35%  ✔️
 - Projectile Speed: +30%  ✔️
-- Attack Speed:     +15%  ✔️
+- Attack Speed:     +50%  ❌
 - Reload Speed:     +150% ❌
 - Movement Speed:   -30%  ❌
-- Recoil:           +25%  ❌
-- Max Ammo:         +6    ✔️
+- Max Ammo:         +12   ✔️
 
 ### Class - Juggernaut
 #### Juggernaut
-- Damage:         +20%  ✔️
-- Attack Speed:   +25%  ✔️
-- Health:         +200% ✔️
-- Block Cooldown: -25%  ✔️
-- Movement Speed: -50%  ❌
+- Health:         +250% ✔️
+- Movement Speed: -35%  ❌
+- Gravity:        -25%  ❌
 
 ### Defaults
 #### Fast Mags (Common)
-- Reload Speed: -25% ✔️
+- Reload Speed: -30% ✔️
 
 #### Battle Experience (Common)
 - Damage:       +15% ✔️
