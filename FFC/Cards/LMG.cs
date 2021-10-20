@@ -5,12 +5,12 @@ using FFC.Utilities;
 
 namespace FFC.Cards {
     public class LMG : CustomCard {
-        private const float DamageMultiplier = 0.60f;
+        private const float DamageMultiplier = 1.35f;
         private const float ProjectileSpeedMultiplier = 1.30f;
-        private const float AttackSpeedMultiplier = 1.15f;
+        private const float AttackSpeedMultiplier = 1.50f;
         private const float ReloadSpeedMultiplier = 2.50f;
         private const float MovementSpeedMultiplier = 0.70f;
-        private const float RecoilMultiplier = 0.25f;
+        private const float Spread = 0.6f;
 
         protected override string GetTitle() {
             return "LMG";
@@ -26,6 +26,15 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
+            gun.dontAllowAutoFire = false;
+            gun.damage = DamageMultiplier;
+            gun.projectileSpeed = ProjectileSpeedMultiplier;
+            gun.attackSpeed = AttackSpeedMultiplier;
+            gun.ammo = 12;
+            gun.reloadTime = ReloadSpeedMultiplier;
+            gun.spread = Spread;
+            statModifiers.movementSpeed = MovementSpeedMultiplier;
+
             cardInfo.allowMultiple = false;
             
             // LMG is apart of the LightGunnerClass and DMR Categories
@@ -33,15 +42,6 @@ namespace FFC.Cards {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LMG]
             };
-            
-            gun.dontAllowAutoFire = false;
-            gun.damage = DamageMultiplier;
-            gun.projectileSpeed = ProjectileSpeedMultiplier;
-            gun.attackSpeed = AttackSpeedMultiplier;
-            gun.recoil = RecoilMultiplier;
-            gun.ammo = 6;
-            gun.reloadTime = ReloadSpeedMultiplier;
-            statModifiers.movementSpeed = MovementSpeedMultiplier;
         }
 
         public override void OnAddCard(

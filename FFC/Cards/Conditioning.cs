@@ -21,12 +21,12 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
+            statModifiers.health = HealthMultiplier;
+            statModifiers.movementSpeed = MovementSpeedMultiplier;
+            
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.DefaultCardCategory
             };
-
-            statModifiers.health = HealthMultiplier;
-            statModifiers.movementSpeed = MovementSpeedMultiplier;
         }
 
         public override void OnAddCard(

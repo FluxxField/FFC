@@ -5,17 +5,17 @@ using FFC.Utilities;
 
 namespace FFC.Cards {
     public class DMR : CustomCard {
-        private const float DamageMultiplier = 1.35f;
+        private const float DamageMultiplier = 1.50f;
         private const float ProjectileSpeedMultiplier = 1.50f;
-        private const float AttackSpeedMultiplier = 1.50f;
-        private const float ReloadSpeedMultiplier = 1.30f;
+        private const float AttackSpeedMultiplier = 2.00f;
+        private const float ReloadSpeedMultiplier = 1.20f;
         
         protected override string GetTitle() {
             return "DMR";
         }
 
         protected override string GetDescription() {
-            return "More Damage, but less ammo and attack speed";
+            return "More Damage and ammo, but less attack speed";
         }
 
         public override void SetupCard(
@@ -24,6 +24,12 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
+            gun.dontAllowAutoFire = true;
+            gun.damage = DamageMultiplier;
+            gun.projectileSpeed = ProjectileSpeedMultiplier;
+            gun.attackSpeed = AttackSpeedMultiplier;
+            gun.reloadTime = ReloadSpeedMultiplier;
+
             cardInfo.allowMultiple = false;
             
             // DMR is apart of the LightGunnerClass and DMR Categories
@@ -31,12 +37,6 @@ namespace FFC.Cards {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.DMR]
             };
-            
-            gun.dontAllowAutoFire = true;
-            gun.damage = DamageMultiplier;
-            gun.projectileSpeed = ProjectileSpeedMultiplier;
-            gun.attackSpeed = AttackSpeedMultiplier;
-            gun.reloadTime = ReloadSpeedMultiplier;
         }
 
         public override void OnAddCard(
@@ -49,8 +49,6 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.maxAmmo = 3;
-            
             // If the player picks DMR, blacklist all cards in the AssaultRifle and LMG categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.AssaultRifle],
@@ -66,8 +64,7 @@ namespace FFC.Cards {
                 ManageCardInfoStats.BuildCardInfoStat("Damage", true, DamageMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeedMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeedMultiplier, "", "-"),
-                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, "3")
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier)
             };
         }
 

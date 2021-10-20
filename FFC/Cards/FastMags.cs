@@ -4,7 +4,7 @@ using FFC.Utilities;
 
 namespace FFC.Cards {
     public class FastMags : CustomCard {
-        private const float ReloadSpeedMultiplier = 0.75f;
+        private const float ReloadSpeedMultiplier = 0.70f;
         
         protected override string GetTitle() {
             return "Fast Mags";
@@ -20,11 +20,11 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
+            gun.reloadTime = ReloadSpeedMultiplier;
+            
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.DefaultCardCategory
             };
-
-            gun.reloadTime = ReloadSpeedMultiplier;
         }
 
         public override void OnAddCard(

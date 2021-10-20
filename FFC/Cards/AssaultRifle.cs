@@ -5,10 +5,11 @@ using FFC.Utilities;
 
 namespace FFC.Cards {
     public class AssaultRifle : CustomCard {
-        private const float DamageMultiplier = 0.80f;
-        private const float AttackSpeedMultiplier = 1.40f;
-        private const float ReloadSpeedMultiplier = 1.15f;
-        private const float ProjectileSpeedMultiplier = 0.90f;
+        private const float DamageMultiplier = 1.10f;
+        private const float AttackSpeedMultiplier = 0.60f;
+        private const float ReloadSpeedMultiplier = 1.10f;
+        private const float ProjectileSpeedMultiplier = 1.10f;
+        private const float Spread = 0.8f;
         
         protected override string GetTitle() {
             return "Assault Rifle";
@@ -24,6 +25,14 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
+            gun.dontAllowAutoFire = false;
+            gun.damage = DamageMultiplier;
+            gun.projectileSpeed = ProjectileSpeedMultiplier;
+            gun.attackSpeed = AttackSpeedMultiplier;
+            gun.reloadTime = ReloadSpeedMultiplier;
+            gun.ammo = 3;
+            gun.spread = Spread;
+            
             cardInfo.allowMultiple = false;
             
             // AssaultRifle is apart of the LightGunnerClass and AssaultRifle Categories
@@ -31,13 +40,6 @@ namespace FFC.Cards {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.AssaultRifle]
             };
-
-            gun.dontAllowAutoFire = false;
-            gun.damage = DamageMultiplier;
-            gun.projectileSpeed = ProjectileSpeedMultiplier;
-            gun.attackSpeed = AttackSpeedMultiplier;
-            gun.reloadTime = ReloadSpeedMultiplier;
-            gun.ammo = 3;
         }
 
         public override void OnAddCard(

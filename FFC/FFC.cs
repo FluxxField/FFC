@@ -26,6 +26,7 @@ namespace FFC {
         public const string AssaultRifle = "assaultRifle";
         public const string DMR = "DMR";
         public const string LMG = "LMG";
+        public const string Barret50Cal = "barret50Cal";
 
         private void Awake() {
             new Harmony(ModId).PatchAll();
@@ -39,8 +40,8 @@ namespace FFC {
             ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(AssaultRifle);
             ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(DMR);
             ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(LMG);
+            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(Barret50Cal);
             
-            UnityEngine.Debug.Log("[FFC] building cards");
             // Marksman Class
             CustomCard.BuildCard<MarksmanClass>();
             CustomCard.BuildCard<SniperRifleExtendedMag>();
@@ -57,7 +58,6 @@ namespace FFC {
             CustomCard.BuildCard<FastMags>();
             CustomCard.BuildCard<Conditioning>();
             CustomCard.BuildCard<BattleExperience>();
-            UnityEngine.Debug.Log("[FFC] done building cards");
 
             Unbound.RegisterCredits(ModName,
                 new[] {"FluxxField"},

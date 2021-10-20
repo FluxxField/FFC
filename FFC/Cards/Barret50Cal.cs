@@ -3,10 +3,12 @@ using FFC.MonoBehaviours;
 using UnboundLib;
 using UnityEngine;
 using FFC.Utilities;
+using ModdingUtils.Extensions;
 
 namespace FFC.Cards {
     public class Barret50Cal : CustomCard {
-        private const float ReloadSpeedMultiplier = 0.50f;
+        private const float ReloadSpeedMultiplier = 1.40f;
+        private const float MovementSpeedMultiplier = 0.90f;
         
         protected override string GetTitle() {
             return "Barret .50 Cal";
@@ -22,12 +24,13 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
+            gun.reloadTime = ReloadSpeedMultiplier;
+            statModifiers.movementSpeed = MovementSpeedMultiplier;
+            
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]
             };
-
-            gun.reloadTime = ReloadSpeedMultiplier;
         }
 
         public override void OnAddCard(
@@ -42,6 +45,9 @@ namespace FFC.Cards {
         ) {
             gunAmmo.maxAmmo = 1;
             player.gameObject.GetOrAddComponent<InstantKillHitEffect>();
+            
+            characterStats.GetAdditionalData().blacklistedCategories
+                .Remove(ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Barret50Cal]);
         }
 
         public override void OnRemoveCard() {
@@ -51,7 +57,8 @@ namespace FFC.Cards {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Insta Kill", true),
                 ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, "1"),
-                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeedMultiplier)
             };
         }
 

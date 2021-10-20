@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FFC.Cards {
     public class ArmorPiercingRounds : CustomCard {
-        private const float ReloadSpeedMultiplier = 0.50f;
+        private const float ReloadSpeedMultiplier = 1.25f;
         
         protected override string GetTitle() {
             return "Armor-Piercing Rounds";
@@ -20,13 +20,13 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
+            gun.unblockable = true;
+            gun.reloadTime = ReloadSpeedMultiplier;
+            
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]
             };
-            
-            gun.unblockable = true;
-            gun.reloadTime = ReloadSpeedMultiplier;
         }
 
         public override void OnAddCard(

@@ -21,13 +21,14 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]
-            };
-
             gun.ammo = 1;
             gun.reloadTime = ReloadSpeedMultiplier;
             statModifiers.movementSpeed = MovementSpeedMultiplier;
+            
+            cardInfo.categories = new[] {
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades],
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Barret50Cal]
+            };
         }
 
         public override void OnAddCard(
