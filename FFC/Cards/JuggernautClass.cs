@@ -1,4 +1,5 @@
-﻿using FFC.Utilities;
+﻿using System.Collections.Generic;
+using FFC.Utilities;
 using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
@@ -45,14 +46,11 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            // Removes the defaultCategory and this classes upgrade category
-            // from the players blacklisted categories
-            ClassesManager.ClassesManager.Instance.RemoveDefaultCardCategoryFromPlayer(characterStats);
-            characterStats.GetAdditionalData().blacklistedCategories
-                .Remove(ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.JuggernautUpgrades]);
-            
-            characterStats.GetAdditionalData().blacklistedCategories
-                .Add(ClassesManager.ClassesManager.Instance.ClassCategory);
+            // Removes the defaultCategory and this classes upgrade category from the players blacklisted categories.
+            // While also adding the classCategory to the players blacklist
+            ClassesManager.ClassesManager.Instance.OnClassCardSelect(characterStats, new List<string> {
+                FFC.JuggernautUpgrades
+            });
         }
         
         public override void OnRemoveCard() {

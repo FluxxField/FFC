@@ -1,4 +1,5 @@
-﻿using ModdingUtils.Extensions;
+﻿using System.Collections.Generic;
+using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
 using FFC.Utilities;
@@ -49,13 +50,11 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            // Removes the defaultCategory and this classes upgrade category
-            // from the players blacklisted categories
-            ClassesManager.ClassesManager.Instance.RemoveDefaultCardCategoryFromPlayer(characterStats);
-            characterStats.GetAdditionalData().blacklistedCategories
-                .Remove(ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]);
-            characterStats.GetAdditionalData().blacklistedCategories
-                .Add(ClassesManager.ClassesManager.Instance.ClassCategory);
+            // Removes the defaultCategory and this classes upgrade category from the players blacklisted categories.
+            // While also adding the classCategory to the players blacklist
+            ClassesManager.ClassesManager.Instance.OnClassCardSelect(characterStats, new List<string> {
+                FFC.LightGunnerUpgrades
+            });
         }
 
         public override void OnRemoveCard() {

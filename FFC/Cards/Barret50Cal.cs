@@ -1,9 +1,9 @@
-﻿using UnboundLib.Cards;
+﻿using System.Collections.Generic;
+using UnboundLib.Cards;
 using FFC.MonoBehaviours;
 using UnboundLib;
 using UnityEngine;
 using FFC.Utilities;
-using ModdingUtils.Extensions;
 
 namespace FFC.Cards {
     public class Barret50Cal : CustomCard {
@@ -46,8 +46,9 @@ namespace FFC.Cards {
             gunAmmo.maxAmmo = 1;
             player.gameObject.GetOrAddComponent<InstantKillHitEffect>();
             
-            characterStats.GetAdditionalData().blacklistedCategories
-                .Remove(ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Barret50Cal]);
+            ClassesManager.ClassesManager.Instance.RemoveUpgradeCategoriesFromPlayer(characterStats, new List<string> {
+                FFC.Barret50Cal
+            });
         }
 
         public override void OnRemoveCard() {

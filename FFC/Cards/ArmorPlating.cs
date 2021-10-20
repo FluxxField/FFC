@@ -5,6 +5,7 @@ using UnityEngine;
 namespace FFC.Cards {
     public class ArmorPlating : CustomCard {
         private const float MaxHealthMultiplier = 1.30f;
+        private const float ChanceToReflectMultiplier = 1.10f;
         
         protected override string GetTitle() {
             return "Armor Plating";
@@ -46,6 +47,7 @@ namespace FFC.Cards {
         protected override CardInfoStat[] GetStats() {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealthMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Chance to reflect", true, ChanceToReflectMultiplier)
             };
         }
 

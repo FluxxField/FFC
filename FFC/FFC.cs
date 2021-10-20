@@ -35,14 +35,16 @@ namespace FFC {
 
 
         private void Start() {
-            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(MarksmanUpgrades);
-            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(LightGunnerUpgrades);
-            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(JuggernautUpgrades);
-            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(AssaultRifle);
-            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(DMR);
-            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(LMG);
-            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategory(Barret50Cal);
-            
+            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategories(new List<string> {
+                MarksmanUpgrades,
+                LightGunnerUpgrades,
+                JuggernautUpgrades,
+                AssaultRifle,
+                DMR,
+                LMG,
+                Barret50Cal
+            });
+
             // Marksman Class
             CustomCard.BuildCard<MarksmanClass>();
             CustomCard.BuildCard<SniperRifleExtendedMag>();

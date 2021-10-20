@@ -1,20 +1,18 @@
-﻿using System.Collections.Generic;
-using FFC.Utilities;
-using ModdingUtils.Extensions;
+﻿using FFC.Utilities;
 using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
-    public class LightGunnerClass : CustomCard {
-        private const float MaxHealthMultiplier = 1.10f;
-        private const float MovementSpeedMultiplier = 1.10f;
+    public class ScalingHealth : CustomCard {
+        private const float MaxHealthMultiplier = 1.25f;
+        private const float MaxMovementSpeedMultiplier = 1.15f;
         
         protected override string GetTitle() {
-            return "Light Gunner Class";
+            return "Scaling Health";
         }
 
         protected override string GetDescription() {
-            return "As a Light Gunner your prioritize movement over Defence and Health";
+            return "Your size and speed is dependent on current health instead of your max health";
         }
 
         public override void SetupCard(
@@ -23,13 +21,11 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            gun.ammo = 3;
             statModifiers.health = MaxHealthMultiplier;
-            statModifiers.movementSpeed = MovementSpeedMultiplier;
-            
+
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassCategory
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.JuggernautUpgrades]
             };
         }
 
@@ -43,11 +39,6 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            // Removes the defaultCategory and this classes upgrade category from the players blacklisted categories.
-            // While also adding the classCategory to the players blacklist
-            ClassesManager.ClassesManager.Instance.OnClassCardSelect(characterStats, new List<string> {
-                FFC.LightGunnerUpgrades
-            });
         }
 
         public override void OnRemoveCard() {
@@ -55,18 +46,16 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealthMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true,null, "+3")
+                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealthMultiplier)
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Uncommon;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.PoisonGreen;
+            return CardThemeColor.CardThemeColorType.DefensiveBlue;
         }
 
         protected override GameObject GetCardArt() {
