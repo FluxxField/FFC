@@ -7,7 +7,7 @@ namespace FFC.Cards {
     public class JuggernautClass : CustomCard {
         private const float MaxHealthMultiplier = 3.50f;
         private const float MovementSpeedMultiplier = 0.65f;
-        private const float GravityMultiplier = 0.70f;
+        private const float GravityMultiplier = 0.75f;
         
         protected override string GetTitle() {
             return "Juggernaut Class";
