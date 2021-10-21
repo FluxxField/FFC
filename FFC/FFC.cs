@@ -18,7 +18,7 @@ namespace FFC {
         
         private const string ModId = "fluxxfield.rounds.plugins.fluxxfieldscards";
         private const string ModName = "FluxxField's Cards (FFC)";
-        private const string Version = "1.1.2";
+        private const string Version = "1.2.5";
 
         public const string MarksmanUpgrades = "marksmanUpgrades";
         public const string LightGunnerUpgrades = "lightGunnerUpgrades";
