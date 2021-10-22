@@ -58,7 +58,7 @@ namespace FFC {
             CustomCard.BuildCard<LMG>();
             // Juggernaut Class
             CustomCard.BuildCard<JuggernautClass>();
-            CustomCard.BuildCard<AdaptiveSizing>();
+            CustomCard.BuildCard<SizeMatters>();
             // Default
             CustomCard.BuildCard<FastMags>();
             CustomCard.BuildCard<Conditioning>();
@@ -70,7 +70,7 @@ namespace FFC {
                 new[] {"https://github.com/FluxxField/FFC"});
 
             GameModeManager.AddHook(GameModeHooks.HookRoundStart, HandleBarret50CalAmmo);
-            GameModeManager.AddHook(GameModeHooks.HookPointStart, AdaptiveSizing.SetPrePointStats);
+            GameModeManager.AddHook(GameModeHooks.HookPointStart, SizeMatters.SetPrePointStats);
             GameModeManager.AddHook(GameModeHooks.HookPointEnd, CharacterStatModifiersExtension.Reset);
         }
 

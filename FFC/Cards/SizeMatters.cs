@@ -9,13 +9,13 @@ using UnityEngine;
 using CharacterStatModifiersExtension = FFC.Extensions.CharacterStatModifiersExtension;
 
 namespace FFC.Cards {
-    public class AdaptiveSizing : CustomCard {
+    public class SizeMatters : CustomCard {
         private const float MaxHealthMultiplier = 1.25f;
         private const float MaxAdaptiveMovementSpeedMultiplier = 0.35f;
         private const float MaxAdaptiveGravityMultiplier = 0.25f;
         
         protected override string GetTitle() {
-            return "Adaptive Sizing";
+            return "Size Matters";
         }
 
         protected override string GetDescription() {
@@ -45,7 +45,7 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            var additionalData = CharacterStatModifiersExtension.GetAdditionalData(characterStats);
+            var additionalData = characterStats.GetAdditionalData();
             additionalData.hasAdaptiveSizing = true;
             additionalData.adaptiveMovementSpeed += MaxAdaptiveMovementSpeedMultiplier;
             additionalData.adaptiveGravity += MaxAdaptiveGravityMultiplier;
