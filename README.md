@@ -6,8 +6,11 @@ The idea with this card pack it to introduce the idea of classes to Rounds. Thes
 So how is it done? If enabled, in the mods settings. The class cards will be the first cards to appear on the first round. You then get to choose your class and play normally. With your classes specific cards appearing in later picks. Be careful though! Once you pick a class. You will be stuck with it for the rest of that game.
 
 Marksman - Focuses around being nimble with highly devestating single shots
+
 Light Gunner - All about the guns! Big stat increases from the weapons you can choose from
+
 Juggernut - Walking tank! All about huge HP and damage
+
 Juster - More benefits the more bounces he gets
 
 ## Cards
