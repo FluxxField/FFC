@@ -2,7 +2,7 @@
 using UnityEngine;
 using FFC.Utilities;
 
-namespace FFC.Cards {
+namespace FFC.Cards.LightGunner {
     public class FastMags : CustomCard {
         private const float ReloadSpeed = 0.70f;
         
@@ -23,7 +23,7 @@ namespace FFC.Cards {
             gun.reloadTime = ReloadSpeed;
             
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.DefaultCardCategory
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunner]
             };
         }
 

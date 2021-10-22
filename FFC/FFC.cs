@@ -3,7 +3,6 @@ using BepInEx;
 using UnboundLib;
 using UnboundLib.Cards;
 using HarmonyLib;
-using FFC.Cards;
 using FFC.Cards.Jester;
 using FFC.Cards.Juggernaut;
 using FFC.Cards.LightGunner;
@@ -60,17 +59,16 @@ namespace FFC {
             CustomCard.BuildCard<AssaultRifle>();
             CustomCard.BuildCard<Dmr>();
             CustomCard.BuildCard<Lmg>();
+            CustomCard.BuildCard<FastMags>();
+            CustomCard.BuildCard<BattleExperience>();
             // Juggernaut Class
             CustomCard.BuildCard<JuggernautClass>();
             CustomCard.BuildCard<SizeMatters>();
+            CustomCard.BuildCard<Conditioning>();
             // Jester Class
             CustomCard.BuildCard<JesterClass>();
             CustomCard.BuildCard<ArtOfJesting>();
             CustomCard.BuildCard<KingOfFools>();
-            // Default
-            CustomCard.BuildCard<FastMags>();
-            CustomCard.BuildCard<Conditioning>();
-            CustomCard.BuildCard<BattleExperience>();
 
             Unbound.RegisterCredits(ModName,
                 new[] {"FluxxField"},

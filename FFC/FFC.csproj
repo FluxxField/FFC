@@ -119,17 +119,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cards\BattleExperience.cs" />
-    <Compile Include="Cards\Conditioning.cs" />
-    <Compile Include="Cards\FastMags.cs" />
     <Compile Include="Cards\Jester\ArtOfJesting.cs" />
     <Compile Include="Cards\Jester\JesterClass.cs" />
     <Compile Include="Cards\Jester\KingOfFools.cs" />
     <Compile Include="Cards\Juggernaut\ArmorPlating.cs" />
+    <Compile Include="Cards\Juggernaut\Conditioning.cs" />
     <Compile Include="Cards\Juggernaut\JuggernautClass.cs" />
     <Compile Include="Cards\Juggernaut\SizeMatters.cs" />
     <Compile Include="Cards\LightGunner\AssaultRifle.cs" />
+    <Compile Include="Cards\LightGunner\BattleExperience.cs" />
     <Compile Include="Cards\LightGunner\Dmr.cs" />
+    <Compile Include="Cards\LightGunner\FastMags.cs" />
     <Compile Include="Cards\LightGunner\LightGunnerClass.cs" />
     <Compile Include="Cards\LightGunner\Lmg.cs" />
     <Compile Include="Cards\Marksman\ArmorPiercingRounds.cs" />

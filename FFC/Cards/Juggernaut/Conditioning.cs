@@ -2,19 +2,17 @@
 using UnityEngine;
 using FFC.Utilities;
 
-namespace FFC.Cards {
-    public class BattleExperience : CustomCard {
-        private const float Damage = 1.15f;
-        private const float ReloadSpeed = 0.75f;
-        private const float AttackSpeed = 0.90f;
-        private const float MaxHealth = 0.90f;
+namespace FFC.Cards.Juggernaut {
+    public class Conditioning : CustomCard {
+        private const float MaxHealth = 1.50f;
+        private const float MovementSpeed = 1.15f;
 
         protected override string GetTitle() {
-            return "Battle Experience";
+            return "Conditioning";
         }
 
         protected override string GetDescription() {
-            return "A few tours later...";
+            return "You have trained hard! And its paying off...";
         }
 
         public override void SetupCard(
@@ -23,13 +21,11 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            gun.damage = Damage;
-            gun.attackSpeed = AttackSpeed;
-            gun.reloadTime = ReloadSpeed;
             statModifiers.health = MaxHealth;
+            statModifiers.movementSpeed = MovementSpeed;
             
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.DefaultCardCategory
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Juggernaut]
             };
         }
 
@@ -50,15 +46,13 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Damage", true, Damage),
-                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", true, ReloadSpeed),
-                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", true, AttackSpeed),
-                ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealth),
+                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealth),
+                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeed),
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Uncommon;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {

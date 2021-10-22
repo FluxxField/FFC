@@ -2,17 +2,19 @@
 using UnityEngine;
 using FFC.Utilities;
 
-namespace FFC.Cards {
-    public class Conditioning : CustomCard {
-        private const float MaxHealth = 1.50f;
-        private const float MovementSpeed = 1.15f;
+namespace FFC.Cards.LightGunner {
+    public class BattleExperience : CustomCard {
+        private const float Damage = 1.15f;
+        private const float ReloadSpeed = 0.75f;
+        private const float AttackSpeed = 0.90f;
+        private const float MaxHealth = 0.90f;
 
         protected override string GetTitle() {
-            return "Conditioning";
+            return "Battle Experience";
         }
 
         protected override string GetDescription() {
-            return "You have trained hard! And its paying off...";
+            return "A few tours later...";
         }
 
         public override void SetupCard(
@@ -21,11 +23,13 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
+            gun.damage = Damage;
+            gun.attackSpeed = AttackSpeed;
+            gun.reloadTime = ReloadSpeed;
             statModifiers.health = MaxHealth;
-            statModifiers.movementSpeed = MovementSpeed;
             
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.DefaultCardCategory
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunner]
             };
         }
 
@@ -46,13 +50,15 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealth),
-                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeed),
+                ManageCardInfoStats.BuildCardInfoStat("Damage", true, Damage),
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", true, ReloadSpeed),
+                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", true, AttackSpeed),
+                ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealth),
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Common;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
