@@ -1,20 +1,20 @@
-﻿using FFC.MonoBehaviours;
-using FFC.Utilities;
+﻿using FFC.Utilities;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
+using FFC.MonoBehaviours;
+
 
 namespace FFC.Cards {
-    public class ArmorPlating : CustomCard {
-        private const float MaxHealthMultiplier = 1.30f;
-        private const float ChanceToReflectMultiplier = 1.10f;
+    public class ArmorPiercingRounds : CustomCard {
+        private const float ReloadSpeed = 1.25f;
         
         protected override string GetTitle() {
-            return "Armor Plating";
+            return "Armor-Piercing Rounds";
         }
 
         protected override string GetDescription() {
-            return "Sometimes you just need some extra padding";
+            return "Tired of your friends blocking your shots? This might help";
         }
 
         public override void SetupCard(
@@ -23,13 +23,14 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            statModifiers.health = MaxHealthMultiplier;
-
+            gun.unblockable = true;
+            gun.reloadTime = ReloadSpeed;
+            
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Juggernaut]
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Marksman]
             };
-            
+
             gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
@@ -50,17 +51,17 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealthMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Chance to reflect", true, ChanceToReflectMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Unblockable", true),
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeed)
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Rare;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.DefensiveBlue;
+            return CardThemeColor.CardThemeColorType.EvilPurple;
         }
 
         protected override GameObject GetCardArt() {

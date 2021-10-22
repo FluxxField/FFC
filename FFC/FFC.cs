@@ -62,6 +62,7 @@ namespace FFC {
             CustomCard.BuildCard<SizeMatters>();
             // Jester Class
             CustomCard.BuildCard<JesterClass>();
+            CustomCard.BuildCard<ArtOfJesting>();
             // Default
             CustomCard.BuildCard<FastMags>();
             CustomCard.BuildCard<Conditioning>();

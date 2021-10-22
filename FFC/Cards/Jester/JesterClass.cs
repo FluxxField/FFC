@@ -6,18 +6,19 @@ using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
-    public class JuggernautClass : CustomCard {
-        private const float MaxHealthMultiplier = 3.50f;
-        private const float MovementSpeedMultiplier = 0.65f;
-        private const float GravityMultiplier = 0.75f;
-        private const float SizeMultiplier = 1.30f;
+    public class JesterClass : CustomCard {
+        private const float MaxHealth = 0.85f;
+        private const float Damage = 0.90f;
+        private const float MovementSpeed = 1.15f;
+        private const float Size = 0.90f;
+        private const int Bounces = 3;
         
         protected override string GetTitle() {
-            return "Juggernaut";
+            return "Jester";
         }
 
         protected override string GetDescription() {
-            return "Years of steroids has turned you into a slow moving, but deadly and unstoppable force";
+            return "As a Jester, you enjoy bullet bounces";
         }
 
         public override void SetupCard(
@@ -26,10 +27,12 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            statModifiers.health = MaxHealthMultiplier;
-            statModifiers.movementSpeed = MovementSpeedMultiplier;
-            statModifiers.jump = GravityMultiplier;
-            statModifiers.sizeMultiplier = SizeMultiplier;
+            statModifiers.health = MaxHealth;
+            statModifiers.movementSpeed = MovementSpeed;
+            statModifiers.sizeMultiplier = Size;
+
+            gun.damage = Damage;
+            gun.reflects = Bounces;
             
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
@@ -52,7 +55,7 @@ namespace FFC.Cards {
             // Removes the defaultCategory and this classes upgrade category from the players blacklisted categories.
             // While also adding the classCategory to the players blacklist
             ClassesManager.ClassesManager.Instance.OnClassCardSelect(characterStats, new List<string> {
-                FFC.Juggernaut
+                FFC.Jester
             });
         }
         
@@ -61,9 +64,10 @@ namespace FFC.Cards {
         
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealthMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Gravity", false, GravityMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeed),
+                ManageCardInfoStats.BuildCardInfoStat("Bounces", true, null, $"+{Bounces}"),
+                ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealth),
+                ManageCardInfoStats.BuildCardInfoStat("Damage", false, Damage)
             };
         }
         

@@ -1,22 +1,23 @@
 ﻿using System.Collections.Generic;
-using UnboundLib.Cards;
 using FFC.MonoBehaviours;
-using UnboundLib;
-using UnityEngine;
 using FFC.Utilities;
+using UnboundLib;
+using UnboundLib.Cards;
+using UnityEngine;
 
 namespace FFC.Cards {
-    public class Barret50Cal : CustomCard {
-        private const float ReloadSpeedMultiplier = 1.40f;
-        private const float MovementSpeedMultiplier = 0.90f;
-        private const int MaxAmmo = 1;
-
+    public class JuggernautClass : CustomCard {
+        private const float MaxHealth = 3.50f;
+        private const float MovementSpeed = 0.65f;
+        private const float Gravity = 0.75f;
+        private const float Size = 1.30f;
+        
         protected override string GetTitle() {
-            return "Barret .50 Cal";
+            return "Juggernaut";
         }
 
         protected override string GetDescription() {
-            return "Girl Friend: 'Now that's BIG ;)' *Ammo can only be added by Sniper Rifle Extended Mag*";
+            return "Years of steroids has turned you into a slow moving, but deadly and unstoppable force";
         }
 
         public override void SetupCard(
@@ -25,17 +26,19 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            gun.reloadTime = ReloadSpeedMultiplier;
-            statModifiers.movementSpeed = MovementSpeedMultiplier;
+            statModifiers.health = MaxHealth;
+            statModifiers.movementSpeed = MovementSpeed;
+            statModifiers.jump = Gravity;
+            statModifiers.sizeMultiplier = Size;
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Marksman]
+                ClassesManager.ClassesManager.Instance.ClassCategory
             };
 
             gameObject.GetOrAddComponent<ClassNameMono>();
         }
-
+        
         public override void OnAddCard(
             Player player,
             Gun gun,
@@ -46,32 +49,30 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.maxAmmo = MaxAmmo;
-            player.gameObject.GetOrAddComponent<InstantKillHitEffect>();
-
-            ClassesManager.ClassesManager.Instance.RemoveUpgradeCategoriesFromPlayer(characterStats, new List<string> {
-                FFC.Barret50Cal
+            // Removes the defaultCategory and this classes upgrade category from the players blacklisted categories.
+            // While also adding the classCategory to the players blacklist
+            ClassesManager.ClassesManager.Instance.OnClassCardSelect(characterStats, new List<string> {
+                FFC.Juggernaut
             });
         }
-
+        
         public override void OnRemoveCard() {
         }
-
+        
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Insta Kill", true),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, $"{MaxAmmo}"),
-                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeedMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealth),
+                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeed),
+                ManageCardInfoStats.BuildCardInfoStat("Gravity", false, Gravity)
             };
         }
-
+        
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Rare;
+            return CardInfo.Rarity.Common;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.EvilPurple;
+            return CardThemeColor.CardThemeColorType.FirepowerYellow;
         }
 
         protected override GameObject GetCardArt() {

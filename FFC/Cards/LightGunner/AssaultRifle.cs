@@ -7,10 +7,10 @@ using UnboundLib;
 
 namespace FFC.Cards {
     public class AssaultRifle : CustomCard {
-        private const float DamageMultiplier = 1.10f;
-        private const float AttackSpeedMultiplier = 0.60f;
-        private const float ReloadSpeedMultiplier = 1.10f;
-        private const float ProjectileSpeedMultiplier = 1.10f;
+        private const float Damage = 1.10f;
+        private const float AttackSpeed = 0.60f;
+        private const float ReloadSpeed = 1.10f;
+        private const float ProjectileSpeed = 1.10f;
         private const float Spread = 0.025f;
         private const int MaxAmmo = 3;
         
@@ -29,10 +29,10 @@ namespace FFC.Cards {
             CharacterStatModifiers statModifiers
         ) {
             gun.dontAllowAutoFire = false;
-            gun.damage = DamageMultiplier;
-            gun.projectileSpeed = ProjectileSpeedMultiplier;
-            gun.attackSpeed = AttackSpeedMultiplier;
-            gun.reloadTime = ReloadSpeedMultiplier;
+            gun.damage = Damage;
+            gun.projectileSpeed = ProjectileSpeed;
+            gun.attackSpeed = AttackSpeed;
+            gun.reloadTime = ReloadSpeed;
             gun.ammo = MaxAmmo;
             gun.spread = Spread;
             
@@ -70,11 +70,11 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Damage", true, DamageMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", true, AttackSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Damage", true, Damage),
+                ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeed),
+                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", true, AttackSpeed),
                 ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true, null, $"+{MaxAmmo}"),
-                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeed)
             };
         }
 

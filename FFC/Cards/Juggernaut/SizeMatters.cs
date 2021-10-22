@@ -9,9 +9,9 @@ using UnityEngine;
 
 namespace FFC.Cards {
     public class SizeMatters : CustomCard {
-        private const float MaxHealthMultiplier = 1.25f;
-        private const float MaxAdaptiveMovementSpeedMultiplier = 0.35f;
-        private const float MaxAdaptiveGravityMultiplier = 0.25f;
+        private const float MaxHealth = 1.25f;
+        private const float MaxAdaptiveMovementSpeed = 0.35f;
+        private const float MaxAdaptiveGravity = 0.25f;
         
         protected override string GetTitle() {
             return "Size Matters";
@@ -27,7 +27,7 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            statModifiers.health = MaxHealthMultiplier;
+            statModifiers.health = MaxHealth;
             
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Juggernaut]
@@ -48,8 +48,8 @@ namespace FFC.Cards {
         ) {
             var additionalData = characterStats.GetAdditionalData();
             additionalData.hasAdaptiveSizing = true;
-            additionalData.adaptiveMovementSpeed += MaxAdaptiveMovementSpeedMultiplier;
-            additionalData.adaptiveGravity += MaxAdaptiveGravityMultiplier;
+            additionalData.adaptiveMovementSpeed += MaxAdaptiveMovementSpeed;
+            additionalData.adaptiveGravity += MaxAdaptiveGravity;
             player.gameObject.GetOrAddComponent<AdaptiveSizingMono>();
         }
 
@@ -58,7 +58,7 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealthMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealth)
             };
         }
 

@@ -1,20 +1,21 @@
-﻿using FFC.Utilities;
-using UnboundLib;
-using UnboundLib.Cards;
+﻿using FFC.MonoBehaviours;
 using UnityEngine;
-using FFC.MonoBehaviours;
-
+using UnboundLib.Cards;
+using FFC.Utilities;
+using UnboundLib;
 
 namespace FFC.Cards {
-    public class ArmorPiercingRounds : CustomCard {
-        private const float ReloadSpeedMultiplier = 1.25f;
+    class SniperRifleExtendedMag : CustomCard {
+        private const float ReloadSpeed = 1.10f;
+        private const float MovementSpeed = 0.95f;
+        private const int MaxAmmo = 1;
         
         protected override string GetTitle() {
-            return "Armor-Piercing Rounds";
+            return "Sniper Rifle Extended Mag";
         }
 
         protected override string GetDescription() {
-            return "Tired of your friends blocking your shots? This might help";
+            return "Then only way to add ammo if you have Barret .50 Cal!";
         }
 
         public override void SetupCard(
@@ -23,12 +24,15 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            gun.unblockable = true;
-            gun.reloadTime = ReloadSpeedMultiplier;
+            gun.ammo = MaxAmmo;
+            gun.reloadTime = ReloadSpeed;
+            statModifiers.movementSpeed = MovementSpeed;
+
+            var classUpgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
             
-            cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Marksman]
+                classUpgradeCategories[FFC.Marksman],
+                classUpgradeCategories[FFC.Barret50Cal]
             };
 
             gameObject.GetOrAddComponent<ClassNameMono>();
@@ -51,17 +55,18 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Unblockable", true),
-                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", true, null, $"+{MaxAmmo}"),
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeed),
+                ManageCardInfoStats.BuildCardInfoStat("Movement Cooldown", false, MovementSpeed)
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Rare;
+            return CardInfo.Rarity.Uncommon;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.EvilPurple;
+            return CardThemeColor.CardThemeColorType.DefensiveBlue;
         }
 
         protected override GameObject GetCardArt() {

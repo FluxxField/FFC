@@ -1,21 +1,20 @@
 ﻿using FFC.MonoBehaviours;
-using UnityEngine;
-using UnboundLib.Cards;
 using FFC.Utilities;
 using UnboundLib;
+using UnboundLib.Cards;
+using UnityEngine;
 
 namespace FFC.Cards {
-    class SniperRifleExtendedMag : CustomCard {
-        private const float ReloadSpeedMultiplier = 1.10f;
-        private const float MovementSpeedMultiplier = 0.95f;
-        private const int MaxAmmo = 1;
+    public class ArmorPlating : CustomCard {
+        private const float MaxHealth = 1.30f;
+        private const float ChanceToReflect = 1.10f;
         
         protected override string GetTitle() {
-            return "Sniper Rifle Extended Mag";
+            return "Armor Plating";
         }
 
         protected override string GetDescription() {
-            return "Then only way to add ammo if you have Barret .50 Cal!";
+            return "Sometimes you just need some extra padding";
         }
 
         public override void SetupCard(
@@ -24,17 +23,13 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            gun.ammo = MaxAmmo;
-            gun.reloadTime = ReloadSpeedMultiplier;
-            statModifiers.movementSpeed = MovementSpeedMultiplier;
+            statModifiers.health = MaxHealth;
 
-            var classUpgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
-            
+            cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                classUpgradeCategories[FFC.Marksman],
-                classUpgradeCategories[FFC.Barret50Cal]
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Juggernaut]
             };
-
+            
             gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
@@ -55,9 +50,8 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", true, null, $"+{MaxAmmo}"),
-                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Movement Cooldown", false, MovementSpeedMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealth),
+                ManageCardInfoStats.BuildCardInfoStat("Chance to reflect", true, ChanceToReflect)
             };
         }
 

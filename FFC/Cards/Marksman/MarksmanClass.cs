@@ -1,24 +1,25 @@
 ﻿using System.Collections.Generic;
 using FFC.MonoBehaviours;
-using FFC.Utilities;
-using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
+using FFC.Utilities;
+using UnboundLib;
 
 namespace FFC.Cards {
-    public class JesterClass : CustomCard {
-        private const float MaxHealthMultiplier = 0.85f;
-        private const float DamageMultiplier = 0.90f;
-        private const float MovementSpeedMultiplier = 1.15f;
-        private const float SizeMultiplier = 0.90f;
-        private const int Bounces = 3;
-        
+    class MarksmanClass : CustomCard {
+        private const float MaxHealth = 0.50f;
+        private const float Damage = 1.80f;
+        private const float ProjectileSpeed = 2.00f;
+        private const float AttackSpeed = 3.00f;
+        private const float ReloadSpeed = 1.20f;
+        private const int MaxAmmo = -1;
+
         protected override string GetTitle() {
-            return "Jester";
+            return "Marksman";
         }
 
         protected override string GetDescription() {
-            return "The difference between a Jester and a Fool is that the Jester knows he's a Jester";
+            return "All or nothing. Precision is key";
         }
 
         public override void SetupCard(
@@ -27,12 +28,13 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            statModifiers.health = MaxHealthMultiplier;
-            statModifiers.movementSpeed = MovementSpeedMultiplier;
-            statModifiers.sizeMultiplier = SizeMultiplier;
-
-            gun.damage = DamageMultiplier;
-            gun.reflects = Bounces;
+            gun.damage = Damage;
+            gun.projectileSpeed = ProjectileSpeed;
+            gun.attackSpeed = AttackSpeed;
+            gun.reloadTime = ReloadSpeed;
+            gun.gravity = 0f;
+            gun.ammo = MaxAmmo;
+            statModifiers.health = MaxHealth;
             
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
@@ -41,7 +43,7 @@ namespace FFC.Cards {
 
             gameObject.GetOrAddComponent<ClassNameMono>();
         }
-        
+
         public override void OnAddCard(
             Player player,
             Gun gun,
@@ -55,28 +57,31 @@ namespace FFC.Cards {
             // Removes the defaultCategory and this classes upgrade category from the players blacklisted categories.
             // While also adding the classCategory to the players blacklist
             ClassesManager.ClassesManager.Instance.OnClassCardSelect(characterStats, new List<string> {
-                FFC.Jester
+                FFC.Marksman
             });
         }
-        
+
         public override void OnRemoveCard() {
         }
-        
+
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Bounces", true, null, $"+{Bounces}"),
-                ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealthMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Damage", false, DamageMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Damage", true, Damage),
+                ManageCardInfoStats.BuildCardInfoStat("Bullet Gravity", true, null, "No"),
+                ManageCardInfoStats.BuildCardInfoStat("Projectile Speed", true, ProjectileSpeed),
+                ManageCardInfoStats.BuildCardInfoStat("Health", false,MaxHealth),
+                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeed, "", "-"),
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeed),
+                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, $"{MaxAmmo}")
             };
         }
-        
+
         protected override CardInfo.Rarity GetRarity() {
             return CardInfo.Rarity.Common;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.FirepowerYellow;
+            return CardThemeColor.CardThemeColorType.DefensiveBlue;
         }
 
         protected override GameObject GetCardArt() {

@@ -7,11 +7,11 @@ using UnboundLib;
 
 namespace FFC.Cards {
     public class Lmg : CustomCard {
-        private const float DamageMultiplier = 1.35f;
-        private const float ProjectileSpeedMultiplier = 1.30f;
-        private const float AttackSpeedMultiplier = 1.50f;
-        private const float ReloadSpeedMultiplier = 2.50f;
-        private const float MovementSpeedMultiplier = 0.70f;
+        private const float Damage = 1.35f;
+        private const float ProjectileSpeed = 1.30f;
+        private const float AttackSpeed = 1.50f;
+        private const float ReloadSpeed = 2.50f;
+        private const float MovementSpeed = 0.70f;
         private const float Spread = 0.5f;
         private const int MaxAmmo = 12;
 
@@ -30,13 +30,13 @@ namespace FFC.Cards {
             CharacterStatModifiers statModifiers
         ) {
             gun.dontAllowAutoFire = false;
-            gun.damage = DamageMultiplier;
-            gun.projectileSpeed = ProjectileSpeedMultiplier;
-            gun.attackSpeed = AttackSpeedMultiplier;
+            gun.damage = Damage;
+            gun.projectileSpeed = ProjectileSpeed;
+            gun.attackSpeed = AttackSpeed;
             gun.ammo = MaxAmmo;
-            gun.reloadTime = ReloadSpeedMultiplier;
+            gun.reloadTime = ReloadSpeed;
             gun.spread = Spread;
-            statModifiers.movementSpeed = MovementSpeedMultiplier;
+            statModifiers.movementSpeed = MovementSpeed;
 
             cardInfo.allowMultiple = false;
             
@@ -71,17 +71,17 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Damage", true, DamageMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Damage", true, Damage),
+                ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeed),
                 ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true,null, $"+{MaxAmmo}"),
-                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeedMultiplier, "", "-"),
-                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeedMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeed, "", "-"),
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeed),
+                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeed)
             };
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Rare;
+            return CardInfo.Rarity.Uncommon;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {

@@ -4,10 +4,10 @@ using FFC.Utilities;
 
 namespace FFC.Cards {
     public class BattleExperience : CustomCard {
-        private const float DamageMultiplier = 1.15f;
-        private const float ReloadSpeedMultiplier = 0.75f;
-        private const float AttackSpeedMultiplier = 0.90f;
-        private const float HealthMultiplier = 0.90f;
+        private const float Damage = 1.15f;
+        private const float ReloadSpeed = 0.75f;
+        private const float AttackSpeed = 0.90f;
+        private const float MaxHealth = 0.90f;
 
         protected override string GetTitle() {
             return "Battle Experience";
@@ -23,10 +23,10 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            gun.damage = DamageMultiplier;
-            gun.attackSpeed = AttackSpeedMultiplier;
-            gun.reloadTime = ReloadSpeedMultiplier;
-            statModifiers.health = HealthMultiplier;
+            gun.damage = Damage;
+            gun.attackSpeed = AttackSpeed;
+            gun.reloadTime = ReloadSpeed;
+            statModifiers.health = MaxHealth;
             
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.DefaultCardCategory
@@ -50,10 +50,10 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Damage", true, DamageMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", true, ReloadSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", true, AttackSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Health", false, HealthMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Damage", true, Damage),
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", true, ReloadSpeed),
+                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", true, AttackSpeed),
+                ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealth),
             };
         }
 

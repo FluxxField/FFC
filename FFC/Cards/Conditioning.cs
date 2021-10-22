@@ -4,8 +4,8 @@ using FFC.Utilities;
 
 namespace FFC.Cards {
     public class Conditioning : CustomCard {
-        private const float HealthMultiplier = 1.50f;
-        private const float MovementSpeedMultiplier = 1.15f;
+        private const float MaxHealth = 1.50f;
+        private const float MovementSpeed = 1.15f;
 
         protected override string GetTitle() {
             return "Conditioning";
@@ -21,8 +21,8 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            statModifiers.health = HealthMultiplier;
-            statModifiers.movementSpeed = MovementSpeedMultiplier;
+            statModifiers.health = MaxHealth;
+            statModifiers.movementSpeed = MovementSpeed;
             
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.DefaultCardCategory
@@ -46,8 +46,8 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Health", true, HealthMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealth),
+                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeed),
             };
         }
 

@@ -119,21 +119,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cards\ArmorPiercingRounds.cs" />
-    <Compile Include="Cards\ArmorPlating.cs" />
-    <Compile Include="Cards\AssaultRifle.cs" />
-    <Compile Include="Cards\Barret50Cal.cs" />
     <Compile Include="Cards\BattleExperience.cs" />
     <Compile Include="Cards\Conditioning.cs" />
-    <Compile Include="Cards\Dmr.cs" />
     <Compile Include="Cards\FastMags.cs" />
-    <Compile Include="Cards\JesterClass.cs" />
-    <Compile Include="Cards\JuggernautClass.cs" />
-    <Compile Include="Cards\LightGunnerClass.cs" />
-    <Compile Include="Cards\Lmg.cs" />
-    <Compile Include="Cards\MarksmanClass.cs" />
-    <Compile Include="Cards\SizeMatters.cs" />
-    <Compile Include="Cards\SniperRifleExtendedMag.cs" />
+    <Compile Include="Cards\Jester\ArtOfJesting.cs" />
+    <Compile Include="Cards\Jester\JesterClass.cs" />
+    <Compile Include="Cards\Juggernaut\ArmorPlating.cs" />
+    <Compile Include="Cards\Juggernaut\JuggernautClass.cs" />
+    <Compile Include="Cards\Juggernaut\SizeMatters.cs" />
+    <Compile Include="Cards\LightGunner\AssaultRifle.cs" />
+    <Compile Include="Cards\LightGunner\Dmr.cs" />
+    <Compile Include="Cards\LightGunner\LightGunnerClass.cs" />
+    <Compile Include="Cards\LightGunner\Lmg.cs" />
+    <Compile Include="Cards\Marksman\ArmorPiercingRounds.cs" />
+    <Compile Include="Cards\Marksman\Barret50Cal.cs" />
+    <Compile Include="Cards\Marksman\MarksmanClass.cs" />
+    <Compile Include="Cards\Marksman\SniperRifleExtendedMag.cs" />
     <Compile Include="Extensions\CharacterStatModifiers.cs" />
     <Compile Include="FFC.cs" />
     <Compile Include="HitEffects\InstantKillHitEffect.cs" />
