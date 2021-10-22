@@ -13,6 +13,7 @@ namespace FFC.Cards {
         private const float ReloadSpeedMultiplier = 2.50f;
         private const float MovementSpeedMultiplier = 0.70f;
         private const float Spread = 0.5f;
+        private const int MaxAmmo = 12;
 
         protected override string GetTitle() {
             return "LMG";
@@ -32,7 +33,7 @@ namespace FFC.Cards {
             gun.damage = DamageMultiplier;
             gun.projectileSpeed = ProjectileSpeedMultiplier;
             gun.attackSpeed = AttackSpeedMultiplier;
-            gun.ammo = 12;
+            gun.ammo = MaxAmmo;
             gun.reloadTime = ReloadSpeedMultiplier;
             gun.spread = Spread;
             statModifiers.movementSpeed = MovementSpeedMultiplier;
@@ -72,7 +73,7 @@ namespace FFC.Cards {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Damage", true, DamageMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true,null, "+12"),
+                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true,null, $"+{MaxAmmo}"),
                 ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeedMultiplier, "", "-"),
                 ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeedMultiplier)

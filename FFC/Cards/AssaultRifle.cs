@@ -12,6 +12,7 @@ namespace FFC.Cards {
         private const float ReloadSpeedMultiplier = 1.10f;
         private const float ProjectileSpeedMultiplier = 1.10f;
         private const float Spread = 0.025f;
+        private const int MaxAmmo = 3;
         
         protected override string GetTitle() {
             return "Assault Rifle";
@@ -32,7 +33,7 @@ namespace FFC.Cards {
             gun.projectileSpeed = ProjectileSpeedMultiplier;
             gun.attackSpeed = AttackSpeedMultiplier;
             gun.reloadTime = ReloadSpeedMultiplier;
-            gun.ammo = 3;
+            gun.ammo = MaxAmmo;
             gun.spread = Spread;
             
             cardInfo.allowMultiple = false;
@@ -72,7 +73,7 @@ namespace FFC.Cards {
                 ManageCardInfoStats.BuildCardInfoStat("Damage", true, DamageMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeedMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Attack Speed", true, AttackSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true, null, "+3"),
+                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true, null, $"+{MaxAmmo}"),
                 ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier)
             };
         }

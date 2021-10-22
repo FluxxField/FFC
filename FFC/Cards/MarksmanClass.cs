@@ -12,6 +12,7 @@ namespace FFC.Cards {
         private const float ProjectileSpeedMultiplier = 2.00f;
         private const float AttackSpeedMultiplier = 3.00f;
         private const float ReloadSpeedMultiplier = 1.20f;
+        private const int MaxAmmo = -1;
 
         protected override string GetTitle() {
             return "Marksman";
@@ -32,7 +33,7 @@ namespace FFC.Cards {
             gun.attackSpeed = AttackSpeedMultiplier;
             gun.reloadTime = ReloadSpeedMultiplier;
             gun.gravity = 0f;
-            gun.ammo = -1;
+            gun.ammo = MaxAmmo;
             statModifiers.health = MaxHealthMultiplier;
             
             cardInfo.allowMultiple = false;
@@ -71,7 +72,7 @@ namespace FFC.Cards {
                 ManageCardInfoStats.BuildCardInfoStat("Health", false,MaxHealthMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeedMultiplier, "", "-"),
                 ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, "-1")
+                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, $"{MaxAmmo}")
             };
         }
 

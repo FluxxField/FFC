@@ -8,6 +8,7 @@ namespace FFC.Cards {
     class SniperRifleExtendedMag : CustomCard {
         private const float ReloadSpeedMultiplier = 1.10f;
         private const float MovementSpeedMultiplier = 0.95f;
+        private const int MaxAmmo = 1;
         
         protected override string GetTitle() {
             return "Sniper Rifle Extended Mag";
@@ -23,7 +24,7 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            gun.ammo = 1;
+            gun.ammo = MaxAmmo;
             gun.reloadTime = ReloadSpeedMultiplier;
             statModifiers.movementSpeed = MovementSpeedMultiplier;
 
@@ -54,7 +55,7 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", true, null, "+1"),
+                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", true, null, $"+{MaxAmmo}"),
                 ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Movement Cooldown", false, MovementSpeedMultiplier)
             };

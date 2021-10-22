@@ -65,7 +65,7 @@ namespace FFC.Cards {
         protected override CardInfoStat[] GetStats() {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Bounces", true, Bounces),
+                ManageCardInfoStats.BuildCardInfoStat("Bounces", true, null, $"+{Bounces}"),
                 ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealthMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Damage", false, DamageMultiplier)
             };

@@ -9,6 +9,7 @@ namespace FFC.Cards {
     public class Barret50Cal : CustomCard {
         private const float ReloadSpeedMultiplier = 1.40f;
         private const float MovementSpeedMultiplier = 0.90f;
+        private const int MaxAmmo = 1;
 
         protected override string GetTitle() {
             return "Barret .50 Cal";
@@ -45,7 +46,7 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.maxAmmo = 1;
+            gunAmmo.maxAmmo = MaxAmmo;
             player.gameObject.GetOrAddComponent<InstantKillHitEffect>();
 
             ClassesManager.ClassesManager.Instance.RemoveUpgradeCategoriesFromPlayer(characterStats, new List<string> {
@@ -59,7 +60,7 @@ namespace FFC.Cards {
         protected override CardInfoStat[] GetStats() {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Insta Kill", true),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, "1"),
+                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, $"{MaxAmmo}"),
                 ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeedMultiplier)
             };
