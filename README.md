@@ -16,7 +16,8 @@ Current Card Paths:
   - DMR
   - LMG
 - Juggernaut
-  - N/A
+  - Size Matters
+- Jester
 
 ### Class - Marksman
 #### Marksman (Common) (One use)
@@ -79,6 +80,16 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Health:         +250% ✔️
 - Movement Speed: -35%  ❌
 - Gravity:        -25%  ❌
+
+#### Size Matters
+- Health:         +25% ✔️
+
+### Class - Jester
+#### Jester
+- Health:         -15% ❌
+- Damage:         -10% ❌
+- Movement Speed: +15% ✔️
+- Bounces:        +3   ✔️
 
 ### Defaults
 #### Fast Mags (Common)
