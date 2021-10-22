@@ -19,7 +19,7 @@ namespace FFC.Cards {
         }
 
         protected override string GetDescription() {
-            return "Lot more Damage and Ammo, but at a cost";
+            return "'SAY HELLO TO MY LITTLE FRIEND' - Said someone, somewhere";
         }
 
         public override void SetupCard(
@@ -70,13 +70,12 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Damage", false, DamageMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Damage", true, DamageMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true,null, "+6"),
+                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true,null, "+12"),
                 ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeedMultiplier, "", "-"),
                 ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Recoil", false, ReloadSpeedMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeedMultiplier)
             };
         }
 

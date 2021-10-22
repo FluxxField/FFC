@@ -63,8 +63,7 @@ namespace FFC.Cards {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealthMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeedMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Gravity", false, GravityMultiplier),
-                ManageCardInfoStats.BuildCardInfoStat("Size", false, SizeMultiplier)
+                ManageCardInfoStats.BuildCardInfoStat("Gravity", false, GravityMultiplier)
             };
         }
         

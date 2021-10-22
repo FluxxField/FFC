@@ -69,10 +69,10 @@ namespace FFC.Cards {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", true, AttackSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Damage", true, DamageMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeedMultiplier),
+                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", true, AttackSpeedMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true, null, "+3"),
-                ManageCardInfoStats.BuildCardInfoStat("Damage", false, DamageMultiplier),
                 ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeedMultiplier)
             };
         }
