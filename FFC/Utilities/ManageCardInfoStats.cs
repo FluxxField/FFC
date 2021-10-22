@@ -16,9 +16,9 @@
                 };
             }
             
-            bool isValuePositive = value > 1;
-            string valueSign = isValuePositive ? "+" : "-";
-            float? percentage = (isValuePositive ? value - 1 : 1 - value) * 100;
+            var isValuePositive = value > 1;
+            var valueSign = isValuePositive ? "+" : "-";
+            var percentage = (isValuePositive ? value - 1 : 1 - value) * 100;
 
             if (signOverride != null) {
                 valueSign = signOverride;

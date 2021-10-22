@@ -1,17 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using FFC.Extensions;
 using FFC.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards {
-    public class ArtOfJesting : CustomCard {
+    public class KingOfFools : CustomCard {
+        private const int NumberOfBullets = 2;
+        
         protected override string GetTitle() {
-            return "The Art Of Jesting";
+            return "King Of Fools";
         }
 
         protected override string GetDescription() {
-            return "PASSIVE: Your stats increase as your pick cards that give you more bounces. Stats are added per bounce";
+            return "You have become the King of Fools! Bullet bounces now spawn more bullets!";
         }
 
         public override void SetupCard(
@@ -38,41 +40,22 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            player.gameObject.GetOrAddComponent<ArtOfJestingMono>();
+            characterStats.GetAdditionalData().kingOfFoolsBullets += NumberOfBullets;
         }
         
         public override void OnRemoveCard() {
         }
         
         protected override CardInfoStat[] GetStats() {
-            return new[] {
-                new CardInfoStat() {
-                    positive = true,
-                    stat = "Damage",
-                    amount = "+3%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat() {
-                    positive = true,
-                    stat = "Movement Speed",
-                    amount = "+2%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat() {
-                    positive = true,
-                    stat = "Projectile Speed",
-                    amount = "-3%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                }
-            };
+            return null;
         }
         
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Rare;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.DefensiveBlue;
+            return CardThemeColor.CardThemeColorType.EvilPurple;
         }
 
         protected override GameObject GetCardArt() {

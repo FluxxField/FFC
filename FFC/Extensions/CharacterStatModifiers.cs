@@ -3,7 +3,6 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 using FFC.MonoBehaviours;
 using HarmonyLib;
-using UnboundLib;
 using UnboundLib.GameModes;
 
 namespace FFC.Extensions {
@@ -12,11 +11,15 @@ namespace FFC.Extensions {
         public bool hasAdaptiveSizing;
         public float adaptiveMovementSpeed;
         public float adaptiveGravity;
+        public int kingOfFoolsBullets;
+        public int extendedMags;
 
         public CharacterStatModifiersAdditionalData() {
             hasAdaptiveSizing = false;
             adaptiveMovementSpeed = 0f;
             adaptiveGravity = 0f;
+            kingOfFoolsBullets = 0;
+            extendedMags = 1;
         }
     }
 
@@ -47,8 +50,12 @@ namespace FFC.Extensions {
         [HarmonyPatch(typeof(CharacterStatModifiers), "ResetStats")]
         class CharacterStatModifiersPatchResetStats {
             private static void Prefix(CharacterStatModifiers __instance) {
-                __instance.GetAdditionalData().adaptiveMovementSpeed = 0f;
-                __instance.GetAdditionalData().adaptiveGravity = 0f;
+                var additionalData = __instance.GetAdditionalData();
+                additionalData.adaptiveMovementSpeed = 0f;
+                additionalData.adaptiveGravity = 0f;
+                additionalData.hasAdaptiveSizing = false;
+                additionalData.kingOfFoolsBullets = 0;
+                additionalData.extendedMags = 1;
             }
         }
 

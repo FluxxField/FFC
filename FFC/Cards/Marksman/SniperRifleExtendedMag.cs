@@ -1,4 +1,5 @@
-﻿using FFC.MonoBehaviours;
+﻿using FFC.Extensions;
+using FFC.MonoBehaviours;
 using UnityEngine;
 using UnboundLib.Cards;
 using FFC.Utilities;
@@ -24,7 +25,6 @@ namespace FFC.Cards {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            gun.ammo = MaxAmmo;
             gun.reloadTime = ReloadSpeed;
             statModifiers.movementSpeed = MovementSpeed;
 
@@ -48,6 +48,7 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
+            characterStats.GetAdditionalData().extendedMags += MaxAmmo;
         }
 
         public override void OnRemoveCard() {

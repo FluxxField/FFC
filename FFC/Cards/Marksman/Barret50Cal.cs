@@ -46,8 +46,8 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            gunAmmo.maxAmmo = MaxAmmo;
             player.gameObject.GetOrAddComponent<InstantKillHitEffect>();
+            player.gameObject.GetOrAddComponent<Barret50CalMono>();
 
             ClassesManager.ClassesManager.Instance.RemoveUpgradeCategoriesFromPlayer(characterStats, new List<string> {
                 FFC.Barret50Cal

@@ -8,7 +8,6 @@ using UnityEngine;
 namespace FFC.Cards {
     public class JesterClass : CustomCard {
         private const float MaxHealth = 0.85f;
-        private const float Damage = 0.90f;
         private const float MovementSpeed = 1.15f;
         private const float Size = 0.90f;
         private const int Bounces = 3;
@@ -30,8 +29,7 @@ namespace FFC.Cards {
             statModifiers.health = MaxHealth;
             statModifiers.movementSpeed = MovementSpeed;
             statModifiers.sizeMultiplier = Size;
-
-            gun.damage = Damage;
+            
             gun.reflects = Bounces;
             
             cardInfo.allowMultiple = false;
@@ -67,7 +65,6 @@ namespace FFC.Cards {
                 ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeed),
                 ManageCardInfoStats.BuildCardInfoStat("Bounces", true, null, $"+{Bounces}"),
                 ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealth),
-                ManageCardInfoStats.BuildCardInfoStat("Damage", false, Damage)
             };
         }
         

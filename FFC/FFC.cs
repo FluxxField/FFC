@@ -63,6 +63,7 @@ namespace FFC {
             // Jester Class
             CustomCard.BuildCard<JesterClass>();
             CustomCard.BuildCard<ArtOfJesting>();
+            CustomCard.BuildCard<KingOfFools>();
             // Default
             CustomCard.BuildCard<FastMags>();
             CustomCard.BuildCard<Conditioning>();
@@ -72,43 +73,9 @@ namespace FFC {
                 new[] {"FluxxField"},
                 new[] {"github"},
                 new[] {"https://github.com/FluxxField/FFC"});
-
-            GameModeManager.AddHook(GameModeHooks.HookRoundStart, HandleBarret50CalAmmo);
+            
             GameModeManager.AddHook(GameModeHooks.HookPointStart, SizeMatters.SetPrePointStats);
             GameModeManager.AddHook(GameModeHooks.HookPointEnd, CharacterStatModifiersExtension.Reset);
-        }
-
-        private static IEnumerator HandleBarret50CalAmmo(IGameModeHandler gm) {
-            var players = PlayerManager.instance.players.ToArray();
-
-            foreach (var player in players) {
-                var cards = player.data.currentCards;
-                var ammoCount = 0;
-                var has50Cal = false;
-
-                foreach (var card in cards) {
-                    switch (card.cardName.ToUpper()) {
-                        case "BARRET .50 CAL": {
-                            has50Cal = true;
-                            goto case "SNIPER RIFLE EXTENDED MAG";
-                        }
-                        case "SNIPER RIFLE EXTENDED MAG": {
-                            ammoCount += 1;
-                            break;
-                        }
-                    }
-                }
-
-                if (has50Cal) {
-                    player
-                        .GetComponent<Holding>()
-                        .holdable.GetComponent<Gun>()
-                        .GetComponentInChildren<GunAmmo>()
-                        .maxAmmo = ammoCount;
-                }
-            }
-            
-            yield break;
         }
     }
 }
