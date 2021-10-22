@@ -6,7 +6,6 @@ using UnboundLib;
 using UnboundLib.Cards;
 using UnboundLib.GameModes;
 using UnityEngine;
-using CharacterStatModifiersExtension = FFC.Extensions.CharacterStatModifiersExtension;
 
 namespace FFC.Cards {
     public class SizeMatters : CustomCard {
@@ -33,6 +32,8 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.JuggernautUpgrades]
             };
+
+            gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
         public override void OnAddCard(

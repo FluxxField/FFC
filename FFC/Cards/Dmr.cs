@@ -1,10 +1,12 @@
-﻿using ModdingUtils.Extensions;
+﻿using FFC.MonoBehaviours;
+using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
 using FFC.Utilities;
+using UnboundLib;
 
 namespace FFC.Cards {
-    public class DMR : CustomCard {
+    public class Dmr : CustomCard {
         private const float DamageMultiplier = 1.50f;
         private const float ProjectileSpeedMultiplier = 1.50f;
         private const float AttackSpeedMultiplier = 2.00f;
@@ -32,11 +34,14 @@ namespace FFC.Cards {
 
             cardInfo.allowMultiple = false;
             
+            var upgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
             // DMR is apart of the LightGunnerClass and DMR Categories
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.DMR]
+                upgradeCategories[FFC.LightGunnerUpgrades],
+                upgradeCategories[FFC.Dmr]
             };
+
+            gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
         public override void OnAddCard(
@@ -52,7 +57,7 @@ namespace FFC.Cards {
             // If the player picks DMR, blacklist all cards in the AssaultRifle and LMG categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.AssaultRifle],
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LMG]
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Lmg]
             });
         }
 

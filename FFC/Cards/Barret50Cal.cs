@@ -31,6 +31,8 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]
             };
+
+            gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
         public override void OnAddCard(

@@ -48,8 +48,8 @@ namespace FFC.Cards {
             ClassesManager.ClassesManager.Instance.OnClassCardSelect(characterStats, new List<string> {
                 FFC.LightGunnerUpgrades,
                 FFC.AssaultRifle,
-                FFC.DMR,
-                FFC.LMG
+                FFC.Dmr,
+                FFC.Lmg
             });
         }
 

@@ -21,13 +21,13 @@ namespace FFC {
         private const string ModName = "FluxxField's Cards (FFC)";
         private const string Version = "1.2.5";
 
-        public const string MarksmanUpgrades = "marksmanUpgrades";
-        public const string LightGunnerUpgrades = "lightGunnerUpgrades";
-        public const string JuggernautUpgrades = "juggernautUpgrades";
-        public const string AssaultRifle = "assaultRifle";
-        public const string DMR = "DMR";
-        public const string LMG = "LMG";
-        public const string Barret50Cal = "barret50Cal";
+        public const string MarksmanUpgrades = "Marksman";
+        public const string LightGunnerUpgrades = "Light Gunner";
+        public const string JuggernautUpgrades = "Juggernaut";
+        public const string AssaultRifle = "Assault Rifle";
+        public const string Dmr = "DMR";
+        public const string Lmg = "LMG";
+        public const string Barret50Cal = "Barret .50 Cal";
 
         private void Awake() {
             new Harmony(ModId).PatchAll();
@@ -40,8 +40,8 @@ namespace FFC {
                 LightGunnerUpgrades,
                 JuggernautUpgrades,
                 AssaultRifle,
-                DMR,
-                LMG,
+                Dmr,
+                Lmg,
                 Barret50Cal
             });
 
@@ -53,8 +53,8 @@ namespace FFC {
             // Light Gunner Class
             CustomCard.BuildCard<LightGunnerClass>();
             CustomCard.BuildCard<AssaultRifle>();
-            CustomCard.BuildCard<DMR>();
-            CustomCard.BuildCard<LMG>();
+            CustomCard.BuildCard<Dmr>();
+            CustomCard.BuildCard<Lmg>();
             // Juggernaut Class
             CustomCard.BuildCard<JuggernautClass>();
             CustomCard.BuildCard<SizeMatters>();

@@ -1,7 +1,9 @@
-﻿using ModdingUtils.Extensions;
+﻿using FFC.MonoBehaviours;
+using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
 using FFC.Utilities;
+using UnboundLib;
 
 namespace FFC.Cards {
     public class AssaultRifle : CustomCard {
@@ -41,6 +43,8 @@ namespace FFC.Cards {
                 upgradeCategories[FFC.LightGunnerUpgrades],
                 upgradeCategories[FFC.AssaultRifle]
             };
+            
+            gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
         public override void OnAddCard(
@@ -55,8 +59,8 @@ namespace FFC.Cards {
         ) {
             // If the player picks AssaultRifle, blacklist all cards in the DMR and LMG categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.DMR],
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LMG]
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Dmr],
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Lmg]
             });
         }
 

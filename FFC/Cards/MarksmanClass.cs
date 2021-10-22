@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ModdingUtils.Extensions;
 using UnboundLib.Cards;
 using UnityEngine;
 using FFC.Utilities;

@@ -1,6 +1,9 @@
 ﻿using FFC.Utilities;
+using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
+using FFC.MonoBehaviours;
+
 
 namespace FFC.Cards {
     public class ArmorPiercingRounds : CustomCard {
@@ -27,6 +30,8 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]
             };
+
+            gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
         public override void OnAddCard(

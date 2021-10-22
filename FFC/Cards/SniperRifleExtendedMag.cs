@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using FFC.MonoBehaviours;
+using UnityEngine;
 using UnboundLib.Cards;
 using FFC.Utilities;
+using UnboundLib;
 
 namespace FFC.Cards {
     class SniperRifleExtendedMag : CustomCard {
@@ -12,7 +14,7 @@ namespace FFC.Cards {
         }
 
         protected override string GetDescription() {
-            return "Get 1 more shots for your sniper!";
+            return "Then only way to add ammo if you have Barret .50 Cal!";
         }
 
         public override void SetupCard(
@@ -24,11 +26,15 @@ namespace FFC.Cards {
             gun.ammo = 1;
             gun.reloadTime = ReloadSpeedMultiplier;
             statModifiers.movementSpeed = MovementSpeedMultiplier;
+
+            var classUpgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
             
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades],
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Barret50Cal]
+                classUpgradeCategories[FFC.MarksmanUpgrades],
+                classUpgradeCategories[FFC.Barret50Cal]
             };
+
+            gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
         public override void OnAddCard(
