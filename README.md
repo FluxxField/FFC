@@ -26,6 +26,8 @@ Current Card Paths:
 - Juggernaut
   - Size Matters
 - Jester
+  - Way of the Jester
+  - King of Fools
 
 ### Class - Marksman
 #### Marksman (Common) (One use)
