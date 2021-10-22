@@ -127,6 +127,7 @@
     <Compile Include="Cards\Conditioning.cs" />
     <Compile Include="Cards\Dmr.cs" />
     <Compile Include="Cards\FastMags.cs" />
+    <Compile Include="Cards\JesterClass.cs" />
     <Compile Include="Cards\JuggernautClass.cs" />
     <Compile Include="Cards\LightGunnerClass.cs" />
     <Compile Include="Cards\Lmg.cs" />

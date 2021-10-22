@@ -21,9 +21,10 @@ namespace FFC {
         private const string ModName = "FluxxField's Cards (FFC)";
         private const string Version = "1.2.5";
 
-        public const string MarksmanUpgrades = "Marksman";
-        public const string LightGunnerUpgrades = "Light Gunner";
-        public const string JuggernautUpgrades = "Juggernaut";
+        public const string Marksman = "Marksman";
+        public const string LightGunner = "Light Gunner";
+        public const string Juggernaut = "Juggernaut";
+        public const string Jester = "Jester";
         public const string AssaultRifle = "Assault Rifle";
         public const string Dmr = "DMR";
         public const string Lmg = "LMG";
@@ -36,9 +37,10 @@ namespace FFC {
 
         private void Start() {
             ClassesManager.ClassesManager.Instance.AddClassUpgradeCategories(new List<string> {
-                MarksmanUpgrades,
-                LightGunnerUpgrades,
-                JuggernautUpgrades,
+                Marksman,
+                LightGunner,
+                Juggernaut,
+                Jester,
                 AssaultRifle,
                 Dmr,
                 Lmg,
@@ -58,6 +60,8 @@ namespace FFC {
             // Juggernaut Class
             CustomCard.BuildCard<JuggernautClass>();
             CustomCard.BuildCard<SizeMatters>();
+            // Jester Class
+            CustomCard.BuildCard<JesterClass>();
             // Default
             CustomCard.BuildCard<FastMags>();
             CustomCard.BuildCard<Conditioning>();

@@ -28,7 +28,7 @@ namespace FFC.Cards {
             
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.MarksmanUpgrades]
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Marksman]
             };
 
             gameObject.GetOrAddComponent<ClassNameMono>();

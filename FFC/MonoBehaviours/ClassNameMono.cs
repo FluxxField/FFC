@@ -24,12 +24,13 @@ namespace FFC.MonoBehaviours {
             
             modText.text = card.categories[0].name;
             modText.enableWordWrapping = false;
-            modNameObj.transform.Rotate(0f, 0f, 135f);
-            modNameObj.transform.localScale = new Vector3(1f, 1f, 1f);
-            modNameObj.transform.localPosition = new Vector3(-50f, -50f, 0f);
             modText.alignment = TextAlignmentOptions.Bottom;
             modText.alpha = 0.1f;
             modText.fontSize = 50;
+            
+            modNameObj.transform.Rotate(0f, 0f, 135f);
+            modNameObj.transform.localScale = new Vector3(1f, 1f, 1f);
+            modNameObj.transform.localPosition = new Vector3(-50f, -50f, 0f);
         }
     }
 }

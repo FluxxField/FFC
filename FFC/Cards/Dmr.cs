@@ -37,7 +37,7 @@ namespace FFC.Cards {
             var upgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
             // DMR is apart of the LightGunnerClass and DMR Categories
             cardInfo.categories = new[] {
-                upgradeCategories[FFC.LightGunnerUpgrades],
+                upgradeCategories[FFC.LightGunner],
                 upgradeCategories[FFC.Dmr]
             };
 

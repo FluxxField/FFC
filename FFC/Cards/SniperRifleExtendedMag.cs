@@ -30,7 +30,7 @@ namespace FFC.Cards {
             var classUpgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
             
             cardInfo.categories = new[] {
-                classUpgradeCategories[FFC.MarksmanUpgrades],
+                classUpgradeCategories[FFC.Marksman],
                 classUpgradeCategories[FFC.Barret50Cal]
             };
 

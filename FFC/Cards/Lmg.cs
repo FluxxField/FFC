@@ -41,7 +41,7 @@ namespace FFC.Cards {
             
             // LMG is apart of the LightGunnerClass and DMR Categories
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunner],
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Lmg]
             };
 

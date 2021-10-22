@@ -40,7 +40,7 @@ namespace FFC.Cards {
             var upgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
             // AssaultRifle is apart of the LightGunnerClass and AssaultRifle Categories
             cardInfo.categories = new[] {
-                upgradeCategories[FFC.LightGunnerUpgrades],
+                upgradeCategories[FFC.LightGunner],
                 upgradeCategories[FFC.AssaultRifle]
             };
             

@@ -27,7 +27,7 @@ namespace FFC.Cards {
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.JuggernautUpgrades]
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Juggernaut]
             };
             
             gameObject.GetOrAddComponent<ClassNameMono>();
