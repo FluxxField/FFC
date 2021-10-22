@@ -53,7 +53,7 @@ namespace FFC.Cards {
             // Removes the defaultCategory and this classes upgrade category from the players blacklisted categories.
             // While also adding the classCategory to the players blacklist
             ClassesManager.ClassesManager.Instance.OnClassCardSelect(characterStats, new List<string> {
-                FFC.LightGunnerUpgrades
+                FFC.MarksmanUpgrades
             });
         }
 
