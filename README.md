@@ -18,7 +18,7 @@ Current Card Paths:
 - Marksman
   - Armor-Piercing Rounds
   - Barret .50 Cal
-  - Sniper Rifle Extended Mag
+    - Sniper Rifle Extended Mag
 - Light Gunner
   - Assault Rifle
   - DMR
