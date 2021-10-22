@@ -7,7 +7,7 @@ using UnboundLib.Cards;
 using UnboundLib.GameModes;
 using UnityEngine;
 
-namespace FFC.Cards {
+namespace FFC.Cards.Juggernaut {
     public class SizeMatters : CustomCard {
         private const float MaxHealth = 1.25f;
         private const float MaxAdaptiveMovementSpeed = 0.35f;

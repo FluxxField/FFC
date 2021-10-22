@@ -4,7 +4,7 @@ using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
-namespace FFC.Cards {
+namespace FFC.Cards.Juggernaut {
     public class ArmorPlating : CustomCard {
         private const float MaxHealth = 1.30f;
         private const float ChanceToReflect = 1.10f;

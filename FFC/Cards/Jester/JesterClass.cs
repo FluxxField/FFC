@@ -5,7 +5,7 @@ using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
-namespace FFC.Cards {
+namespace FFC.Cards.Jester {
     public class JesterClass : CustomCard {
         private const float MaxHealth = 0.85f;
         private const float MovementSpeed = 1.15f;

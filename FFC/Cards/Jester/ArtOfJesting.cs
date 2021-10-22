@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using FFC.MonoBehaviours;
+﻿using FFC.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
-namespace FFC.Cards {
+namespace FFC.Cards.Jester {
     public class ArtOfJesting : CustomCard {
         protected override string GetTitle() {
             return "The Art Of Jesting";

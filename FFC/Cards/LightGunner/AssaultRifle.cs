@@ -5,7 +5,7 @@ using UnityEngine;
 using FFC.Utilities;
 using UnboundLib;
 
-namespace FFC.Cards {
+namespace FFC.Cards.LightGunner {
     public class AssaultRifle : CustomCard {
         private const float Damage = 1.10f;
         private const float AttackSpeed = 0.60f;

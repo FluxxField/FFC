@@ -5,7 +5,7 @@ using UnityEngine;
 using FFC.Utilities;
 using UnboundLib;
 
-namespace FFC.Cards {
+namespace FFC.Cards.LightGunner {
     public class Lmg : CustomCard {
         private const float Damage = 1.35f;
         private const float ProjectileSpeed = 1.30f;

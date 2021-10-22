@@ -5,7 +5,7 @@ using UnityEngine;
 using FFC.Utilities;
 using UnboundLib;
 
-namespace FFC.Cards {
+namespace FFC.Cards.Marksman {
     class MarksmanClass : CustomCard {
         private const float MaxHealth = 0.50f;
         private const float Damage = 1.80f;

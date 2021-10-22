@@ -5,7 +5,7 @@ using UnboundLib.Cards;
 using FFC.Utilities;
 using UnboundLib;
 
-namespace FFC.Cards {
+namespace FFC.Cards.Marksman {
     class SniperRifleExtendedMag : CustomCard {
         private const float ReloadSpeed = 1.10f;
         private const float MovementSpeed = 0.95f;

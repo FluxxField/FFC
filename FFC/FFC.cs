@@ -1,10 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BepInEx;
 using UnboundLib;
 using UnboundLib.Cards;
 using HarmonyLib;
 using FFC.Cards;
+using FFC.Cards.Jester;
+using FFC.Cards.Juggernaut;
+using FFC.Cards.LightGunner;
+using FFC.Cards.Marksman;
 using FFC.Extensions;
 using UnboundLib.GameModes;
 

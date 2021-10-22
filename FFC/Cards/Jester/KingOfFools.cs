@@ -4,7 +4,7 @@ using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
-namespace FFC.Cards {
+namespace FFC.Cards.Jester {
     public class KingOfFools : CustomCard {
         private const int NumberOfBullets = 2;
         
@@ -45,7 +45,7 @@ namespace FFC.Cards {
         
         public override void OnRemoveCard() {
         }
-        
+
         protected override CardInfoStat[] GetStats() {
             return null;
         }

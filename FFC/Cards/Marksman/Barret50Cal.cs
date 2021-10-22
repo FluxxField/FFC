@@ -5,7 +5,7 @@ using UnboundLib;
 using UnityEngine;
 using FFC.Utilities;
 
-namespace FFC.Cards {
+namespace FFC.Cards.Marksman {
     public class Barret50Cal : CustomCard {
         private const float ReloadSpeed = 1.40f;
         private const float MovementSpeed = 0.90f;

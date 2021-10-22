@@ -5,7 +5,7 @@ using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
-namespace FFC.Cards {
+namespace FFC.Cards.LightGunner {
     public class LightGunnerClass : CustomCard {
         private const float MaxHealth = 1.10f;
         private const float MovementSpeed = 1.10f;

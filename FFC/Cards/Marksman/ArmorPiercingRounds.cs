@@ -5,7 +5,7 @@ using UnityEngine;
 using FFC.MonoBehaviours;
 
 
-namespace FFC.Cards {
+namespace FFC.Cards.Marksman {
     public class ArmorPiercingRounds : CustomCard {
         private const float ReloadSpeed = 1.25f;
         
