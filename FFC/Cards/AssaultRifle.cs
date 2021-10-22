@@ -34,11 +34,12 @@ namespace FFC.Cards {
             gun.spread = Spread;
             
             cardInfo.allowMultiple = false;
-            
+
+            var upgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
             // AssaultRifle is apart of the LightGunnerClass and AssaultRifle Categories
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunnerUpgrades],
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.AssaultRifle]
+                upgradeCategories[FFC.LightGunnerUpgrades],
+                upgradeCategories[FFC.AssaultRifle]
             };
         }
 
