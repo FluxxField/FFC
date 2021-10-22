@@ -74,7 +74,7 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Attack Speed:     +100% ❌
 - Reload Speed:     +20%  ❌
 
-#### LMG (Rare) (One use)
+#### LMG (Uncommon) (One use)
 - Allows Auto fire
 - Damage:           +35%  ✔️
 - Projectile Speed: +30%  ✔️
@@ -83,23 +83,6 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Movement Speed:   -30%  ❌
 - Max Ammo:         +12   ✔️
 
-### Class - Juggernaut
-#### Juggernaut
-- Health:         +250% ✔️
-- Movement Speed: -35%  ❌
-- Gravity:        -25%  ❌
-
-#### Size Matters
-- Health:         +25% ✔️
-
-### Class - Jester
-#### Jester
-- Health:         -15% ❌
-- Damage:         -10% ❌
-- Movement Speed: +15% ✔️
-- Bounces:        +3   ✔️
-
-### Defaults
 #### Fast Mags (Common)
 - Reload Speed: -30% ✔️
 
@@ -109,6 +92,29 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Attack Speed: -10% ✔️
 - Health:       -10% ❌
 
+### Class - Juggernaut
+#### Juggernaut (Common) (One use)
+- Health:         +250% ✔️
+- Movement Speed: -35%  ❌
+- Gravity:        -25%  ❌
+
+#### Size Matters (Uncommon)
+- Health:         +25% ✔️
+
 #### Conditioning (Uncommon)
 - Health:         +50% ✔️
 - Movement Speed: +15% ✔️
+
+### Class - Jester
+#### Jester (Common) (One use)
+- Health:         -15% ❌
+- Movement Speed: +15% ✔️
+- Bounces:        +3   ✔️
+
+#### Way of the Jester (Uncommon) (One use)
+- Damage:         -3% per bonce ✔️
+- Movement Speed: +2% per bonce ✔️
+- Bullte Speed:   +3% per bonce ✔️
+
+#### King of Fools (Rare) (One use)
+- Bullet bounces now spawn more bullets
