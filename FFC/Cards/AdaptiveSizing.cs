@@ -1,18 +1,25 @@
-﻿using FFC.Utilities;
+﻿using System.Collections;
+using FFC.Extensions;
+using FFC.MonoBehaviours;
+using FFC.Utilities;
+using UnboundLib;
 using UnboundLib.Cards;
+using UnboundLib.GameModes;
 using UnityEngine;
+using CharacterStatModifiersExtension = FFC.Extensions.CharacterStatModifiersExtension;
 
 namespace FFC.Cards {
-    public class ScalingHealth : CustomCard {
+    public class AdaptiveSizing : CustomCard {
         private const float MaxHealthMultiplier = 1.25f;
-        private const float MaxMovementSpeedMultiplier = 1.15f;
+        private const float MaxAdaptiveMovementSpeedMultiplier = 0.35f;
+        private const float MaxAdaptiveGravityMultiplier = 0.25f;
         
         protected override string GetTitle() {
-            return "Scaling Health";
+            return "Adaptive Sizing";
         }
 
         protected override string GetDescription() {
-            return "Your size and speed is dependent on current health instead of your max health";
+            return "You get smaller and run faster as you take damage";
         }
 
         public override void SetupCard(
@@ -22,8 +29,7 @@ namespace FFC.Cards {
             CharacterStatModifiers statModifiers
         ) {
             statModifiers.health = MaxHealthMultiplier;
-
-            cardInfo.allowMultiple = false;
+            
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.JuggernautUpgrades]
             };
@@ -39,6 +45,11 @@ namespace FFC.Cards {
             Block block,
             CharacterStatModifiers characterStats
         ) {
+            var additionalData = CharacterStatModifiersExtension.GetAdditionalData(characterStats);
+            additionalData.hasAdaptiveSizing = true;
+            additionalData.adaptiveMovementSpeed += MaxAdaptiveMovementSpeedMultiplier;
+            additionalData.adaptiveGravity += MaxAdaptiveGravityMultiplier;
+            player.gameObject.GetOrAddComponent<AdaptiveSizingMono>();
         }
 
         public override void OnRemoveCard() {
@@ -64,6 +75,18 @@ namespace FFC.Cards {
 
         public override string GetModName() {
             return FFC.AbbrModName;
+        }
+
+        public static IEnumerator SetPrePointStats(IGameModeHandler gm) {
+            foreach (var player in PlayerManager.instance.players) {
+                var additionalData = player.data.stats.GetAdditionalData();
+
+                if (additionalData.hasAdaptiveSizing) {
+                    player.gameObject.GetComponent<AdaptiveSizingMono>().SetPrePointStats(player.data);
+                }
+            }
+            
+            yield break;
         }
     }
 }

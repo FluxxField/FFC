@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using BepInEx;
 using UnboundLib;
 using UnboundLib.Cards;
 using HarmonyLib;
 using FFC.Cards;
+using FFC.Extensions;
 using UnboundLib.GameModes;
 
 namespace FFC {
@@ -56,6 +58,7 @@ namespace FFC {
             CustomCard.BuildCard<LMG>();
             // Juggernaut Class
             CustomCard.BuildCard<JuggernautClass>();
+            CustomCard.BuildCard<AdaptiveSizing>();
             // Default
             CustomCard.BuildCard<FastMags>();
             CustomCard.BuildCard<Conditioning>();
@@ -66,18 +69,20 @@ namespace FFC {
                 new[] {"github"},
                 new[] {"https://github.com/FluxxField/FFC"});
 
-            GameModeManager.AddHook(GameModeHooks.HookRoundStart, gm => HandleBarret50CalAmmo());
+            GameModeManager.AddHook(GameModeHooks.HookRoundStart, HandleBarret50CalAmmo);
+            GameModeManager.AddHook(GameModeHooks.HookPointStart, AdaptiveSizing.SetPrePointStats);
+            GameModeManager.AddHook(GameModeHooks.HookPointEnd, CharacterStatModifiersExtension.Reset);
         }
 
-        private IEnumerator HandleBarret50CalAmmo() {
-            Player[] players = PlayerManager.instance.players.ToArray();
+        private static IEnumerator HandleBarret50CalAmmo(IGameModeHandler gm) {
+            var players = PlayerManager.instance.players.ToArray();
 
-            foreach (Player player in players) {
-                List<CardInfo> cards = player.data.currentCards;
-                int ammoCount = 0;
-                bool has50Cal = false;
+            foreach (var player in players) {
+                var cards = player.data.currentCards;
+                var ammoCount = 0;
+                var has50Cal = false;
 
-                foreach (CardInfo card in cards) {
+                foreach (var card in cards) {
                     switch (card.cardName.ToUpper()) {
                         case "BARRET .50 CAL": {
                             has50Cal = true;
@@ -98,7 +103,7 @@ namespace FFC {
                         .maxAmmo = ammoCount;
                 }
             }
-
+            
             yield break;
         }
     }
