@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using FFC.MonoBehaviours;
 using FFC.Utilities;
+using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
@@ -11,7 +13,7 @@ namespace FFC.Cards {
         private const float SizeMultiplier = 1.30f;
         
         protected override string GetTitle() {
-            return "Juggernaut Class";
+            return "Juggernaut";
         }
 
         protected override string GetDescription() {
@@ -33,6 +35,8 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassCategory
             };
+
+            gameObject.GetOrAddComponent<ClassNameMono>();
         }
         
         public override void OnAddCard(

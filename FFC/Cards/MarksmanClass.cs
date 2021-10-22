@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using FFC.MonoBehaviours;
 using UnboundLib.Cards;
 using UnityEngine;
 using FFC.Utilities;
+using UnboundLib;
 
 namespace FFC.Cards {
     class MarksmanClass : CustomCard {
@@ -12,7 +14,7 @@ namespace FFC.Cards {
         private const float ReloadSpeedMultiplier = 1.20f;
 
         protected override string GetTitle() {
-            return "Marksman Class";
+            return "Marksman";
         }
 
         protected override string GetDescription() {
@@ -37,6 +39,8 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassCategory
             };
+
+            gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
         public override void OnAddCard(

@@ -11,7 +11,7 @@ namespace FFC.Cards {
         private const float AttackSpeedMultiplier = 0.60f;
         private const float ReloadSpeedMultiplier = 1.10f;
         private const float ProjectileSpeedMultiplier = 1.10f;
-        private const float Spread = 0.8f;
+        private const float Spread = 0.025f;
         
         protected override string GetTitle() {
             return "Assault Rifle";

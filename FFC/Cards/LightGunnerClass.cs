@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using FFC.MonoBehaviours;
 using FFC.Utilities;
 using ModdingUtils.Extensions;
+using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
@@ -10,7 +12,7 @@ namespace FFC.Cards {
         private const float MovementSpeedMultiplier = 1.10f;
         
         protected override string GetTitle() {
-            return "Light Gunner Class";
+            return "Light Gunner";
         }
 
         protected override string GetDescription() {
@@ -31,6 +33,8 @@ namespace FFC.Cards {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassCategory
             };
+
+            gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
         public override void OnAddCard(

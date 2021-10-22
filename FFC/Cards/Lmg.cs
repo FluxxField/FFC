@@ -12,7 +12,7 @@ namespace FFC.Cards {
         private const float AttackSpeedMultiplier = 1.50f;
         private const float ReloadSpeedMultiplier = 2.50f;
         private const float MovementSpeedMultiplier = 0.70f;
-        private const float Spread = 0.6f;
+        private const float Spread = 0.5f;
 
         protected override string GetTitle() {
             return "LMG";
