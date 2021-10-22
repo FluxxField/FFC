@@ -119,7 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cards\Jester\ArtOfJesting.cs" />
+    <Compile Include="Cards\Jester\WayOfTheJester.cs" />
     <Compile Include="Cards\Jester\JesterClass.cs" />
     <Compile Include="Cards\Jester\KingOfFools.cs" />
     <Compile Include="Cards\Juggernaut\ArmorPlating.cs" />
@@ -139,7 +139,7 @@
     <Compile Include="Extensions\CharacterStatModifiers.cs" />
     <Compile Include="FFC.cs" />
     <Compile Include="HitEffects\InstantKillHitEffect.cs" />
-    <Compile Include="MonoBehaviours\ArtOfJestingMono.cs" />
+    <Compile Include="MonoBehaviours\WayOfTheJester.cs" />
     <Compile Include="MonoBehaviours\Barret50CalMono.cs" />
     <Compile Include="MonoBehaviours\ClassNameMono.cs" />
     <Compile Include="MonoBehaviours\SizeMattersMono.cs" />

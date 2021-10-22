@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace FFC.MonoBehaviours {
-    public class ArtOfJestingMono : MonoBehaviour {
+    public class WayOfTheJesterMono : MonoBehaviour {
         private const float Damage = 0.02f;
         private const float MovementSpeed = 0.01f;
         private const float ProjectileSpeed = 0.01f;

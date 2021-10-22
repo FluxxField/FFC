@@ -67,7 +67,7 @@ namespace FFC {
             CustomCard.BuildCard<Conditioning>();
             // Jester Class
             CustomCard.BuildCard<JesterClass>();
-            CustomCard.BuildCard<ArtOfJesting>();
+            CustomCard.BuildCard<WayOfTheJester>();
             CustomCard.BuildCard<KingOfFools>();
 
             Unbound.RegisterCredits(ModName,

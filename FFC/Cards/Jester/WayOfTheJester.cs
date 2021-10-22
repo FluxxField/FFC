@@ -4,9 +4,9 @@ using UnboundLib.Cards;
 using UnityEngine;
 
 namespace FFC.Cards.Jester {
-    public class ArtOfJesting : CustomCard {
+    public class WayOfTheJester : CustomCard {
         protected override string GetTitle() {
-            return "The Art Of Jesting";
+            return "Way of the Jester";
         }
 
         protected override string GetDescription() {
@@ -37,7 +37,7 @@ namespace FFC.Cards.Jester {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            player.gameObject.GetOrAddComponent<ArtOfJestingMono>();
+            player.gameObject.GetOrAddComponent<WayOfTheJesterMono>();
         }
         
         public override void OnRemoveCard() {
