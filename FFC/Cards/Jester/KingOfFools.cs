@@ -1,4 +1,4 @@
-﻿using FFC.Extensions;
+﻿using FFC.HitEffects;
 using FFC.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
@@ -6,8 +6,6 @@ using UnityEngine;
 
 namespace FFC.Cards.Jester {
     public class KingOfFools : CustomCard {
-        private const int NumberOfBullets = 2;
-        
         protected override string GetTitle() {
             return "King Of Fools";
         }
@@ -40,7 +38,7 @@ namespace FFC.Cards.Jester {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            characterStats.GetAdditionalData().kingOfFoolsBullets += NumberOfBullets;
+            player.gameObject.GetOrAddComponent<KingOfFoolsHitSurfaceEffect>();
         }
         
         public override void OnRemoveCard() {

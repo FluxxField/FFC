@@ -60,7 +60,7 @@ namespace FFC.Cards.Jester {
                 new CardInfoStat() {
                     positive = true,
                     stat = "Projectile Speed",
-                    amount = "-3%",
+                    amount = "+3%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

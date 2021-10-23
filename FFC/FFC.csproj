@@ -70,6 +70,9 @@
     <Reference Include="ModdingUtils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\ModdingUtils.dll</HintPath>
     </Reference>
+    <Reference Include="PhotonRealtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\PhotonRealtime.dll</HintPath>
+    </Reference>
     <Reference Include="PhotonUnityNetworking, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\PhotonUnityNetworking.dll</HintPath>
     </Reference>
@@ -139,6 +142,8 @@
     <Compile Include="Extensions\CharacterStatModifiers.cs" />
     <Compile Include="FFC.cs" />
     <Compile Include="HitEffects\InstantKillHitEffect.cs" />
+    <Compile Include="HitEffects\KingOfFoolsHitSurfaceEffect.cs" />
+    <Compile Include="MonoBehaviours\SpawnBulletEffect.cs" />
     <Compile Include="MonoBehaviours\WayOfTheJester.cs" />
     <Compile Include="MonoBehaviours\Barret50CalMono.cs" />
     <Compile Include="MonoBehaviours\ClassNameMono.cs" />

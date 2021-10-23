@@ -11,14 +11,12 @@ namespace FFC.Extensions {
         public bool hasAdaptiveSizing;
         public float adaptiveMovementSpeed;
         public float adaptiveGravity;
-        public int kingOfFoolsBullets;
         public int extendedMags;
 
         public CharacterStatModifiersAdditionalData() {
             hasAdaptiveSizing = false;
             adaptiveMovementSpeed = 0f;
             adaptiveGravity = 0f;
-            kingOfFoolsBullets = 0;
             extendedMags = 1;
         }
     }
@@ -54,7 +52,6 @@ namespace FFC.Extensions {
                 additionalData.adaptiveMovementSpeed = 0f;
                 additionalData.adaptiveGravity = 0f;
                 additionalData.hasAdaptiveSizing = false;
-                additionalData.kingOfFoolsBullets = 0;
                 additionalData.extendedMags = 1;
             }
         }

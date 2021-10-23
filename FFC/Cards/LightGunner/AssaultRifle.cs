@@ -11,7 +11,6 @@ namespace FFC.Cards.LightGunner {
         private const float AttackSpeed = 0.60f;
         private const float ReloadSpeed = 1.10f;
         private const float ProjectileSpeed = 1.10f;
-        private const float Spread = 0.025f;
         private const int MaxAmmo = 3;
         
         protected override string GetTitle() {
@@ -34,8 +33,7 @@ namespace FFC.Cards.LightGunner {
             gun.attackSpeed = AttackSpeed;
             gun.reloadTime = ReloadSpeed;
             gun.ammo = MaxAmmo;
-            gun.spread = Spread;
-            
+
             cardInfo.allowMultiple = false;
 
             var upgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
