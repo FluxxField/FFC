@@ -1,18 +1,16 @@
 ﻿using System.Reflection;
 using ModdingUtils.RoundsEffects;
-using UnityEngine;
 using UnboundLib;
+using UnityEngine;
 
-namespace FFC.MonoBehaviours {
+namespace FFC.HitEffects {
     public class InstantKillHitEffect : HitEffect {
         public override void DealtDamage(
             Vector2 damage,
             bool selfDamage,
             Player damagedPlayer = null
         ) {
-            if (damagedPlayer == null) {
-                return;
-            }
+            if (damagedPlayer == null) return;
 
             Unbound.Instance.ExecuteAfterSeconds(0f, () => {
                 typeof(HealthHandler).InvokeMember(

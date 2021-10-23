@@ -1,9 +1,9 @@
 ﻿using FFC.MonoBehaviours;
+using FFC.Utilities;
 using ModdingUtils.Extensions;
+using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
-using FFC.Utilities;
-using UnboundLib;
 
 namespace FFC.Cards.LightGunner {
     public class Lmg : CustomCard {
@@ -37,7 +37,7 @@ namespace FFC.Cards.LightGunner {
             statModifiers.movementSpeed = MovementSpeed;
 
             cardInfo.allowMultiple = false;
-            
+
             // LMG is apart of the LightGunnerClass and DMR Categories
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunner],
@@ -71,7 +71,7 @@ namespace FFC.Cards.LightGunner {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Damage", true, Damage),
                 ManageCardInfoStats.BuildCardInfoStat("Bullet Speed", true, ProjectileSpeed),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true,null, $"+{MaxAmmo}"),
+                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true, null, $"+{MaxAmmo}"),
                 ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeed, "", "-"),
                 ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeed),
                 ManageCardInfoStats.BuildCardInfoStat("Movement Speed", false, MovementSpeed)

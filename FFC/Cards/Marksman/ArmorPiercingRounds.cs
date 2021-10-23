@@ -1,14 +1,13 @@
-﻿using FFC.Utilities;
+﻿using FFC.MonoBehaviours;
+using FFC.Utilities;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
-using FFC.MonoBehaviours;
-
 
 namespace FFC.Cards.Marksman {
     public class ArmorPiercingRounds : CustomCard {
         private const float ReloadSpeed = 1.25f;
-        
+
         protected override string GetTitle() {
             return "Armor-Piercing Rounds";
         }
@@ -25,7 +24,7 @@ namespace FFC.Cards.Marksman {
         ) {
             gun.unblockable = true;
             gun.reloadTime = ReloadSpeed;
-            
+
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Marksman]

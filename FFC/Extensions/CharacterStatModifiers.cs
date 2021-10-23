@@ -45,17 +45,6 @@ namespace FFC.Extensions {
             }
         }
 
-        [HarmonyPatch(typeof(CharacterStatModifiers), "ResetStats")]
-        class CharacterStatModifiersPatchResetStats {
-            private static void Prefix(CharacterStatModifiers __instance) {
-                var additionalData = __instance.GetAdditionalData();
-                additionalData.adaptiveMovementSpeed = 0f;
-                additionalData.adaptiveGravity = 0f;
-                additionalData.hasAdaptiveSizing = false;
-                additionalData.extendedMags = 1;
-            }
-        }
-
         internal static IEnumerator Reset(
             IGameModeHandler gm
         ) {
@@ -65,15 +54,28 @@ namespace FFC.Extensions {
                 if (additionalData.hasAdaptiveSizing) {
                     var adaptiveSizingMono = player.gameObject.GetComponent<AdaptiveSizingMono>();
                     var characterStatsModifiers = player.gameObject.GetComponent<CharacterStatModifiers>();
-                    
+
                     additionalData.adaptiveMovementSpeed = 0f;
                     additionalData.adaptiveGravity = 0f;
                     adaptiveSizingMono.Reset();
                     characterStatsModifiers.Invoke("ConfigureMassAndSize", 0f);
                 }
             }
-            
+
             yield break;
+        }
+
+        [HarmonyPatch(typeof(CharacterStatModifiers), "ResetStats")]
+        private class CharacterStatModifiersPatchResetStats {
+            private static void Prefix(
+                CharacterStatModifiers __instance
+            ) {
+                var additionalData = __instance.GetAdditionalData();
+                additionalData.adaptiveMovementSpeed = 0f;
+                additionalData.adaptiveGravity = 0f;
+                additionalData.hasAdaptiveSizing = false;
+                additionalData.extendedMags = 1;
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace FFC.Cards.Juggernaut {
         private const float MaxHealth = 1.25f;
         private const float MaxAdaptiveMovementSpeed = 0.35f;
         private const float MaxAdaptiveGravity = 0.25f;
-        
+
         protected override string GetTitle() {
             return "Size Matters";
         }
@@ -28,7 +28,7 @@ namespace FFC.Cards.Juggernaut {
             CharacterStatModifiers statModifiers
         ) {
             statModifiers.health = MaxHealth;
-            
+
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Juggernaut]
             };
@@ -78,15 +78,16 @@ namespace FFC.Cards.Juggernaut {
             return FFC.AbbrModName;
         }
 
-        public static IEnumerator SetPrePointStats(IGameModeHandler gm) {
+        public static IEnumerator SetPrePointStats(
+            IGameModeHandler gm
+        ) {
             foreach (var player in PlayerManager.instance.players) {
                 var additionalData = player.data.stats.GetAdditionalData();
 
-                if (additionalData.hasAdaptiveSizing) {
+                if (additionalData.hasAdaptiveSizing)
                     player.gameObject.GetComponent<AdaptiveSizingMono>().SetPrePointStats(player.data);
-                }
             }
-            
+
             yield break;
         }
     }

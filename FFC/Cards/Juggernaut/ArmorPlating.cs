@@ -8,7 +8,7 @@ namespace FFC.Cards.Juggernaut {
     public class ArmorPlating : CustomCard {
         private const float MaxHealth = 1.30f;
         private const float ChanceToReflect = 1.10f;
-        
+
         protected override string GetTitle() {
             return "Armor Plating";
         }
@@ -29,7 +29,7 @@ namespace FFC.Cards.Juggernaut {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Juggernaut]
             };
-            
+
             gameObject.GetOrAddComponent<ClassNameMono>();
         }
 

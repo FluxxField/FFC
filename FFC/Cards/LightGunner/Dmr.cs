@@ -1,9 +1,9 @@
 ﻿using FFC.MonoBehaviours;
+using FFC.Utilities;
 using ModdingUtils.Extensions;
+using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
-using FFC.Utilities;
-using UnboundLib;
 
 namespace FFC.Cards.LightGunner {
     public class Dmr : CustomCard {
@@ -11,7 +11,7 @@ namespace FFC.Cards.LightGunner {
         private const float ProjectileSpeed = 1.50f;
         private const float AttackSpeed = 2.00f;
         private const float ReloadSpeed = 1.20f;
-        
+
         protected override string GetTitle() {
             return "DMR";
         }
@@ -33,7 +33,7 @@ namespace FFC.Cards.LightGunner {
             gun.reloadTime = ReloadSpeed;
 
             cardInfo.allowMultiple = false;
-            
+
             var upgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
             // DMR is apart of the LightGunnerClass and DMR Categories
             cardInfo.categories = new[] {

@@ -6,14 +6,13 @@ namespace FFC.MonoBehaviours {
         private Player _player;
 
         private void Awake() {
-            if (_player == null) {
-                _player = gameObject.GetComponent<Player>();
-            }
+            if (_player == null) _player = gameObject.GetComponent<Player>();
         }
 
         private void Update() {
             var extendedMags = _player.data.stats.GetAdditionalData().extendedMags;
-            gameObject.GetComponent<Holding>().holdable.GetComponent<Gun>().GetComponentInChildren<GunAmmo>().maxAmmo = extendedMags;
+            gameObject.GetComponent<Holding>().holdable.GetComponent<Gun>().GetComponentInChildren<GunAmmo>().maxAmmo =
+                extendedMags;
         }
     }
 }

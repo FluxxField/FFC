@@ -1,17 +1,18 @@
-﻿using UnboundLib.Cards;
+﻿using FFC.Utilities;
+using UnboundLib.Cards;
 using UnityEngine;
-using FFC.Utilities;
 
 namespace FFC.Cards.LightGunner {
     public class FastMags : CustomCard {
         private const float ReloadSpeed = 0.70f;
-        
+
         protected override string GetTitle() {
             return "Fast Mags";
         }
 
         protected override string GetDescription() {
-            return "After many missed shots and constantly having to reloading.. You bought fast mags. But, it didn't fix your aim";
+            return
+                "After many missed shots and constantly having to reloading.. You bought fast mags. But, it didn't fix your aim";
         }
 
         public override void SetupCard(
@@ -21,7 +22,7 @@ namespace FFC.Cards.LightGunner {
             CharacterStatModifiers statModifiers
         ) {
             gun.reloadTime = ReloadSpeed;
-            
+
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunner]
             };

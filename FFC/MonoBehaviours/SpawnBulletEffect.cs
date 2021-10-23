@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
-using HarmonyLib;
 using System.Reflection;
+using HarmonyLib;
 using Photon.Pun;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace FFC.MonoBehaviours {
     public class SpawnBulletsEffect : MonoBehaviour {
+        private List<Vector3> _directionsToShoot = new List<Vector3>();
+        private Gun _gunToShootFrom;
         private float _initialDelay = 1f;
+        private GameObject _newWeaponsBase;
         private int _numBullets = 1;
         private int _numShot;
-        private Gun _gunToShootFrom;
-        private List<Vector3> _directionsToShoot = new List<Vector3>();
+        private Player _player;
         private List<Vector3> _positionsToShootFrom = new List<Vector3>();
         private float _timeBetweenShots;
         private float _timeSinceLastShot;
-        private GameObject _newWeaponsBase;
-        private Player _player;
 
         private void Awake() {
             _player = gameObject.GetComponent<Player>();
@@ -28,11 +29,9 @@ namespace FFC.MonoBehaviours {
         }
 
         private void Update() {
-            if (_numShot >= _numBullets || _gunToShootFrom == null) {
+            if (_numShot >= _numBullets || _gunToShootFrom == null)
                 Destroy(this);
-            } else if (Time.time >= _timeSinceLastShot + _timeBetweenShots) {
-                Shoot();
-            }
+            else if (Time.time >= _timeSinceLastShot + _timeBetweenShots) Shoot();
         }
 
         private void OnDisable() {
@@ -42,59 +41,53 @@ namespace FFC.MonoBehaviours {
         private void OnDestroy() {
             Destroy(_newWeaponsBase);
         }
-
+        
         private void Shoot() {
-            var currentNumberOfProjectiles = _gunToShootFrom.lockGunToDefault ? 1 : _gunToShootFrom.numberOfProjectiles + Mathf.RoundToInt(_gunToShootFrom.chargeNumberOfProjectilesTo * 0f);
-
-            for (var i = 0; i < _gunToShootFrom.projectiles.Length; i++) {
-                for (var j = 0; j < currentNumberOfProjectiles; j++) {
-                    Vector3 directionToShootThisBullet;
-
-                    if (_directionsToShoot.Count == 0) {
-                        directionToShootThisBullet = Vector3.down;
+			var currentNumberOfProjectiles = _gunToShootFrom.lockGunToDefault ? 1 : (_gunToShootFrom.numberOfProjectiles + Mathf.RoundToInt(_gunToShootFrom.chargeNumberOfProjectilesTo * 0f));
+            
+			for (var i = 0; i < _gunToShootFrom.projectiles.Length; i++) {
+				for (var j = 0; j < currentNumberOfProjectiles; j++) {
+					Vector3 directionToShootThisBullet;
+                    
+					if (_directionsToShoot.Count == 0) {
+						directionToShootThisBullet = Vector3.down;
+                    } else {
+						directionToShootThisBullet = _directionsToShoot[_numShot % _directionsToShoot.Count];
                     }
-                    else {
-                        directionToShootThisBullet =
-                            _directionsToShoot[_numShot % _directionsToShoot.Count];
-                    }
+                    
+					if (_gunToShootFrom.spread != 0f) {
+						// randomly spread shots
+						var d = _gunToShootFrom.multiplySpread;
+						var num = Random.Range(-_gunToShootFrom.spread, _gunToShootFrom.spread);
+						num /= (1f + _gunToShootFrom.projectileSpeed * 0.5f) * 0.5f;
+						directionToShootThisBullet += Vector3.Cross(directionToShootThisBullet, Vector3.forward) * num * d;
+					}
 
-                    if (_gunToShootFrom.spread != 0f) {
-                        // randomly spread shots
-                        var d = _gunToShootFrom.multiplySpread;
-                        var num = UnityEngine.Random.Range(-_gunToShootFrom.spread, _gunToShootFrom.spread);
-                        num /= (1f + _gunToShootFrom.projectileSpeed * 0.5f) * 0.5f;
-                        directionToShootThisBullet +=
-                            Vector3.Cross(directionToShootThisBullet, Vector3.forward) * num * d;
-                    }
+					if ((bool)typeof(Gun).InvokeMember("CheckIsMine", BindingFlags.Instance | BindingFlags.InvokeMethod | BindingFlags.NonPublic, null, _gunToShootFrom, new object[] { })) {
+						Vector3 positionToShootFrom;
+						if (_positionsToShootFrom.Count == 0) {
+							positionToShootFrom = Vector3.zero;
+						} else {
+							positionToShootFrom = _positionsToShootFrom[_numShot % _positionsToShootFrom.Count];
+						}
+                        
+						var gm = PhotonNetwork.Instantiate(_gunToShootFrom.projectiles[i].objectToSpawn.gameObject.name, positionToShootFrom, Quaternion.LookRotation(directionToShootThisBullet));
 
-                    if ((bool) typeof(Gun).InvokeMember("CheckIsMine",  BindingFlags.Instance | BindingFlags.InvokeMethod | BindingFlags.NonPublic, null, _gunToShootFrom, new object[] { })) {
-                        Vector3 positionToShootFrom;
-
-                        if (_positionsToShootFrom.Count == 0) {
-                            positionToShootFrom = Vector3.zero;
+						if (PhotonNetwork.OfflineMode) {
+							RPCA_Shoot(gm.GetComponent<PhotonView>().ViewID,currentNumberOfProjectiles, 1f, Random.Range(0f,1f));
                         } else {
-                            positionToShootFrom =
-                                _positionsToShootFrom[_numShot % _positionsToShootFrom.Count];
-                        }
-
-                        var gm = PhotonNetwork.Instantiate(_gunToShootFrom.projectiles[i].objectToSpawn.gameObject.name, positionToShootFrom, Quaternion.LookRotation(directionToShootThisBullet));
-
-                        if (PhotonNetwork.OfflineMode) {
-                            RPCA_Shoot(gm.GetComponent<PhotonView>().ViewID, currentNumberOfProjectiles,
-                                1f, UnityEngine.Random.Range(0f, 1f));
-                        } else {
-                            gm.GetComponent<PhotonView>().RPC("RPCA_Shoot", RpcTarget.All, new [] {
+							gameObject.GetComponent<PhotonView>().RPC("RPCA_Shoot", RpcTarget.All, new [] {
                                 gm.GetComponent<PhotonView>().ViewID,
-                                currentNumberOfProjectiles,
-                                1f,
-                                UnityEngine.Random.Range(0f, 1f)
-                            });
+								currentNumberOfProjectiles,
+								1f,
+								Random.Range(0f, 1f)
+							});
                         }
-                    }
-                }
-            }
-
-            ResetTimer();
+					}
+				}
+			}
+            
+			ResetTimer();
         }
 
         [PunRPC]
@@ -105,7 +98,7 @@ namespace FFC.MonoBehaviours {
             float seed
         ) {
             var bulletObj = PhotonView.Find(bulletViewID).gameObject;
-            _gunToShootFrom.BulletInit(bulletObj, numProj, dmgM, seed, true);
+            _gunToShootFrom.BulletInit(bulletObj, numProj, dmgM, seed);
             _numShot++;
         }
 
@@ -117,13 +110,10 @@ namespace FFC.MonoBehaviours {
                 new Vector3(500f, 500f, -100f), Quaternion.identity);
             DontDestroyOnLoad(_newWeaponsBase);
 
-            foreach (Transform child in _newWeaponsBase.transform) {
-                if (child.GetComponentInChildren<Renderer>() != null) {
-                    foreach (var renderer in child.GetComponentsInChildren<Renderer>()) {
+            foreach (Transform child in _newWeaponsBase.transform)
+                if (child.GetComponentInChildren<Renderer>() != null)
+                    foreach (var renderer in child.GetComponentsInChildren<Renderer>())
                         renderer.enabled = false;
-                    }
-                }
-            }
 
             _gunToShootFrom = _newWeaponsBase.GetComponent<Gun>();
             CopyGunStats(gun, _gunToShootFrom);
@@ -138,13 +128,13 @@ namespace FFC.MonoBehaviours {
         public void SetPosition(
             Vector3 pos
         ) {
-            _positionsToShootFrom = new List<Vector3>() {pos};
+            _positionsToShootFrom = new List<Vector3> {pos};
         }
 
         public void SetDirection(
             Vector3 dir
         ) {
-            _directionsToShoot = new List<Vector3>() {dir};
+            _directionsToShoot = new List<Vector3> {dir};
         }
 
         public void SetPositions(
@@ -261,7 +251,7 @@ namespace FFC.MonoBehaviours {
         }
 
         public void Destroy() {
-            UnityEngine.GameObject.Destroy(this);
+            Destroy(this);
         }
     }
 }

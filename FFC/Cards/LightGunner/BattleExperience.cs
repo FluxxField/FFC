@@ -1,6 +1,6 @@
-﻿using UnboundLib.Cards;
+﻿using FFC.Utilities;
+using UnboundLib.Cards;
 using UnityEngine;
-using FFC.Utilities;
 
 namespace FFC.Cards.LightGunner {
     public class BattleExperience : CustomCard {
@@ -27,7 +27,7 @@ namespace FFC.Cards.LightGunner {
             gun.attackSpeed = AttackSpeed;
             gun.reloadTime = ReloadSpeed;
             statModifiers.health = MaxHealth;
-            
+
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunner]
             };
@@ -53,7 +53,7 @@ namespace FFC.Cards.LightGunner {
                 ManageCardInfoStats.BuildCardInfoStat("Damage", true, Damage),
                 ManageCardInfoStats.BuildCardInfoStat("Reload Speed", true, ReloadSpeed),
                 ManageCardInfoStats.BuildCardInfoStat("Attack Speed", true, AttackSpeed),
-                ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealth),
+                ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealth)
             };
         }
 

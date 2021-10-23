@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using FFC.MonoBehaviours;
-using UnboundLib.Cards;
-using UnityEngine;
 using FFC.Utilities;
 using UnboundLib;
+using UnboundLib.Cards;
+using UnityEngine;
 
 namespace FFC.Cards.Marksman {
-    class MarksmanClass : CustomCard {
+    internal class MarksmanClass : CustomCard {
         private const float MaxHealth = 0.50f;
         private const float Damage = 1.80f;
         private const float ProjectileSpeed = 2.00f;
@@ -35,7 +35,7 @@ namespace FFC.Cards.Marksman {
             gun.gravity = 0f;
             gun.ammo = MaxAmmo;
             statModifiers.health = MaxHealth;
-            
+
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassCategory
@@ -69,7 +69,7 @@ namespace FFC.Cards.Marksman {
                 ManageCardInfoStats.BuildCardInfoStat("Damage", true, Damage),
                 ManageCardInfoStats.BuildCardInfoStat("Bullet Gravity", true, null, "No"),
                 ManageCardInfoStats.BuildCardInfoStat("Projectile Speed", true, ProjectileSpeed),
-                ManageCardInfoStats.BuildCardInfoStat("Health", false,MaxHealth),
+                ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealth),
                 ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeed, "", "-"),
                 ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeed),
                 ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, $"{MaxAmmo}")

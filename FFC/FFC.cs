@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using BepInEx;
-using UnboundLib;
-using UnboundLib.Cards;
-using HarmonyLib;
 using FFC.Cards.Jester;
 using FFC.Cards.Juggernaut;
 using FFC.Cards.LightGunner;
 using FFC.Cards.Marksman;
 using FFC.Extensions;
+using HarmonyLib;
+using UnboundLib;
+using UnboundLib.Cards;
 using UnboundLib.GameModes;
 
 namespace FFC {
@@ -18,7 +18,7 @@ namespace FFC {
     [BepInProcess("Rounds.exe")]
     public class FFC : BaseUnityPlugin {
         public const string AbbrModName = "FFC";
-        
+
         private const string ModId = "fluxxfield.rounds.plugins.fluxxfieldscards";
         private const string ModName = "FluxxField's Cards (FFC)";
         private const string Version = "1.3.2";
@@ -69,12 +69,13 @@ namespace FFC {
             CustomCard.BuildCard<JesterClass>();
             CustomCard.BuildCard<WayOfTheJester>();
             CustomCard.BuildCard<KingOfFools>();
+            CustomCard.BuildCard<JokesOnYou>();
 
             Unbound.RegisterCredits(ModName,
                 new[] {"FluxxField"},
                 new[] {"github"},
                 new[] {"https://github.com/FluxxField/FFC"});
-            
+
             GameModeManager.AddHook(GameModeHooks.HookPointStart, SizeMatters.SetPrePointStats);
             GameModeManager.AddHook(GameModeHooks.HookPointEnd, CharacterStatModifiersExtension.Reset);
         }

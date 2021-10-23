@@ -10,7 +10,7 @@ namespace FFC.Cards.LightGunner {
         private const float MaxHealth = 1.10f;
         private const float MovementSpeed = 1.10f;
         private const int MaxAmmo = 3;
-        
+
         protected override string GetTitle() {
             return "Light Gunner";
         }
@@ -28,7 +28,7 @@ namespace FFC.Cards.LightGunner {
             gun.ammo = MaxAmmo;
             statModifiers.health = MaxHealth;
             statModifiers.movementSpeed = MovementSpeed;
-            
+
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassCategory
@@ -64,7 +64,7 @@ namespace FFC.Cards.LightGunner {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealth),
                 ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeed),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true,null, $"+{MaxAmmo}")
+                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", true, null, $"+{MaxAmmo}")
             };
         }
 

@@ -1,18 +1,20 @@
-﻿using FFC.Utilities;
+﻿using FFC.HitEffects;
+using FFC.MonoBehaviours;
+using FFC.Utilities;
+using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
-namespace FFC.Cards.Juggernaut {
-    public class Conditioning : CustomCard {
-        private const float MaxHealth = 1.50f;
-        private const float MovementSpeed = 1.15f;
+namespace FFC.Cards.Jester {
+    public class JokesOnYou : CustomCard {
+        private const int Bounces = 3;
 
         protected override string GetTitle() {
-            return "Conditioning";
+            return "Jokes on you!";
         }
 
         protected override string GetDescription() {
-            return "You have trained hard! And its paying off...";
+            return "Your bouncing bullets no longer damage you!";
         }
 
         public override void SetupCard(
@@ -21,12 +23,14 @@ namespace FFC.Cards.Juggernaut {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            statModifiers.health = MaxHealth;
-            statModifiers.movementSpeed = MovementSpeed;
-
+            gun.reflects = Bounces;
+            
+            cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Juggernaut]
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Jester]
             };
+
+            gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
         public override void OnAddCard(
@@ -39,15 +43,15 @@ namespace FFC.Cards.Juggernaut {
             Block block,
             CharacterStatModifiers characterStats
         ) {
+            player.gameObject.GetOrAddComponent<JokesOnYouHitEffect>();
         }
 
         public override void OnRemoveCard() {
         }
 
         protected override CardInfoStat[] GetStats() {
-            return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealth),
-                ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeed)
+            return new [] {
+                ManageCardInfoStats.BuildCardInfoStat("Bounces", true, null, $"+{Bounces}"),
             };
         }
 
@@ -56,7 +60,7 @@ namespace FFC.Cards.Juggernaut {
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.NatureBrown;
+            return CardThemeColor.CardThemeColorType.DefensiveBlue;
         }
 
         protected override GameObject GetCardArt() {

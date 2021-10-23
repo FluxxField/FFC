@@ -11,7 +11,7 @@ namespace FFC.Cards.Jester {
         private const float MovementSpeed = 1.15f;
         private const float Size = 0.90f;
         private const int Bounces = 3;
-        
+
         protected override string GetTitle() {
             return "Jester";
         }
@@ -29,9 +29,9 @@ namespace FFC.Cards.Jester {
             statModifiers.health = MaxHealth;
             statModifiers.movementSpeed = MovementSpeed;
             statModifiers.sizeMultiplier = Size;
-            
+
             gun.reflects = Bounces;
-            
+
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassCategory
@@ -39,7 +39,7 @@ namespace FFC.Cards.Jester {
 
             gameObject.GetOrAddComponent<ClassNameMono>();
         }
-        
+
         public override void OnAddCard(
             Player player,
             Gun gun,
@@ -56,18 +56,18 @@ namespace FFC.Cards.Jester {
                 FFC.Jester
             });
         }
-        
+
         public override void OnRemoveCard() {
         }
-        
+
         protected override CardInfoStat[] GetStats() {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Movement Speed", true, MovementSpeed),
                 ManageCardInfoStats.BuildCardInfoStat("Bounces", true, null, $"+{Bounces}"),
-                ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealth),
+                ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealth)
             };
         }
-        
+
         protected override CardInfo.Rarity GetRarity() {
             return CardInfo.Rarity.Common;
         }

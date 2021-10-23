@@ -11,7 +11,7 @@ namespace FFC.Cards.Juggernaut {
         private const float MovementSpeed = 0.65f;
         private const float Gravity = 0.75f;
         private const float Size = 1.30f;
-        
+
         protected override string GetTitle() {
             return "Juggernaut";
         }
@@ -38,7 +38,7 @@ namespace FFC.Cards.Juggernaut {
 
             gameObject.GetOrAddComponent<ClassNameMono>();
         }
-        
+
         public override void OnAddCard(
             Player player,
             Gun gun,
@@ -55,10 +55,10 @@ namespace FFC.Cards.Juggernaut {
                 FFC.Juggernaut
             });
         }
-        
+
         public override void OnRemoveCard() {
         }
-        
+
         protected override CardInfoStat[] GetStats() {
             return new[] {
                 ManageCardInfoStats.BuildCardInfoStat("Health", true, MaxHealth),
@@ -66,7 +66,7 @@ namespace FFC.Cards.Juggernaut {
                 ManageCardInfoStats.BuildCardInfoStat("Gravity", false, Gravity)
             };
         }
-        
+
         protected override CardInfo.Rarity GetRarity() {
             return CardInfo.Rarity.Common;
         }

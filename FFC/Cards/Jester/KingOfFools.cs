@@ -11,7 +11,8 @@ namespace FFC.Cards.Jester {
         }
 
         protected override string GetDescription() {
-            return "You have become the King of Fools! Chance for bullet bounces to spawn more bullets!";
+            return
+                "You have become the King of Fools! You know have a 15% for bullet bounces to spawn an extra bullet!";
         }
 
         public override void SetupCard(
@@ -27,7 +28,7 @@ namespace FFC.Cards.Jester {
 
             gameObject.GetOrAddComponent<ClassNameMono>();
         }
-        
+
         public override void OnAddCard(
             Player player,
             Gun gun,
@@ -40,14 +41,14 @@ namespace FFC.Cards.Jester {
         ) {
             player.gameObject.GetOrAddComponent<KingOfFoolsHitSurfaceEffect>();
         }
-        
+
         public override void OnRemoveCard() {
         }
 
         protected override CardInfoStat[] GetStats() {
             return null;
         }
-        
+
         protected override CardInfo.Rarity GetRarity() {
             return CardInfo.Rarity.Rare;
         }

@@ -6,22 +6,19 @@ namespace FFC.MonoBehaviours {
         public float prePointMaxHealth;
         public float prePointGravity;
         public float prePointSizeMultiplier;
-        
-        private Player _player;
         private CharacterStatModifiers _characterStatModifiers;
-        
+
         private float _lastHealth;
-        private float _maxAdditionalMovementSpeed;
         private float _maxAdditionalGravity;
+        private float _maxAdditionalMovementSpeed;
+
+        private Player _player;
 
         private void Awake() {
-            if (_player == null) {
-                _player = gameObject.GetComponent<Player>();
-            }
+            if (_player == null) _player = gameObject.GetComponent<Player>();
 
-            if (_characterStatModifiers == null) {
+            if (_characterStatModifiers == null)
                 _characterStatModifiers = _player.GetComponent<CharacterStatModifiers>();
-            }
 
             var data = _player.data;
             var additionalData = _player.data.stats.GetAdditionalData();
@@ -30,9 +27,16 @@ namespace FFC.MonoBehaviours {
             prePointGravity = data.stats.gravity;
             prePointSizeMultiplier = data.stats.sizeMultiplier;
             _lastHealth = data.health;
-            
+
             _maxAdditionalMovementSpeed = additionalData.adaptiveMovementSpeed;
             _maxAdditionalGravity = additionalData.adaptiveGravity;
+        }
+
+        public void Reset() {
+            _characterStatModifiers.health = prePointMaxHealth;
+            _characterStatModifiers.gravity = prePointGravity;
+            _characterStatModifiers.sizeMultiplier = prePointSizeMultiplier;
+            _characterStatModifiers.Invoke("ConfigureMassAndSize", 0f);
         }
 
         private void Update() {
@@ -40,9 +44,7 @@ namespace FFC.MonoBehaviours {
             var currentHealth = _player.data.health;
 
             // Health hasn't changed since last check
-            if (_lastHealth == currentHealth) {
-                return;
-            }
+            if (_lastHealth == currentHealth) return;
 
             _lastHealth = _player.data.health;
 
@@ -55,23 +57,18 @@ namespace FFC.MonoBehaviours {
                 _characterStatModifiers.sizeMultiplier *= Mathf.Max(healthDelta);
                 _characterStatModifiers.movementSpeed += movementSpeedDelta;
                 _characterStatModifiers.gravity -= gravityDelta;
-                _characterStatModifiers.Invoke("ConfigureMassAndSize", 0f);   
+                _characterStatModifiers.Invoke("ConfigureMassAndSize", 0f);
             }
         }
 
-        public void SetPrePointStats(CharacterData data) {
+        public void SetPrePointStats(
+            CharacterData data
+        ) {
             var stats = data.stats;
-            
+
             prePointMaxHealth = data.maxHealth;
             prePointGravity = stats.gravity;
             prePointSizeMultiplier = stats.sizeMultiplier;
-        }
-
-        public void Reset() {
-            _characterStatModifiers.health = prePointMaxHealth;
-            _characterStatModifiers.gravity = prePointGravity;
-            _characterStatModifiers.sizeMultiplier = prePointSizeMultiplier;
-            _characterStatModifiers.Invoke("ConfigureMassAndSize", 0f);
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using FFC.MonoBehaviours;
+using FFC.Utilities;
 using ModdingUtils.Extensions;
+using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
-using FFC.Utilities;
-using UnboundLib;
 
 namespace FFC.Cards.LightGunner {
     public class AssaultRifle : CustomCard {
@@ -12,7 +12,7 @@ namespace FFC.Cards.LightGunner {
         private const float ReloadSpeed = 1.10f;
         private const float ProjectileSpeed = 1.10f;
         private const int MaxAmmo = 3;
-        
+
         protected override string GetTitle() {
             return "Assault Rifle";
         }
@@ -42,7 +42,7 @@ namespace FFC.Cards.LightGunner {
                 upgradeCategories[FFC.LightGunner],
                 upgradeCategories[FFC.AssaultRifle]
             };
-            
+
             gameObject.GetOrAddComponent<ClassNameMono>();
         }
 

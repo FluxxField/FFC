@@ -1,16 +1,16 @@
 ﻿using FFC.Extensions;
 using FFC.MonoBehaviours;
-using UnityEngine;
-using UnboundLib.Cards;
 using FFC.Utilities;
 using UnboundLib;
+using UnboundLib.Cards;
+using UnityEngine;
 
 namespace FFC.Cards.Marksman {
-    class SniperRifleExtendedMag : CustomCard {
+    internal class SniperRifleExtendedMag : CustomCard {
         private const float ReloadSpeed = 1.10f;
         private const float MovementSpeed = 0.95f;
         private const int MaxAmmo = 1;
-        
+
         protected override string GetTitle() {
             return "Sniper Rifle Extended Mag";
         }
@@ -29,7 +29,7 @@ namespace FFC.Cards.Marksman {
             statModifiers.movementSpeed = MovementSpeed;
 
             var classUpgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
-            
+
             cardInfo.categories = new[] {
                 classUpgradeCategories[FFC.Marksman],
                 classUpgradeCategories[FFC.Barret50Cal]

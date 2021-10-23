@@ -10,7 +10,8 @@ namespace FFC.Cards.Jester {
         }
 
         protected override string GetDescription() {
-            return "PASSIVE: Your stats increase as your pick cards that give you more bounces. Stats are added per bounce";
+            return
+                "PASSIVE: Your stats increase as your pick cards that give you more bounces. Stats are added per bounce. Capped at 25 bounces. Thanks Pong! ;)";
         }
 
         public override void SetupCard(
@@ -26,7 +27,7 @@ namespace FFC.Cards.Jester {
 
             gameObject.GetOrAddComponent<ClassNameMono>();
         }
-        
+
         public override void OnAddCard(
             Player player,
             Gun gun,
@@ -39,25 +40,25 @@ namespace FFC.Cards.Jester {
         ) {
             player.gameObject.GetOrAddComponent<WayOfTheJesterMono>();
         }
-        
+
         public override void OnRemoveCard() {
         }
-        
+
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = true,
                     stat = "Damage",
-                    amount = "+3%",
+                    amount = "+5%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = true,
                     stat = "Movement Speed",
-                    amount = "+2%",
+                    amount = "+1%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat() {
+                new CardInfoStat {
                     positive = true,
                     stat = "Projectile Speed",
                     amount = "+3%",
@@ -65,7 +66,7 @@ namespace FFC.Cards.Jester {
                 }
             };
         }
-        
+
         protected override CardInfo.Rarity GetRarity() {
             return CardInfo.Rarity.Uncommon;
         }

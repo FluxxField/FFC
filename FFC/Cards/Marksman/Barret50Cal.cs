@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using UnboundLib.Cards;
+using FFC.HitEffects;
 using FFC.MonoBehaviours;
-using UnboundLib;
-using UnityEngine;
 using FFC.Utilities;
+using UnboundLib;
+using UnboundLib.Cards;
+using UnityEngine;
 
 namespace FFC.Cards.Marksman {
     public class Barret50Cal : CustomCard {
