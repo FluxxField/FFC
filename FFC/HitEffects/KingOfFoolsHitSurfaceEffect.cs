@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using FFC.Extensions;
 using FFC.MonoBehaviours;
 using ModdingUtils.RoundsEffects;
 using UnboundLib;
@@ -20,6 +19,13 @@ namespace FFC.HitEffects {
             Vector2 normal,
             Vector2 velocity
         ) {
+            var role = _rng.Next(0, 101);
+
+            // 10% chance
+            if (role > 15) {
+                return;
+            }
+            
             _player = gameObject.GetComponent<Player>();
             _gun = _player.GetComponent<Holding>().holdable.GetComponent<Gun>();
 
@@ -36,8 +42,10 @@ namespace FFC.HitEffects {
             effect.SetInitialDelay(0f);
             
             SpawnBulletsEffect.CopyGunStats(_gun, newGun);
-            
+
             newGun.spread = 0.2f;
+            newGun.reflects = 2;
+            newGun.destroyBulletAfter = 3f;
 
             effect.SetGun(newGun);
         }

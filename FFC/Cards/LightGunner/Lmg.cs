@@ -9,7 +9,7 @@ namespace FFC.Cards.LightGunner {
     public class Lmg : CustomCard {
         private const float Damage = 1.35f;
         private const float ProjectileSpeed = 1.30f;
-        private const float AttackSpeed = 1.50f;
+        private const float AttackSpeed = 1.30f;
         private const float ReloadSpeed = 2.50f;
         private const float MovementSpeed = 0.70f;
         private const int MaxAmmo = 12;

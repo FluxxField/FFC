@@ -11,7 +11,7 @@ namespace FFC.Cards.Jester {
         }
 
         protected override string GetDescription() {
-            return "You have become the King of Fools! Bullet bounces now spawn more bullets!";
+            return "You have become the King of Fools! Chance for bullet bounces to spawn more bullets!";
         }
 
         public override void SetupCard(
