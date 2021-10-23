@@ -119,4 +119,4 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Bullte Speed:   +3% per bonce ✔️
 
 #### King of Fools (Rare) (One use)
-- Bullet bounces now spawn more bullets
+- Bullet bounces have a 15% chance to spawn more bullets
