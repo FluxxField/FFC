@@ -23,11 +23,15 @@ Current Card Paths:
   - Assault Rifle
   - DMR
   - LMG
+  - Battle Experience
+  - Fast Mags
 - Juggernaut
   - Size Matters
+  - Conditioning
 - Jester
   - Way of the Jester
   - King of Fools
+  - Jokes on You
 
 ### Class - Marksman
 #### Marksman (Common) (One use)
@@ -118,5 +122,9 @@ Ammo can only be increased by "Sniper Rifle Extended Mag"
 - Movement Speed: +2% per bonce ✔️
 - Bullte Speed:   +3% per bonce ✔️
 
-#### King of Fools (Rare) (One use)
+#### King of Fools (Rare) (2 uses)
 - Bullet bounces have a 15% chance to spawn more bullets
+
+#### Jokes On You (Rare) (One Use)
+- Bouncing bullets dont damage you
+- Bounces: +3 ✔️
