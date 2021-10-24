@@ -56,11 +56,11 @@ namespace FFC.Cards.Jester {
         }
 
         protected override CardInfo.Rarity GetRarity() {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Rare;
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.DefensiveBlue;
+            return CardThemeColor.CardThemeColorType.EvilPurple;
         }
 
         protected override GameObject GetCardArt() {
