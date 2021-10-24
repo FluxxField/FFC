@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using FFC.Extensions;
 using FFC.MonoBehaviours;
 using ModdingUtils.RoundsEffects;
 using UnboundLib;
@@ -13,16 +15,18 @@ namespace FFC.HitEffects {
         private readonly Random _rng = new Random();
         private Gun _gun;
         private Player _player;
+        private const int BaseChance = 15;
 
         public override void Hit(
             Vector2 position,
             Vector2 normal,
             Vector2 velocity
         ) {
+            _player = gameObject.GetComponent<Player>();
+            var multiplier = _player.data.stats.GetAdditionalData().kingOfFools;
             var role = _rng.Next(1, 101);
-
-            // 15% chance
-            if (role > 15) return;
+            
+            if (multiplier == 0 || role > multiplier * BaseChance) return;
 
             _player = gameObject.GetComponent<Player>();
             _gun = _player.GetComponent<Holding>().holdable.GetComponent<Gun>();
@@ -44,7 +48,9 @@ namespace FFC.HitEffects {
             newGun.spread = 0.2f;
             newGun.destroyBulletAfter = 5f;
             newGun.numberOfProjectiles = 1;
-
+            newGun.projectiles = (from e in Enumerable.Range(0, newGun.numberOfProjectiles) from x in newGun.projectiles select x).ToList().Take(newGun.numberOfProjectiles).ToArray();
+            newGun.damageAfterDistanceMultiplier = 1f;
+            
             effect.SetGun(newGun);
         }
 

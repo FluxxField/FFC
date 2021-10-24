@@ -1,4 +1,6 @@
-﻿using FFC.Utilities;
+﻿using FFC.MonoBehaviours;
+using FFC.Utilities;
+using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
@@ -31,6 +33,8 @@ namespace FFC.Cards.LightGunner {
             cardInfo.categories = new[] {
                 ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunner]
             };
+            
+            gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
         public override void OnAddCard(

@@ -31,6 +31,7 @@ namespace FFC {
         public const string Dmr = "DMR";
         public const string Lmg = "LMG";
         public const string Barret50Cal = "Barret .50 Cal";
+        public const string KingOfFoolsCategory = "King of Fools";
 
         private void Awake() {
             new Harmony(ModId).PatchAll();
@@ -46,7 +47,8 @@ namespace FFC {
                 AssaultRifle,
                 Dmr,
                 Lmg,
-                Barret50Cal
+                Barret50Cal,
+                KingOfFoolsCategory
             });
 
             // Marksman Class

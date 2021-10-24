@@ -1,5 +1,4 @@
 ﻿using ModdingUtils.RoundsEffects;
-using UnboundLib;
 using UnityEngine;
 
 namespace FFC.HitEffects {
@@ -13,11 +12,7 @@ namespace FFC.HitEffects {
                 return;
             }
             
-            if (damagedPlayer.data.health - damage.magnitude <= 0f) {
-                damagedPlayer.data.healthHandler.Heal(damage.magnitude);
-            } else {
-                Unbound.Instance.ExecuteAfterFrames(2, () => damagedPlayer.data.healthHandler.Heal(damage.magnitude));
-            }
+            damagedPlayer.data.healthHandler.Heal(damage.magnitude);
         }
     }
 }

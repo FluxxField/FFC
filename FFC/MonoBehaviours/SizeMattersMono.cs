@@ -2,10 +2,11 @@
 using UnityEngine;
 
 namespace FFC.MonoBehaviours {
-    public class AdaptiveSizingMono : MonoBehaviour {
+    public class SizeMattersMono : MonoBehaviour {
         public float prePointMaxHealth;
         public float prePointGravity;
         public float prePointSizeMultiplier;
+        public float prePointMovementSpeed;
         private CharacterStatModifiers _characterStatModifiers;
 
         private float _lastHealth;
@@ -26,6 +27,7 @@ namespace FFC.MonoBehaviours {
             prePointMaxHealth = data.health;
             prePointGravity = data.stats.gravity;
             prePointSizeMultiplier = data.stats.sizeMultiplier;
+            prePointMovementSpeed = data.stats.movementSpeed;
             _lastHealth = data.health;
 
             _maxAdditionalMovementSpeed = additionalData.adaptiveMovementSpeed;
@@ -36,6 +38,7 @@ namespace FFC.MonoBehaviours {
             _characterStatModifiers.health = prePointMaxHealth;
             _characterStatModifiers.gravity = prePointGravity;
             _characterStatModifiers.sizeMultiplier = prePointSizeMultiplier;
+            _characterStatModifiers.movementSpeed = prePointMovementSpeed;
             _characterStatModifiers.Invoke("ConfigureMassAndSize", 0f);
         }
 
@@ -69,6 +72,7 @@ namespace FFC.MonoBehaviours {
             prePointMaxHealth = data.maxHealth;
             prePointGravity = stats.gravity;
             prePointSizeMultiplier = stats.sizeMultiplier;
+            prePointMovementSpeed = stats.movementSpeed;
         }
     }
 }

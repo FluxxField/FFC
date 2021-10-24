@@ -1,8 +1,10 @@
-﻿using FFC.HitEffects;
+﻿using FFC.Extensions;
+using FFC.HitEffects;
 using FFC.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
+using CharacterStatModifiersExtension = ModdingUtils.Extensions.CharacterStatModifiersExtension;
 
 namespace FFC.Cards.Jester {
     public class KingOfFools : CustomCard {
@@ -21,9 +23,9 @@ namespace FFC.Cards.Jester {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Jester]
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Jester],
+                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.KingOfFoolsCategory]
             };
 
             gameObject.GetOrAddComponent<ClassNameMono>();
@@ -39,7 +41,18 @@ namespace FFC.Cards.Jester {
             Block block,
             CharacterStatModifiers characterStats
         ) {
-            player.gameObject.GetOrAddComponent<KingOfFoolsHitSurfaceEffect>();
+            var kingOfFools = characterStats.GetAdditionalData().kingOfFools += 1;
+
+            switch (kingOfFools) {
+                case 1: {
+                    player.gameObject.GetOrAddComponent<KingOfFoolsHitSurfaceEffect>();
+                    break;
+                }
+                case 2: {
+                    CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.KingOfFoolsCategory]);
+                    break;
+                }
+            }
         }
 
         public override void OnRemoveCard() {

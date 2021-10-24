@@ -50,7 +50,7 @@ namespace FFC.Cards.Juggernaut {
             additionalData.hasAdaptiveSizing = true;
             additionalData.adaptiveMovementSpeed += MaxAdaptiveMovementSpeed;
             additionalData.adaptiveGravity += MaxAdaptiveGravity;
-            player.gameObject.GetOrAddComponent<AdaptiveSizingMono>();
+            player.gameObject.GetOrAddComponent<SizeMattersMono>();
         }
 
         public override void OnRemoveCard() {
@@ -85,7 +85,7 @@ namespace FFC.Cards.Juggernaut {
                 var additionalData = player.data.stats.GetAdditionalData();
 
                 if (additionalData.hasAdaptiveSizing)
-                    player.gameObject.GetComponent<AdaptiveSizingMono>().SetPrePointStats(player.data);
+                    player.gameObject.GetComponent<SizeMattersMono>().SetPrePointStats(player.data);
             }
 
             yield break;

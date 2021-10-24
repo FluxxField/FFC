@@ -12,12 +12,14 @@ namespace FFC.Extensions {
         public float adaptiveMovementSpeed;
         public float adaptiveGravity;
         public int extendedMags;
+        public int kingOfFools;
 
         public CharacterStatModifiersAdditionalData() {
             hasAdaptiveSizing = false;
             adaptiveMovementSpeed = 0f;
             adaptiveGravity = 0f;
             extendedMags = 1;
+            kingOfFools = 0;
         }
     }
 
@@ -52,7 +54,7 @@ namespace FFC.Extensions {
                 var additionalData = player.data.stats.GetAdditionalData();
 
                 if (additionalData.hasAdaptiveSizing) {
-                    var adaptiveSizingMono = player.gameObject.GetComponent<AdaptiveSizingMono>();
+                    var adaptiveSizingMono = player.gameObject.GetComponent<SizeMattersMono>();
                     var characterStatsModifiers = player.gameObject.GetComponent<CharacterStatModifiers>();
 
                     additionalData.adaptiveMovementSpeed = 0f;
@@ -75,6 +77,7 @@ namespace FFC.Extensions {
                 additionalData.adaptiveGravity = 0f;
                 additionalData.hasAdaptiveSizing = false;
                 additionalData.extendedMags = 1;
+                additionalData.kingOfFools = 0;
             }
         }
     }
