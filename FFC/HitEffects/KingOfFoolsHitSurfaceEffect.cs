@@ -2,6 +2,7 @@
 using System.Linq;
 using FFC.Extensions;
 using FFC.MonoBehaviours;
+using FFC.Utilities;
 using ModdingUtils.RoundsEffects;
 using UnboundLib;
 using UnityEngine;
@@ -49,6 +50,7 @@ namespace FFC.HitEffects {
             newGun.destroyBulletAfter = 5f;
             newGun.numberOfProjectiles = 1;
             newGun.projectiles = (from e in Enumerable.Range(0, newGun.numberOfProjectiles) from x in newGun.projectiles select x).ToList().Take(newGun.numberOfProjectiles).ToArray();
+            newGun.objectsToSpawn = new ObjectsToSpawn[] { };
             newGun.damageAfterDistanceMultiplier = 1f;
             
             effect.SetGun(newGun);

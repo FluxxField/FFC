@@ -9,17 +9,21 @@ namespace FFC.Extensions {
     [Serializable]
     public class CharacterStatModifiersAdditionalData {
         public bool hasAdaptiveSizing;
+        public bool isBloodMage;
         public float adaptiveMovementSpeed;
         public float adaptiveGravity;
         public int extendedMags;
         public int kingOfFools;
+        public int healthCost;
 
         public CharacterStatModifiersAdditionalData() {
             hasAdaptiveSizing = false;
+            isBloodMage = false;
             adaptiveMovementSpeed = 0f;
             adaptiveGravity = 0f;
             extendedMags = 1;
             kingOfFools = 0;
+            healthCost = 0;
         }
     }
 
@@ -78,6 +82,8 @@ namespace FFC.Extensions {
                 additionalData.hasAdaptiveSizing = false;
                 additionalData.extendedMags = 1;
                 additionalData.kingOfFools = 0;
+                additionalData.isBloodMage = false;
+                additionalData.healthCost = 0;
             }
         }
     }

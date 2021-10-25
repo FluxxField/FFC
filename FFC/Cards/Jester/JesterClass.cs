@@ -30,6 +30,7 @@ namespace FFC.Cards.Jester {
             statModifiers.movementSpeed = MovementSpeed;
             statModifiers.sizeMultiplier = Size;
 
+            gun.projectileColor = new Color(25f/255f, 8f/255f, 40f/255f);
             gun.reflects = Bounces;
 
             cardInfo.allowMultiple = false;
@@ -74,7 +75,7 @@ namespace FFC.Cards.Jester {
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.FirepowerYellow;
+            return CardThemeColor.CardThemeColorType.EvilPurple;
         }
 
         protected override GameObject GetCardArt() {

@@ -72,7 +72,7 @@ namespace FFC.Cards.Juggernaut {
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.FirepowerYellow;
+            return CardThemeColor.CardThemeColorType.EvilPurple;
         }
 
         protected override GameObject GetCardArt() {

@@ -73,7 +73,7 @@ namespace FFC.Cards.LightGunner {
         }
 
         protected override CardThemeColor.CardThemeColorType GetTheme() {
-            return CardThemeColor.CardThemeColorType.PoisonGreen;
+            return CardThemeColor.CardThemeColorType.EvilPurple;
         }
 
         protected override GameObject GetCardArt() {

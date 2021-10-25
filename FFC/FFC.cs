@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BepInEx;
+using FFC.Cards.BloodMage;
 using FFC.Cards.Jester;
 using FFC.Cards.Juggernaut;
 using FFC.Cards.LightGunner;
@@ -27,6 +28,7 @@ namespace FFC {
         public const string LightGunner = "Light Gunner";
         public const string Juggernaut = "Juggernaut";
         public const string Jester = "Jester";
+        public const string BloodMage = "Blood Mage";
         public const string AssaultRifle = "Assault Rifle";
         public const string Dmr = "DMR";
         public const string Lmg = "LMG";
@@ -44,6 +46,7 @@ namespace FFC {
                 LightGunner,
                 Juggernaut,
                 Jester,
+                BloodMage,
                 AssaultRifle,
                 Dmr,
                 Lmg,
@@ -72,6 +75,8 @@ namespace FFC {
             CustomCard.BuildCard<WayOfTheJester>();
             CustomCard.BuildCard<KingOfFools>();
             CustomCard.BuildCard<JokesOnYou>();
+            //Blood Mage Class
+            CustomCard.BuildCard<BloodMage>();
 
             Unbound.RegisterCredits(ModName,
                 new[] {"FluxxField"},

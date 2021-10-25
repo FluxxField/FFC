@@ -1,25 +1,22 @@
 ﻿using System.Collections.Generic;
+using FFC.Extensions;
 using FFC.MonoBehaviours;
 using FFC.Utilities;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
-namespace FFC.Cards.Marksman {
-    internal class MarksmanClass : CustomCard {
-        private const float MaxHealth = 0.50f;
-        private const float Damage = 1.80f;
-        private const float ProjectileSpeed = 2.00f;
-        private const float AttackSpeed = 3.00f;
-        private const float ReloadSpeed = 1.20f;
-        private const int MaxAmmo = -1;
-
+namespace FFC.Cards.BloodMage {
+    public class BloodMage : CustomCard { 
+        private const float HealthRegen = 2.5f;
+        private const int HealthPerShot = 5;
+            
         protected override string GetTitle() {
-            return "Marksman";
+            return "Blood Mage";
         }
 
         protected override string GetDescription() {
-            return "All or nothing. Precision is key";
+            return "You have unlocked incredible powers! But, at the cost of blood... Your attacks now cost health";
         }
 
         public override void SetupCard(
@@ -28,13 +25,8 @@ namespace FFC.Cards.Marksman {
             ApplyCardStats cardStats,
             CharacterStatModifiers statModifiers
         ) {
-            gun.damage = Damage;
-            gun.projectileSpeed = ProjectileSpeed;
-            gun.attackSpeed = AttackSpeed;
-            gun.reloadTime = ReloadSpeed;
-            gun.gravity = 0f;
-            gun.ammo = MaxAmmo;
-            statModifiers.health = MaxHealth;
+            statModifiers.regen = HealthRegen;
+            gun.projectileColor = Color.red;
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
@@ -54,10 +46,14 @@ namespace FFC.Cards.Marksman {
             Block block,
             CharacterStatModifiers characterStats
         ) {
+            var additionalData = statModifiers.GetAdditionalData();
+            additionalData.isBloodMage = true;
+            additionalData.healthCost += HealthPerShot;
+            
             // Removes the defaultCategory and this classes upgrade category from the players blacklisted categories.
             // While also adding the classCategory to the players blacklist
             ClassesManager.ClassesManager.Instance.OnClassCardSelect(characterStats, new List<string> {
-                FFC.Marksman
+                FFC.BloodMage
             });
         }
 
@@ -66,13 +62,8 @@ namespace FFC.Cards.Marksman {
 
         protected override CardInfoStat[] GetStats() {
             return new[] {
-                ManageCardInfoStats.BuildCardInfoStat("Damage", true, Damage),
-                ManageCardInfoStats.BuildCardInfoStat("Bullet Gravity", true, null, "No"),
-                ManageCardInfoStats.BuildCardInfoStat("Projectile Speed", true, ProjectileSpeed),
-                ManageCardInfoStats.BuildCardInfoStat("Health", false, MaxHealth),
-                ManageCardInfoStats.BuildCardInfoStat("Attack Speed", false, AttackSpeed, "", "-"),
-                ManageCardInfoStats.BuildCardInfoStat("Reload Speed", false, ReloadSpeed),
-                ManageCardInfoStats.BuildCardInfoStat("Max Ammo", false, null, $"{MaxAmmo}")
+                ManageCardInfoStats.BuildCardInfoStat("Health Regen", true, null, $"+{HealthRegen} HP/s"),
+                ManageCardInfoStats.BuildCardInfoStat("Health per shot", false, null, $"-{HealthPerShot} HP")
             };
         }
 
