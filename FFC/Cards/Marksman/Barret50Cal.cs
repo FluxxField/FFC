@@ -31,7 +31,7 @@ namespace FFC.Cards.Marksman {
 
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Marksman]
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.Marksman]
             };
 
             gameObject.GetOrAddComponent<ClassNameMono>();
@@ -50,7 +50,7 @@ namespace FFC.Cards.Marksman {
             player.gameObject.GetOrAddComponent<InstantKillHitEffect>();
             player.gameObject.GetOrAddComponent<Barret50CalMono>();
 
-            ClassesManager.ClassesManager.Instance.RemoveUpgradeCategoriesFromPlayer(characterStats, new List<string> {
+            ClassesManager.ClassesManager.Instance.RemoveProgressionCategoriesFromPlayer(characterStats, new List<string> {
                 FFC.Barret50Cal
             });
         }

@@ -30,7 +30,7 @@ namespace FFC.Cards.Juggernaut {
             statModifiers.health = MaxHealth;
 
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Juggernaut]
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.Juggernaut]
             };
 
             gameObject.GetOrAddComponent<ClassNameMono>();

@@ -40,8 +40,8 @@ namespace FFC.Cards.LightGunner {
 
             // LMG is apart of the LightGunnerClass and DMR Categories
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunner],
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Lmg]
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.LightGunner],
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.Lmg]
             };
 
             gameObject.GetOrAddComponent<ClassNameMono>();
@@ -59,8 +59,8 @@ namespace FFC.Cards.LightGunner {
         ) {
             // If the player picks LMG, blacklist all cards in the AssaultRifle and DMR categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.AssaultRifle],
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Dmr]
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.AssaultRifle],
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.Dmr]
             });
         }
 

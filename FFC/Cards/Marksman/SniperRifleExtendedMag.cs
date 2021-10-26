@@ -28,11 +28,11 @@ namespace FFC.Cards.Marksman {
             gun.reloadTime = ReloadSpeed;
             statModifiers.movementSpeed = MovementSpeed;
 
-            var classUpgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
+            var classProgressionCategories = ClassesManager.ClassesManager.Instance.ClassProgressionCategories;
 
             cardInfo.categories = new[] {
-                classUpgradeCategories[FFC.Marksman],
-                classUpgradeCategories[FFC.Barret50Cal]
+                classProgressionCategories[FFC.Marksman],
+                classProgressionCategories[FFC.Barret50Cal]
             };
 
             gameObject.GetOrAddComponent<ClassNameMono>();

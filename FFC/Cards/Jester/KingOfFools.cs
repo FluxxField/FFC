@@ -24,8 +24,8 @@ namespace FFC.Cards.Jester {
             CharacterStatModifiers statModifiers
         ) {
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Jester],
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.KingOfFoolsCategory]
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.Jester],
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.KingOfFoolsCategory]
             };
 
             gameObject.GetOrAddComponent<ClassNameMono>();
@@ -49,7 +49,7 @@ namespace FFC.Cards.Jester {
                     break;
                 }
                 case 2: {
-                    CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.KingOfFoolsCategory]);
+                    CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.KingOfFoolsCategory]);
                     break;
                 }
             }

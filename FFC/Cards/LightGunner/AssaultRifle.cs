@@ -36,7 +36,7 @@ namespace FFC.Cards.LightGunner {
 
             cardInfo.allowMultiple = false;
 
-            var upgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
+            var upgradeCategories = ClassesManager.ClassesManager.Instance.ClassProgressionCategories;
             // AssaultRifle is apart of the LightGunnerClass and AssaultRifle Categories
             cardInfo.categories = new[] {
                 upgradeCategories[FFC.LightGunner],
@@ -58,8 +58,8 @@ namespace FFC.Cards.LightGunner {
         ) {
             // If the player picks AssaultRifle, blacklist all cards in the DMR and LMG categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Dmr],
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Lmg]
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.Dmr],
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.Lmg]
             });
         }
 

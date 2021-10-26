@@ -27,7 +27,7 @@ namespace FFC.Cards.Juggernaut {
             statModifiers.movementSpeed = MovementSpeed;
 
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Juggernaut]
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.Juggernaut]
             };
             
             gameObject.GetOrAddComponent<ClassNameMono>();

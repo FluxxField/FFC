@@ -34,7 +34,7 @@ namespace FFC.Cards.LightGunner {
 
             cardInfo.allowMultiple = false;
 
-            var upgradeCategories = ClassesManager.ClassesManager.Instance.ClassUpgradeCategories;
+            var upgradeCategories = ClassesManager.ClassesManager.Instance.ClassProgressionCategories;
             // DMR is apart of the LightGunnerClass and DMR Categories
             cardInfo.categories = new[] {
                 upgradeCategories[FFC.LightGunner],
@@ -56,8 +56,8 @@ namespace FFC.Cards.LightGunner {
         ) {
             // If the player picks DMR, blacklist all cards in the AssaultRifle and LMG categories
             characterStats.GetAdditionalData().blacklistedCategories.AddRange(new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.AssaultRifle],
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Lmg]
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.AssaultRifle],
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.Lmg]
             });
         }
 

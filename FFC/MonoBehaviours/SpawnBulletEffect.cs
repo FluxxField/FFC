@@ -71,14 +71,13 @@ namespace FFC.MonoBehaviours {
 							positionToShootFrom = _positionsToShootFrom[_numShot % _positionsToShootFrom.Count];
 						}
                         
-						var view = PhotonNetwork.Instantiate(_gunToShootFrom.projectiles[i].objectToSpawn.gameObject.name, positionToShootFrom, Quaternion.LookRotation(directionToShootThisBullet)).GetComponent<PhotonView>();
-                        var viewId = view.ViewID;
+                        GameObject gameObject = PhotonNetwork.Instantiate(_gunToShootFrom.projectiles[i].objectToSpawn.gameObject.name, positionToShootFrom, Quaternion.LookRotation(directionToShootThisBullet), 0, null);
                         
 						if (PhotonNetwork.OfflineMode) {
-							RPCA_Shoot(viewId,currentNumberOfProjectiles, 1f, Random.Range(0f,1f));
+							RPCA_Shoot(gameObject.GetComponent<PhotonView>().ViewID,currentNumberOfProjectiles, 1f, Random.Range(0f,1f));
                         } else {
-                            view.RPC("RPCA_Shoot", RpcTarget.All, new [] {
-                                viewId,
+                            this.gameObject.GetComponent<PhotonView>().RPC("RPCA_Shoot", RpcTarget.All, new [] {
+                                gameObject.GetComponent<PhotonView>().ViewID,
 								currentNumberOfProjectiles,
 								1f,
 								Random.Range(0f, 1f)

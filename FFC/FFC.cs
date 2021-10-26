@@ -22,7 +22,7 @@ namespace FFC {
 
         private const string ModId = "fluxxfield.rounds.plugins.fluxxfieldscards";
         private const string ModName = "FluxxField's Cards (FFC)";
-        private const string Version = "4.4.1";
+        private const string Version = "4.4.2";
 
         public const string Marksman = "Marksman";
         public const string LightGunner = "Light Gunner";
@@ -41,7 +41,7 @@ namespace FFC {
 
 
         private void Start() {
-            ClassesManager.ClassesManager.Instance.AddClassUpgradeCategories(new List<string> {
+            ClassesManager.ClassesManager.Instance.AddClassProgressionCategories(new List<string> {
                 Marksman,
                 LightGunner,
                 Juggernaut,
@@ -76,7 +76,7 @@ namespace FFC {
             CustomCard.BuildCard<KingOfFools>();
             CustomCard.BuildCard<JokesOnYou>();
             //Blood Mage Class
-            CustomCard.BuildCard<BloodMage>();
+            // CustomCard.BuildCard<BloodMage>();
 
             Unbound.RegisterCredits(ModName,
                 new[] {"FluxxField"},

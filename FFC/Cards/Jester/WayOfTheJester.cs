@@ -22,7 +22,7 @@ namespace FFC.Cards.Jester {
         ) {
             cardInfo.allowMultiple = false;
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.Jester]
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.Jester]
             };
 
             gameObject.GetOrAddComponent<ClassNameMono>();

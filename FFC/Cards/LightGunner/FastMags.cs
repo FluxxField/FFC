@@ -26,7 +26,7 @@ namespace FFC.Cards.LightGunner {
             gun.reloadTime = ReloadSpeed;
 
             cardInfo.categories = new[] {
-                ClassesManager.ClassesManager.Instance.ClassUpgradeCategories[FFC.LightGunner]
+                ClassesManager.ClassesManager.Instance.ClassProgressionCategories[FFC.LightGunner]
             };
             
             gameObject.GetOrAddComponent<ClassNameMono>();
