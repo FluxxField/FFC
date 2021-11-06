@@ -21,15 +21,17 @@ namespace FFC.MonoBehaviours {
         }
 
         private void Update() {
-            if (_bounces == _previousBounces || _bounces > 25) return;
+            if (_bounces == _previousBounces || ((_bounces > 25) && (_previousBounces >= 25))) return;
 
             UnityEngine.Debug.Log($"[FFC] _bounces: {_bounces}");
+            
+            int _difference = Mathf.Min(_bounces, 25) - _previousBounces;
 
             _previousBounces = _bounces;
 
-            _stats.movementSpeed += _bounces * MovementSpeed;
-            _gun.damage += _bounces * Damage;
-            _gun.projectileSpeed += _bounces * ProjectileSpeed;
+            _stats.movementSpeed *= Mathf.Pow(1f + MovementSpeed, _difference);
+            _gun.damage *= Mathf.Pow(1f + Damage, _difference);
+            _gun.projectileSpeed *= Mathf.Pow(1f + ProjectileSpeed, _difference);
         }
     }
 }
